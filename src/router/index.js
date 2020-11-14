@@ -15,6 +15,11 @@ const routes = [
     name: 'projects',
     component: () => import('@/views/Projects'),
   },
+  {
+    path: '/d3',
+    name: 'd3',
+    component: () => import('@/views/MasteringD3'),
+  },
 ]
 
 const router = new VueRouter({
