@@ -1,0 +1,209 @@
+[
+  {
+    "group": "web",
+    "name": "Web",
+    "r": 40
+  },
+  {
+    "group": "language",
+    "name": "Languages",
+    "r": 40
+  },
+  {
+    "group": "database",
+    "name": "Databases",
+    "r": 40
+  },
+  {
+    "group": "agile",
+    "name": "Agile",
+    "r": 40
+  },
+  {
+    "group": "ui",
+    "name": "UI",
+    "r": 40
+  },
+  {
+    "group": "env",
+    "name": "Dev Env",
+    "r": 40
+  },
+  {
+    "group": "ops",
+    "name": "Dev Ops",
+    "r": 40
+  },
+  {
+    "group": "language",
+    "name": "JavaScript",
+    "r": 50
+  },
+  {
+    "group": "language",
+    "name": "TypeScript",
+    "r": 40
+  },
+  {
+    "group": "language",
+    "name": "Python",
+    "r": 50
+  },
+  {
+    "group": "language",
+    "name": "Golang",
+    "r": 40
+  },
+
+  {
+    "group": "database",
+    "name": "PostgreSQL",
+    "r": 40
+  },
+  {
+    "group": "database",
+    "name": "MongoDB",
+    "r": 50
+  },
+  {
+    "group": "database",
+    "name": "ArangoDB",
+    "r": 30
+  },
+  {
+    "group": "database",
+    "name": "Redis",
+    "r": 50
+  },
+  {
+    "group": "database",
+    "name": "Minio",
+    "r": 30
+  },
+
+  {
+    "group": "agile",
+    "name": "GitLab",
+    "r": 50
+  },
+  {
+    "group": "agile",
+    "name": "Trello",
+    "r": 30
+  },
+  {
+    "group": "agile",
+    "name": "Atlassian",
+    "r": 30
+  },
+  {
+    "group": "ui",
+    "name": "Vuetify",
+    "r": 50
+  },
+  {
+    "group": "ui",
+    "name": "Material Design",
+    "r": 40
+  },
+  {
+    "group": "ui",
+    "name": "Angular Material",
+    "r": 30
+  },
+  {
+    "group": "ui",
+    "name": "Bootstrap",
+    "r": 30
+  },
+  {
+    "group": "env",
+    "name": "Git",
+    "r": 50
+  },
+  {
+    "group": "env",
+    "name": "GitHub",
+    "r": 40
+  },
+  {
+    "group": "env",
+    "name": "VS Code",
+    "r": 50
+  },
+  {
+    "group": "env",
+    "name": "PyCharm",
+    "r": 40
+  },
+  {
+    "group": "ops",
+    "name": "Linux",
+    "r": 40
+  },
+  {
+    "group": "ops",
+    "name": "Docker",
+    "r": 40
+  },
+  {
+    "group": "ops",
+    "name": "XenServer",
+    "r": 40
+  },
+  {
+    "group": "ops",
+    "name": "Ansible",
+    "r": 30
+  },
+  {
+    "group": "web",
+    "name": "HTML",
+    "r": 50
+  },
+  {
+    "group": "web",
+    "name": "CSS",
+    "r": 30
+  },
+  {
+    "group": "web",
+    "name": "Node",
+    "r": 40
+  },
+  {
+    "group": "web",
+    "name": "Vue",
+    "r": 50
+  },
+  {
+    "group": "web",
+    "name": "Angular",
+    "r": 30
+  },
+  {
+    "group": "web",
+    "name": "Nginx",
+    "r": 30
+  },
+  {
+    "group": "web",
+    "name": "Postman",
+    "r": 40
+  },
+  {
+    "group": "web",
+    "name": "D3",
+    "r": 40
+  },
+  {
+    "group": "web",
+    "name": "RxJS",
+    "r": 40
+  },
+  {
+    "group": "web",
+    "name": "Selenium",
+    "r": 40
+  }
+]

@@ -1,0 +1,37 @@
+[
+  {
+    "group": "web",
+    "name": "Web",
+    "r": 40
+  },
+  {
+    "group": "language",
+    "name": "Languages",
+    "r": 40
+  },
+  {
+    "group": "database",
+    "name": "Databases",
+    "r": 40
+  },
+  {
+    "group": "agile",
+    "name": "Agile",
+    "r": 40
+  },
+  {
+    "group": "ui",
+    "name": "UI",
+    "r": 40
+  },
+  {
+    "group": "env",
+    "name": "Dev Env",
+    "r": 40
+  },
+  {
+    "group": "ops",
+    "name": "Dev Ops",
+    "r": 40
+  }
+]
