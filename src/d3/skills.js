@@ -9,6 +9,7 @@ let height
 let imageWidth_
 let imageHeight_
 let nodeSelection
+let textSelection
 let simulation
 let data = []
 let centroids = {}
@@ -16,12 +17,12 @@ let centroids = {}
 export async function fetchSkills() {
   const skills = await d3.json('skills.json')
   skills.sort((s1, s2) => {
-    const name1 = s1.name.toUpperCase()
-    const name2 = s2.name.toUpperCase()
-    if (name1 < name2) {
+    const t1 = s1.title.toUpperCase()
+    const t2 = s2.title.toUpperCase()
+    if (t1 < t2) {
       return -1
     }
-    if (name1 > name2) {
+    if (t1 > t2) {
       return 1
     }
     return 0
@@ -42,6 +43,7 @@ export async function initCanvas() {
     .attr('height', height)
 
   nodeSelection = svg.selectAll('circle.node')
+  textSelection = svg.selectAll('text.group')
 }
 
 function updateCentroids() {
@@ -164,6 +166,7 @@ export function initSimulation() {
     )
     .on('tick', () => {
       nodeSelection.attr('cx', d => d.x).attr('cy', d => d.y)
+      textSelection.attr('x', d => d.x).attr('y', d => d.y + 10)
     })
 }
 
@@ -189,18 +192,47 @@ export function addNode(node) {
   nodeSelection = svg
     .selectAll('circle.node')
     .data(data)
-    .join(enter =>
-      enter
+    .join(selection => {
+      appendDef(selection)
+      return selection
         .append('circle')
         .attr('cx', focusX)
         .attr('cy', focusY)
         .attr('r', d => d.r)
         .attr('stroke', 'gray')
         .attr('stroke-width', 2)
-        .attr('fill', 'none')
-        .attr('class', 'node'),
+        .attr('class', 'node')
+        .attr('fill', d => (d.path ? `url(#image-${d.title})` : 'dimgray'))
+    })
+
+  textSelection = svg
+    .selectAll('text.group')
+    .data(data)
+    .join(selection =>
+      selection
+        .append('text')
+        .attr('text-anchor', 'middle')
+        .attr('font-size', '32px')
+        .attr('fill', 'white')
+        .attr('class', 'group')
+        .text(d => (d.path ? '' : d.display)),
     )
 
   simulation.nodes(data)
   play()
+}
+
+function appendDef(selection) {
+  selection
+    .append('defs')
+    .append('pattern')
+    .attr('id', d => `image-${d.title}`)
+    .attr('width', 1)
+    .attr('height', 1)
+    .append('svg:image')
+    .attr('x', d => d.r * 0.25)
+    .attr('y', d => d.r * 0.25)
+    .attr('width', d => d.r * 1.5)
+    .attr('height', d => d.r * 1.5)
+    .attr('xlink:href', d => d.path)
 }

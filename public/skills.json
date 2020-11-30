@@ -1,209 +1,289 @@
 [
   {
     "group": "web",
-    "name": "Web",
-    "r": 40
+    "display": "WEB",
+    "title": "web",
+    "r": 60
   },
   {
     "group": "language",
-    "name": "Languages",
-    "r": 40
+    "display": "LANG",
+    "title": "languages",
+    "r": 60
   },
   {
     "group": "database",
-    "name": "Databases",
-    "r": 40
+    "display": "DB",
+    "title": "databases",
+    "r": 60
   },
   {
     "group": "agile",
-    "name": "Agile",
-    "r": 40
+    "display": "MGMT",
+    "title": "agile",
+    "r": 60
   },
   {
     "group": "ui",
-    "name": "UI",
-    "r": 40
+    "display": "UI",
+    "title": "ui",
+    "r": 60
   },
   {
     "group": "env",
-    "name": "Dev Env",
-    "r": 40
+    "display": "TOOLS",
+    "title": "dev-env",
+    "r": 60
   },
   {
     "group": "ops",
-    "name": "Dev Ops",
-    "r": 40
+    "display": "OPS",
+    "title": "dev-ops",
+    "r": 60
   },
   {
     "group": "language",
-    "name": "JavaScript",
-    "r": 50
+    "display": "JavaScript",
+    "title": "js",
+    "r": 60,
+    "path": "skill-icons/js.jpg"
   },
   {
     "group": "language",
-    "name": "TypeScript",
-    "r": 40
+    "display": "TypeScript",
+    "title": "ts",
+    "r": 45,
+    "path": "skill-icons/ts.jpg"
   },
   {
     "group": "language",
-    "name": "Python",
-    "r": 50
+    "display": "Python",
+    "title": "python",
+    "r": 60,
+    "path": "skill-icons/python.jpg"
   },
   {
     "group": "language",
-    "name": "Golang",
-    "r": 40
-  },
-
-  {
-    "group": "database",
-    "name": "PostgreSQL",
-    "r": 40
+    "display": "Golang",
+    "title": "go",
+    "r": 45,
+    "path": "skill-icons/go.jpg"
   },
   {
     "group": "database",
-    "name": "MongoDB",
-    "r": 50
+    "display": "PostgreSQL",
+    "title": "postgres",
+    "r": 45,
+    "path": "skill-icons/postgres.jpg"
   },
   {
     "group": "database",
-    "name": "ArangoDB",
-    "r": 30
+    "display": "MongoDB",
+    "title": "mongo",
+    "r": 60,
+    "path": "skill-icons/mongo.jpg"
   },
   {
     "group": "database",
-    "name": "Redis",
-    "r": 50
+    "display": "ArangoDB",
+    "title": "arango",
+    "r": 30,
+    "path": "skill-icons/arango.jpg"
   },
   {
     "group": "database",
-    "name": "Minio",
-    "r": 30
+    "display": "Redis",
+    "title": "redis",
+    "r": 60,
+    "path": "skill-icons/redis.jpg"
   },
-
+  {
+    "group": "database",
+    "display": "Minio",
+    "title": "minio",
+    "r": 30,
+    "path": "skill-icons/minio.jpg"
+  },
   {
     "group": "agile",
-    "name": "GitLab",
-    "r": 50
+    "display": "GitLab",
+    "title": "gitlab",
+    "r": 60,
+    "path": "skill-icons/gitlab.jpg"
   },
   {
     "group": "agile",
-    "name": "Trello",
-    "r": 30
+    "display": "Trello",
+    "title": "trello",
+    "r": 30,
+    "path": "skill-icons/trello.jpg"
   },
   {
     "group": "agile",
-    "name": "Atlassian",
-    "r": 30
+    "display": "Atlassian",
+    "title": "atlassian",
+    "r": 30,
+    "path": "skill-icons/atlassian.jpg"
   },
   {
     "group": "ui",
-    "name": "Vuetify",
-    "r": 50
+    "display": "Vuetify",
+    "title": "vuetify",
+    "r": 60,
+    "path": "skill-icons/vuetify.jpg"
   },
   {
     "group": "ui",
-    "name": "Material Design",
-    "r": 40
+    "display": "Material Design",
+    "title": "material",
+    "r": 45,
+    "path": "skill-icons/material.jpg"
   },
   {
     "group": "ui",
-    "name": "Angular Material",
-    "r": 30
+    "display": "Angular Material",
+    "title": "angular-material",
+    "r": 30,
+    "path": "skill-icons/angular-material.jpg"
   },
   {
     "group": "ui",
-    "name": "Bootstrap",
-    "r": 30
+    "display": "Bootstrap",
+    "title": "bootstrap",
+    "r": 30,
+    "path": "skill-icons/bootstrap.jpg"
   },
   {
     "group": "env",
-    "name": "Git",
-    "r": 50
+    "display": "Git",
+    "title": "git",
+    "r": 60,
+    "path": "skill-icons/git.jpg"
   },
   {
     "group": "env",
-    "name": "GitHub",
-    "r": 40
+    "display": "Jest",
+    "title": "jest",
+    "r": 45,
+    "path": "skill-icons/jest.jpg"
   },
   {
     "group": "env",
-    "name": "VS Code",
-    "r": 50
+    "display": "GitHub",
+    "title": "github",
+    "r": 45,
+    "path": "skill-icons/github.jpg"
   },
   {
     "group": "env",
-    "name": "PyCharm",
-    "r": 40
+    "display": "VS Code",
+    "title": "vs-code",
+    "r": 60,
+    "path": "skill-icons/vscode.jpg"
+  },
+  {
+    "group": "env",
+    "display": "PyCharm",
+    "title": "pycharm",
+    "r": 45,
+    "path": "skill-icons/pycharm.jpg"
   },
   {
     "group": "ops",
-    "name": "Linux",
-    "r": 40
+    "display": "Linux",
+    "title": "linux",
+    "r": 45,
+    "path": "skill-icons/linux.jpg"
   },
   {
     "group": "ops",
-    "name": "Docker",
-    "r": 40
+    "display": "Docker",
+    "title": "docker",
+    "r": 45,
+    "path": "skill-icons/docker.jpg"
   },
   {
     "group": "ops",
-    "name": "XenServer",
-    "r": 40
+    "display": "XenServer",
+    "title": "xen",
+    "r": 45,
+    "path": "skill-icons/xen.jpg"
   },
   {
     "group": "ops",
-    "name": "Ansible",
-    "r": 30
+    "display": "Ansible",
+    "title": "ansible",
+    "r": 30,
+    "path": "skill-icons/ansible.jpg"
   },
   {
     "group": "web",
-    "name": "HTML",
-    "r": 50
+    "display": "HTML",
+    "title": "html",
+    "r": 60,
+    "path": "skill-icons/html.jpg"
   },
   {
     "group": "web",
-    "name": "CSS",
-    "r": 30
+    "display": "CSS",
+    "title": "css",
+    "r": 30,
+    "path": "skill-icons/css.jpg"
+  },
+  {
+    "group": "ops",
+    "display": "Node",
+    "title": "node",
+    "r": 45,
+    "path": "skill-icons/node.jpg"
   },
   {
     "group": "web",
-    "name": "Node",
-    "r": 40
+    "display": "Vue",
+    "title": "vue",
+    "r": 60,
+    "path": "skill-icons/vue.jpg"
   },
   {
     "group": "web",
-    "name": "Vue",
-    "r": 50
+    "display": "Angular",
+    "title": "angular",
+    "r": 30,
+    "path": "skill-icons/angular.jpg"
   },
   {
     "group": "web",
-    "name": "Angular",
-    "r": 30
+    "display": "Nginx",
+    "title": "nginx",
+    "r": 30,
+    "path": "skill-icons/nginx.jpg"
+  },
+  {
+    "group": "env",
+    "display": "Postman",
+    "title": "postman",
+    "r": 45,
+    "path": "skill-icons/postman.jpg"
   },
   {
     "group": "web",
-    "name": "Nginx",
-    "r": 30
+    "display": "D3",
+    "title": "d3",
+    "r": 45,
+    "path": "skill-icons/d3.jpg"
   },
   {
     "group": "web",
-    "name": "Postman",
-    "r": 40
+    "display": "RxJS",
+    "title": "rxjs",
+    "r": 45,
+    "path": "skill-icons/rxjs.jpg"
   },
   {
     "group": "web",
-    "name": "D3",
-    "r": 40
-  },
-  {
-    "group": "web",
-    "name": "RxJS",
-    "r": 40
-  },
-  {
-    "group": "web",
-    "name": "Selenium",
-    "r": 40
+    "display": "Selenium",
+    "title": "selenium",
+    "r": 45,
+    "path": "skill-icons/selenium.jpg"
   }
 ]
