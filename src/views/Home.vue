@@ -11,29 +11,24 @@
         contact
       </v-tab>
     </v-tabs>
-    <SkillsLegend v-if="showLegend" @complete="transition()" />
-    <Skills v-else-if="showSkills" />
+    <Skills v-if="imageRendered" />
     <div id="svg-container" />
     <v-img id="sketch" src="main.png" @load="checkDimensions()" />
   </v-container>
 </template>
 
 <script>
-import SkillsLegend from '@/components/SkillsLegend'
 import Skills from '@/components/Skills'
-
 import { sleep } from '@/common/functions'
 
 export default {
   components: {
-    SkillsLegend,
     Skills,
   },
 
   data: () => ({
     tab: 0,
-    showLegend: false,
-    showSkills: false,
+    imageRendered: false,
   }),
 
   methods: {
@@ -45,13 +40,7 @@ export default {
         this.checkDimensions()
         return
       }
-      this.showLegend = true
-      // TODO: once the legend animation is complete launch skill visualization
-    },
-
-    transition() {
-      this.showLegend = false
-      this.showSkills = true
+      this.imageRendered = true
     },
   },
 }

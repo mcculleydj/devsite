@@ -1,112 +1,30 @@
 import * as d3 from 'd3'
+import { skillProficiencies, skillCategories } from '@/common/constants'
 
+// selections
 let container
 let svg
-let focusX
-let focusY
+let legendNodes
+let legendText
+let skillNodes
+let categoryLabels
+
+// geography
+let originX
+let originY
 let width
 let height
 let imageWidth_
 let imageHeight_
-let nodeSelection
-let simulation
-let data = []
 let centroids = {}
-let lines
 
-const categories = [
-  {
-    group: 'web',
-    display: 'web',
-    hexOffset: {
-      x: -90,
-      y: -145,
-    },
-    radialOffset: {
-      x: -110,
-      y: -155,
-    },
-  },
-  {
-    group: 'language',
-    display: 'languages',
-    hexOffset: {
-      x: -85,
-      y: -120,
-    },
-    radialOffset: {
-      x: -80,
-      y: -120,
-    },
-  },
-  {
-    group: 'database',
-    display: 'databases',
-    hexOffset: {
-      x: -85,
-      y: -140,
-    },
-    radialOffset: {
-      x: -90,
-      y: -120,
-    },
-  },
-  {
-    group: 'agile',
-    display: 'agile',
-    hexOffset: {
-      x: -90,
-      y: -110,
-    },
-    radialOffset: {
-      x: -90,
-      y: -90,
-    },
-  },
-  {
-    group: 'ui',
-    display: 'user interface',
-    hexOffset: {
-      x: -60,
-      y: -110,
-    },
-    radialOffset: {
-      x: -80,
-      y: -110,
-    },
-  },
-  {
-    group: 'env',
-    display: 'tools',
-    hexOffset: {
-      x: -60,
-      y: -140,
-    },
-    radialOffset: {
-      x: -130,
-      y: -140,
-    },
-  },
-  {
-    group: 'ops',
-    display: 'ops',
-    hexOffset: {
-      x: -90,
-      y: -145,
-    },
-    radialOffset: {
-      x: -90,
-      y: -140,
-    },
-  },
-]
+// simulations and data
+let legendSimulation
+let skillSimulation
+let legendData = []
+let skillData = []
+let legendSimulationComplete = false
 
-export async function fetchSkills() {
-  const skills = await d3.json('skills.json')
-  return skills.sort((s1, s2) => s1.r - s2.r)
-}
-
-// called once to initially render fixtures
 export async function initCanvas() {
   container = document.getElementById('svg-container')
   width = container.clientWidth
@@ -118,10 +36,15 @@ export async function initCanvas() {
     .attr('width', width)
     .attr('height', height)
 
-  nodeSelection = svg.selectAll('circle.node')
-  lines = svg.append('g')
+  // these selections need to be non-null for simulation tick events
+  legendNodes = d3.selectAll('circle.legend-node')
+  legendText = d3.selectAll('text.legend-text')
+  skillNodes = d3.selectAll('circle.skill-node')
+
+  categoryLabels = svg.append('g')
 }
 
+// re-positions each category cluster on the screen based on aspect ratio
 function updateCentroids() {
   const aspectRatio = width / height
 
@@ -190,6 +113,8 @@ function updateCentroids() {
       }
     }
   }
+
+  return aspectRatio
 }
 
 // during resize events update the svg canvas and visualization
@@ -198,40 +123,36 @@ export function updateCanvas(imageWidth, imageHeight) {
   height = container.clientHeight
   svg.attr('width', width).attr('height', height)
 
-  focusX = width - 0.65 * imageWidth
-  focusY = height - 0.75 * imageHeight
+  originX = width - 0.65 * imageWidth
+  originY = height - 0.75 * imageHeight
 
   imageWidth_ = imageWidth
   imageHeight_ = imageHeight
 
-  // remove group headers
-  svg
-    .selectAll('text.group')
-    .attr('fill-opacity', 1)
+  // TODO: handle resize events during legend simulation and return
+  if (!legendSimulationComplete) return
+
+  // remove category labels
+  categoryLabels
+    .attr('opacity', 1)
     .transition(d3.transition().duration(500))
-    .attr('fill-opacity', 0)
+    .attr('opacity', 0)
     .remove()
 
-  // remove lines
-  lines
-    .attr('fill-opacity', 1)
-    .transition(d3.transition().duration(500))
-    .attr('fill-opacity', 0)
-    .remove()
+  // re-add category labels
+  categoryLabels = svg.append('g')
 
-  // add lines group
-  lines = svg.append('g')
+  // figure out where groups should be placed following the resize event
+  const aspectRatio = updateCentroids()
 
-  updateCentroids()
-
-  const aspectRatio = width / height
-  const offsets = categories.map(c => ({
+  const offsets = skillCategories.map(c => ({
     x:
       aspectRatio < 0.7 || aspectRatio > 1.3 ? c.hexOffset.x : c.radialOffset.x,
     y:
       aspectRatio < 0.7 || aspectRatio > 1.3 ? c.hexOffset.y : c.radialOffset.y,
   }))
 
+  // set line properties based on radial or hexagonal arrangement
   let lineWidth = 120
   let lineDepth = 30
   if (aspectRatio < 0.7 || aspectRatio > 1.3) {
@@ -239,16 +160,14 @@ export function updateCanvas(imageWidth, imageHeight) {
     lineDepth = 15
   }
 
-  // add group headers and lines
-
-  categories.forEach((d, i) => {
-    svg
+  // add category headers and lines
+  skillCategories.forEach((d, i) => {
+    categoryLabels
       .append('text')
-      .attr('font-size', '18px')
-      .attr('fill', 'gray')
-      .attr('class', 'group')
       .attr('x', centroids[d.group].x + offsets[i].x)
       .attr('y', centroids[d.group].y + offsets[i].y)
+      .attr('font-size', '18px')
+      .attr('fill', 'gray')
       .attr('fill-opacity', 0)
       .transition(
         d3
@@ -259,13 +178,13 @@ export function updateCanvas(imageWidth, imageHeight) {
       .attr('fill-opacity', 1)
       .text(d.display)
 
-    lines
+    categoryLabels
       .append('line')
-      .attr('stroke', 'gray')
       .attr('x1', centroids[d.group].x + offsets[i].x)
       .attr('y1', centroids[d.group].y + offsets[i].y + 2)
       .attr('x2', centroids[d.group].x + offsets[i].x + lineWidth)
       .attr('y2', centroids[d.group].y + offsets[i].y + 2)
+      .attr('stroke', 'gray')
       .attr('stroke-opacity', 0)
       .transition(
         d3
@@ -275,13 +194,13 @@ export function updateCanvas(imageWidth, imageHeight) {
       )
       .attr('stroke-opacity', 1)
 
-    lines
+    categoryLabels
       .append('line')
-      .attr('stroke', 'gray')
       .attr('x1', centroids[d.group].x + offsets[i].x)
       .attr('y1', centroids[d.group].y + offsets[i].y + 2)
       .attr('x2', centroids[d.group].x + offsets[i].x - lineDepth)
       .attr('y2', centroids[d.group].y + offsets[i].y + lineDepth)
+      .attr('stroke', 'gray')
       .attr('stroke-opacity', 0)
       .transition(
         d3
@@ -292,13 +211,13 @@ export function updateCanvas(imageWidth, imageHeight) {
       .attr('stroke-opacity', 1)
 
     if (aspectRatio < 0.7 || aspectRatio > 1.3) {
-      lines
+      categoryLabels
         .append('line')
-        .attr('stroke', 'gray')
         .attr('x1', centroids[d.group].x + offsets[i].x + lineWidth)
         .attr('y1', centroids[d.group].y + offsets[i].y + 2)
         .attr('x2', centroids[d.group].x + offsets[i].x + lineWidth + lineDepth)
         .attr('y2', centroids[d.group].y + offsets[i].y + lineDepth)
+        .attr('stroke', 'gray')
         .attr('stroke-opacity', 0)
         .transition(
           d3
@@ -309,6 +228,135 @@ export function updateCanvas(imageWidth, imageHeight) {
         .attr('stroke-opacity', 1)
     }
   })
+}
+
+export function initLegendSimulation(complete) {
+  legendSimulation = d3
+    .forceSimulation()
+    .alphaTarget(0.3) // stay hot
+    .velocityDecay(0.2) // low friction
+    .force('x', d3.forceX((width - imageWidth_) / 2).strength(0.01))
+    .force('y', d3.forceY((_, i) => ((1 + i) * height) / 4).strength(0.008))
+    .on('tick', () => {
+      legendNodes
+        .attr('cx', (d, i) => {
+          if (
+            i === 2 &&
+            d.x - (width - imageWidth_) / 2 < 5 &&
+            !legendSimulationComplete
+          ) {
+            legendSimulationComplete = true
+            setLegend(complete)
+          }
+          return d.x
+        })
+        .attr('cy', d => d.y)
+
+      legendText
+        .attr('x', d => d.x + d.targetRadius * 1.5)
+        .attr('y', d => d.y + 8)
+    })
+}
+
+function setLegend(complete) {
+  legendSimulation.stop()
+
+  legendNodes
+    .transition(d3.transition().duration(1000))
+    .attr('cx', 160)
+    .attr('cy', d => d.finalY)
+    .attr('r', d => d.targetRadius / 3)
+
+  legendText
+    .transition(d3.transition().duration(1000))
+    .attr('x', 40)
+    .attr('y', d => d.finalY - 2)
+    .attr('font-size', 20)
+
+  skillProficiencies.forEach(d => {
+    svg
+      .append('line')
+      .attr('x1', 40)
+      .attr('y1', d.finalY)
+      .attr('x2', 40)
+      .attr('y2', d.finalY)
+      .attr('stroke', 'gray')
+      .attr('stroke-width', 1)
+      .transition(
+        d3
+          .transition()
+          .delay(1100)
+          .duration(500),
+      )
+      .attr('x2', 160)
+      .attr('y2', d.finalY)
+
+    svg
+      .append('circle')
+      .attr('cx', 160)
+      .attr('cy', d.finalY)
+      .attr('fill', 'gray')
+      .transition(
+        d3
+          .transition()
+          .delay(1200)
+          .duration(500),
+      )
+      .attr('r', 3)
+  })
+
+  setTimeout(complete, 1500)
+}
+
+export function addLegendNode(node) {
+  legendData = legendData
+    .map(d => ({ ...d }))
+    .concat([
+      {
+        ...node,
+        x: originX,
+        y: originY,
+      },
+    ])
+
+  legendNodes = svg
+    .selectAll('circle.legend-node')
+    .data(legendData)
+    .join(enter => {
+      const selection = enter
+        .append('circle')
+        .attr('cx', originX)
+        .attr('cy', originY)
+        .attr('stroke', 'gray')
+        .attr('stroke-width', 1)
+        .attr('class', 'legend-node')
+        .attr('fill', 'white')
+
+      selection
+        .transition()
+        .duration(750)
+        .attrTween('r', d => {
+          const i = d3.interpolate(0, d.targetRadius)
+          return t => (d.r = i(t))
+        })
+
+      return selection
+    })
+
+  legendText = svg
+    .selectAll('text.legend-text')
+    .data(legendData)
+    .join(enter =>
+      enter
+        .append('text')
+        .attr('font-size', '32px')
+        .attr('fill', 'gray')
+        .attr('class', 'legend-text')
+        .text(d => d.text),
+    )
+
+  legendSimulation.nodes(legendData)
+  legendSimulation.alpha(2).restart()
 }
 
 function forceCluster() {
@@ -330,13 +378,11 @@ function forceCluster() {
   return force
 }
 
-export function initSimulation() {
-  simulation = d3
+export function initSkillSimulation() {
+  skillSimulation = d3
     .forceSimulation()
     .alphaTarget(0.3) // stay hot
     .velocityDecay(0.1) // low friction
-    // .force('x', d3.forceX(width / 4).strength(0.0003))
-    // .force('y', d3.forceY(height / 4).strength(0.0003))
     .force('cluster', forceCluster())
     .force(
       'collide',
@@ -346,45 +392,69 @@ export function initSimulation() {
         .iterations(3),
     )
     .on('tick', () => {
-      nodeSelection.attr('cx', d => d.x).attr('cy', d => d.y)
+      skillNodes.attr('cx', d => d.x).attr('cy', d => d.y)
     })
 }
 
-export function pause() {
-  simulation.stop()
+export function pause(simulation) {
+  if (simulation === 'legend') {
+    legendSimulation.stop()
+  } else {
+    skillSimulation.stop()
+  }
 }
 
-export function play() {
-  simulation
-    .alpha(2)
-    .force('cluster', forceCluster())
-    .restart()
+export function play(simulation) {
+  if (simulation === 'legend') {
+    // TODO: need to reset forces here for update?
+    legendSimulation.alpha(2).restart()
+  } else {
+    skillSimulation
+      .alpha(2)
+      .force('cluster', forceCluster())
+      .restart()
+  }
 }
 
-export function addNode(node, onClick) {
-  data = data
+function appendDef(selection) {
+  selection
+    .append('defs')
+    .append('pattern')
+    .attr('id', d => `image-${d.title}`)
+    .attr('width', 1)
+    .attr('height', 1)
+    .append('svg:image')
+    .attr('x', d => d.r * 0.25)
+    .attr('y', d => d.r * 0.25)
+    .attr('width', d => d.r * 1.5)
+    .attr('height', d => d.r * 1.5)
+    .attr('xlink:href', d => d.path)
+}
+
+export function addSkillNode(node, onClick) {
+  skillData = skillData
     .map(d => ({ ...d }))
     .concat([
       {
         ...node,
-        x: focusX,
-        y: focusY,
+        x: originX,
+        y: originY,
       },
     ])
 
-  nodeSelection = svg
-    .selectAll('circle.node')
-    .data(data)
+  skillNodes = svg
+    .selectAll('circle.skill-node')
+    .data(skillData)
     .join(selection => {
       appendDef(selection)
       return selection
         .append('circle')
-        .attr('cx', focusX)
-        .attr('cy', focusY)
+        .attr('cx', originX)
+        .attr('cy', originY)
         .attr('r', d => d.r)
         .attr('stroke', 'gray')
         .attr('stroke-width', 1)
-        .attr('class', 'node')
+        .attr('class', 'skill-node')
         .attr('fill', d => (d.path ? `url(#image-${d.title})` : 'white'))
         .on('mouseover', function() {
           d3.select(this)
@@ -401,21 +471,6 @@ export function addNode(node, onClick) {
         .on('click', (_, d) => onClick(d))
     })
 
-  simulation.nodes(data)
-  play()
-}
-
-function appendDef(selection) {
-  selection
-    .append('defs')
-    .append('pattern')
-    .attr('id', d => `image-${d.title}`)
-    .attr('width', 1)
-    .attr('height', 1)
-    .append('svg:image')
-    .attr('x', d => d.r * 0.25)
-    .attr('y', d => d.r * 0.25)
-    .attr('width', d => d.r * 1.5)
-    .attr('height', d => d.r * 1.5)
-    .attr('xlink:href', d => d.path)
+  skillSimulation.nodes(skillData)
+  play('skills')
 }
