@@ -1,6 +1,6 @@
 <template>
   <v-container fluid>
-    <v-tabs>
+    <v-tabs v-model="tab">
       <v-tab>
         skills
       </v-tab>
@@ -11,79 +11,47 @@
         contact
       </v-tab>
     </v-tabs>
-    <div id="svg-container"></div>
-    <!-- <v-btn @click="clearStorage()">clear</v-btn> -->
-    <v-img id="sketch" src="main.png" @load="updateCanvas(true)" />
+    <SkillsLegend v-if="showLegend" @complete="transition()" />
+    <Skills v-else-if="showSkills" />
+    <div id="svg-container" />
+    <v-img id="sketch" src="main.png" @load="checkDimensions()" />
   </v-container>
 </template>
 
 <script>
-import { fromEvent, from, interval, Subject } from 'rxjs'
-import { map, tap, debounceTime, exhaustMap, zip } from 'rxjs/operators'
-import {
-  fetchSkills,
-  initCanvas,
-  updateCanvas,
-  initSimulation,
-  pause,
-  play,
-  addNode,
-} from '@/d3/skills'
+import SkillsLegend from '@/components/SkillsLegend'
+import Skills from '@/components/Skills'
 
-function sleep(ms) {
-  return new Promise(resolve => setTimeout(resolve, ms))
-}
-
-const signal$ = new Subject()
+import { sleep } from '@/common/functions'
 
 export default {
-  subscriptions() {
-    const skill$ = signal$.pipe(
-      exhaustMap(() =>
-        from(fetchSkills()).pipe(
-          exhaustMap(skills =>
-            from(skills).pipe(
-              zip(interval(500)),
-              map(a => a[0]),
-              tap(skill => {
-                addNode(skill)
-              }),
-            ),
-          ),
-        ),
-      ),
-    )
-
-    const resize$ = fromEvent(window, 'resize').pipe(
-      tap(() => {
-        pause()
-      }),
-      debounceTime(300),
-      tap(() => {
-        this.updateCanvas()
-        play()
-      }),
-    )
-    return { resize$, skill$ }
+  components: {
+    SkillsLegend,
+    Skills,
   },
 
-  async mounted() {
-    await initCanvas()
-  },
+  data: () => ({
+    tab: 0,
+    showLegend: false,
+    showSkills: false,
+  }),
 
   methods: {
-    async updateCanvas(onLoad) {
+    async checkDimensions() {
       const sketch = document.getElementById('sketch')
+      // need the DOM to provide image dimensions prior to rendering visualizations
       if (!sketch.clientWidth) {
         await sleep(500)
-        this.updateCanvas(onLoad)
+        this.checkDimensions()
         return
       }
-      if (onLoad) {
-        initSimulation()
-        signal$.next()
-      }
-      updateCanvas(sketch.clientWidth, sketch.clientHeight, onLoad)
+      this.showLegend = true
+      // TODO: once the legend animation is complete launch skill visualization
+    },
+
+    transition() {
+      this.showLegend = false
+      this.showSkills = true
     },
   },
 }

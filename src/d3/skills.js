@@ -9,25 +9,101 @@ let height
 let imageWidth_
 let imageHeight_
 let nodeSelection
-let textSelection
 let simulation
 let data = []
 let centroids = {}
+let lines
+
+const categories = [
+  {
+    group: 'web',
+    display: 'web',
+    hexOffset: {
+      x: -90,
+      y: -145,
+    },
+    radialOffset: {
+      x: -110,
+      y: -155,
+    },
+  },
+  {
+    group: 'language',
+    display: 'languages',
+    hexOffset: {
+      x: -85,
+      y: -120,
+    },
+    radialOffset: {
+      x: -80,
+      y: -120,
+    },
+  },
+  {
+    group: 'database',
+    display: 'databases',
+    hexOffset: {
+      x: -85,
+      y: -140,
+    },
+    radialOffset: {
+      x: -90,
+      y: -120,
+    },
+  },
+  {
+    group: 'agile',
+    display: 'agile',
+    hexOffset: {
+      x: -90,
+      y: -110,
+    },
+    radialOffset: {
+      x: -90,
+      y: -90,
+    },
+  },
+  {
+    group: 'ui',
+    display: 'user interface',
+    hexOffset: {
+      x: -60,
+      y: -110,
+    },
+    radialOffset: {
+      x: -80,
+      y: -110,
+    },
+  },
+  {
+    group: 'env',
+    display: 'tools',
+    hexOffset: {
+      x: -60,
+      y: -140,
+    },
+    radialOffset: {
+      x: -130,
+      y: -140,
+    },
+  },
+  {
+    group: 'ops',
+    display: 'ops',
+    hexOffset: {
+      x: -90,
+      y: -145,
+    },
+    radialOffset: {
+      x: -90,
+      y: -140,
+    },
+  },
+]
 
 export async function fetchSkills() {
   const skills = await d3.json('skills.json')
-  skills.sort((s1, s2) => {
-    const t1 = s1.title.toUpperCase()
-    const t2 = s2.title.toUpperCase()
-    if (t1 < t2) {
-      return -1
-    }
-    if (t1 > t2) {
-      return 1
-    }
-    return 0
-  })
-  return skills
+  return skills.sort((s1, s2) => s1.r - s2.r)
 }
 
 // called once to initially render fixtures
@@ -43,7 +119,7 @@ export async function initCanvas() {
     .attr('height', height)
 
   nodeSelection = svg.selectAll('circle.node')
-  textSelection = svg.selectAll('text.group')
+  lines = svg.append('g')
 }
 
 function updateCentroids() {
@@ -53,23 +129,24 @@ function updateCentroids() {
     const workingHeight = height - 0.85 * imageHeight_
     centroids = {
       web: { x: width / 2, y: workingHeight / 2 },
-      language: { x: 0.2 * width, y: 0.3 * workingHeight },
-      database: { x: 0.2 * width, y: 0.7 * workingHeight },
-      agile: { x: width / 2, y: 0.88 * workingHeight },
-      ui: { x: 0.8 * width, y: 0.7 * workingHeight },
-      env: { x: 0.8 * width, y: 0.3 * workingHeight },
-      ops: { x: width / 2, y: 0.12 * workingHeight },
+      database: { x: 0.2 * width, y: 0.35 * workingHeight },
+      language: { x: 0.2 * width, y: 0.65 * workingHeight },
+      agile: { x: width / 2, y: 0.85 * workingHeight },
+      env: { x: 0.8 * width, y: 0.65 * workingHeight },
+      ui: { x: 0.8 * width, y: 0.35 * workingHeight },
+      ops: { x: width / 2, y: 0.15 * workingHeight },
     }
   } else if (aspectRatio > 1.3) {
     const workingWidth = width - 0.8 * imageWidth_
+    const heightOffset = 0.05 * height
     centroids = {
-      web: { x: workingWidth / 2, y: height / 2 },
-      language: { x: 0.2 * workingWidth, y: 0.3 * height },
-      database: { x: 0.2 * workingWidth, y: 0.7 * height },
-      agile: { x: workingWidth / 2, y: 0.88 * height },
-      ui: { x: 0.8 * workingWidth, y: 0.7 * height },
-      env: { x: 0.8 * workingWidth, y: 0.3 * height },
-      ops: { x: workingWidth / 2, y: 0.12 * height },
+      web: { x: workingWidth / 2, y: height / 2 + heightOffset },
+      database: { x: 0.2 * workingWidth, y: 0.35 * height + heightOffset },
+      language: { x: 0.2 * workingWidth, y: 0.65 * height + heightOffset },
+      agile: { x: workingWidth / 2, y: 0.85 * height + heightOffset },
+      env: { x: 0.8 * workingWidth, y: 0.65 * height + heightOffset },
+      ui: { x: 0.8 * workingWidth, y: 0.35 * height + heightOffset },
+      ops: { x: workingWidth / 2, y: 0.15 * height + heightOffset },
     }
   } else {
     const r1 = 0.75 * Math.min(width, height)
@@ -93,22 +170,22 @@ function updateCentroids() {
         radius: r1,
       },
       ui: {
+        angle: (35 * Math.PI) / 24,
+        radius: r1,
+      },
+      env: {
         angle: (27 * Math.PI) / 24,
         radius: r2,
       },
-      env: {
+      ops: {
         angle: (33 * Math.PI) / 24,
         radius: r2,
-      },
-      ops: {
-        angle: (35 * Math.PI) / 24,
-        radius: r1,
       },
     }
     for (const k in polarCoords) {
       const { angle: a, radius: r } = polarCoords[k]
       centroids[k] = {
-        x: width + r * Math.cos(a),
+        x: 0.95 * width + r * Math.cos(a),
         y: height + r * Math.sin(a),
       }
     }
@@ -127,12 +204,116 @@ export function updateCanvas(imageWidth, imageHeight) {
   imageWidth_ = imageWidth
   imageHeight_ = imageHeight
 
+  // remove group headers
+  svg
+    .selectAll('text.group')
+    .attr('fill-opacity', 1)
+    .transition(d3.transition().duration(500))
+    .attr('fill-opacity', 0)
+    .remove()
+
+  // remove lines
+  lines
+    .attr('fill-opacity', 1)
+    .transition(d3.transition().duration(500))
+    .attr('fill-opacity', 0)
+    .remove()
+
+  // add lines group
+  lines = svg.append('g')
+
   updateCentroids()
+
+  const aspectRatio = width / height
+  const offsets = categories.map(c => ({
+    x:
+      aspectRatio < 0.7 || aspectRatio > 1.3 ? c.hexOffset.x : c.radialOffset.x,
+    y:
+      aspectRatio < 0.7 || aspectRatio > 1.3 ? c.hexOffset.y : c.radialOffset.y,
+  }))
+
+  let lineWidth = 120
+  let lineDepth = 30
+  if (aspectRatio < 0.7 || aspectRatio > 1.3) {
+    lineWidth = 150
+    lineDepth = 15
+  }
+
+  // add group headers and lines
+
+  categories.forEach((d, i) => {
+    svg
+      .append('text')
+      .attr('font-size', '18px')
+      .attr('fill', 'gray')
+      .attr('class', 'group')
+      .attr('x', centroids[d.group].x + offsets[i].x)
+      .attr('y', centroids[d.group].y + offsets[i].y)
+      .attr('fill-opacity', 0)
+      .transition(
+        d3
+          .transition()
+          .delay(600)
+          .duration(500),
+      )
+      .attr('fill-opacity', 1)
+      .text(d.display)
+
+    lines
+      .append('line')
+      .attr('stroke', 'gray')
+      .attr('x1', centroids[d.group].x + offsets[i].x)
+      .attr('y1', centroids[d.group].y + offsets[i].y + 2)
+      .attr('x2', centroids[d.group].x + offsets[i].x + lineWidth)
+      .attr('y2', centroids[d.group].y + offsets[i].y + 2)
+      .attr('stroke-opacity', 0)
+      .transition(
+        d3
+          .transition()
+          .delay(600)
+          .duration(500),
+      )
+      .attr('stroke-opacity', 1)
+
+    lines
+      .append('line')
+      .attr('stroke', 'gray')
+      .attr('x1', centroids[d.group].x + offsets[i].x)
+      .attr('y1', centroids[d.group].y + offsets[i].y + 2)
+      .attr('x2', centroids[d.group].x + offsets[i].x - lineDepth)
+      .attr('y2', centroids[d.group].y + offsets[i].y + lineDepth)
+      .attr('stroke-opacity', 0)
+      .transition(
+        d3
+          .transition()
+          .delay(600)
+          .duration(500),
+      )
+      .attr('stroke-opacity', 1)
+
+    if (aspectRatio < 0.7 || aspectRatio > 1.3) {
+      lines
+        .append('line')
+        .attr('stroke', 'gray')
+        .attr('x1', centroids[d.group].x + offsets[i].x + lineWidth)
+        .attr('y1', centroids[d.group].y + offsets[i].y + 2)
+        .attr('x2', centroids[d.group].x + offsets[i].x + lineWidth + lineDepth)
+        .attr('y2', centroids[d.group].y + offsets[i].y + lineDepth)
+        .attr('stroke-opacity', 0)
+        .transition(
+          d3
+            .transition()
+            .delay(600)
+            .duration(500),
+        )
+        .attr('stroke-opacity', 1)
+    }
+  })
 }
 
 function forceCluster() {
-  const strength = 0.003
   let nodes
+  const strength = 0.003
 
   const force = alpha => {
     const l = alpha * strength
@@ -154,8 +335,8 @@ export function initSimulation() {
     .forceSimulation()
     .alphaTarget(0.3) // stay hot
     .velocityDecay(0.1) // low friction
-    .force('x', d3.forceX(width / 4).strength(0.0003))
-    .force('y', d3.forceY(height / 4).strength(0.0003))
+    // .force('x', d3.forceX(width / 4).strength(0.0003))
+    // .force('y', d3.forceY(height / 4).strength(0.0003))
     .force('cluster', forceCluster())
     .force(
       'collide',
@@ -166,7 +347,6 @@ export function initSimulation() {
     )
     .on('tick', () => {
       nodeSelection.attr('cx', d => d.x).attr('cy', d => d.y)
-      textSelection.attr('x', d => d.x).attr('y', d => d.y + 10)
     })
 }
 
@@ -175,10 +355,13 @@ export function pause() {
 }
 
 export function play() {
-  simulation.alpha(2).restart()
+  simulation
+    .alpha(2)
+    .force('cluster', forceCluster())
+    .restart()
 }
 
-export function addNode(node) {
+export function addNode(node, onClick) {
   data = data
     .map(d => ({ ...d }))
     .concat([
@@ -200,23 +383,23 @@ export function addNode(node) {
         .attr('cy', focusY)
         .attr('r', d => d.r)
         .attr('stroke', 'gray')
-        .attr('stroke-width', 2)
+        .attr('stroke-width', 1)
         .attr('class', 'node')
-        .attr('fill', d => (d.path ? `url(#image-${d.title})` : 'dimgray'))
+        .attr('fill', d => (d.path ? `url(#image-${d.title})` : 'white'))
+        .on('mouseover', function() {
+          d3.select(this)
+            .style('cursor', 'pointer')
+            .transition(d3.transition())
+            .attr('stroke-width', 3)
+        })
+        .on('mouseleave', function() {
+          d3.select(this)
+            .style('cursor', 'normal')
+            .transition(d3.transition())
+            .attr('stroke-width', 1)
+        })
+        .on('click', (_, d) => onClick(d))
     })
-
-  textSelection = svg
-    .selectAll('text.group')
-    .data(data)
-    .join(selection =>
-      selection
-        .append('text')
-        .attr('text-anchor', 'middle')
-        .attr('font-size', '32px')
-        .attr('fill', 'white')
-        .attr('class', 'group')
-        .text(d => (d.path ? '' : d.display)),
-    )
 
   simulation.nodes(data)
   play()
