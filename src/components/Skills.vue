@@ -64,7 +64,7 @@ export default {
       ),
     )
 
-    // listen for an handle resize events
+    // listen for and handle resize events
     const resize$ = fromEvent(window, 'resize').pipe(
       tap(() => {
         pause()
@@ -87,13 +87,13 @@ export default {
   },
 
   methods: {
-    updateCanvas() {
+    updateCanvas(initSkills) {
       const sketch = document.getElementById('sketch')
-      updateCanvas(sketch.clientWidth, sketch.clientHeight)
+      updateCanvas(sketch.clientWidth, sketch.clientHeight, initSkills)
     },
 
     complete() {
-      this.updateCanvas()
+      this.updateCanvas(true)
       initSkillSimulation()
       skillsReady$.next()
     },

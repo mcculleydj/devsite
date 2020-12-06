@@ -91,7 +91,7 @@ export const skillCategories = [
     },
     radialOffset: {
       x: -90,
-      y: -120,
+      y: -130,
     },
   },
   {
@@ -99,7 +99,7 @@ export const skillCategories = [
     display: 'agile',
     hexOffset: {
       x: -90,
-      y: -110,
+      y: -100,
     },
     radialOffset: {
       x: -90,
@@ -135,7 +135,7 @@ export const skillCategories = [
     display: 'ops',
     hexOffset: {
       x: -90,
-      y: -145,
+      y: -135,
     },
     radialOffset: {
       x: -90,
@@ -183,7 +183,7 @@ export const skills = [
     path: 'skill-icons/go.png',
     years: '>2',
     description:
-      "My first introduction to Go was academic in a graduate distributed systems course. 2 years later, at SOSi, we selected Go as our language of choice for large scale data processing and writing APIs and I've been working with it ever since. If I were building a new web application today I would choose Go for the API layer of my stack. Managing thread safe concurrency with concepts like channel and select is where Go really excels, but there are many reasons to love this language. Through continuing education and building projects in Go my goal is to arrive at the point where the only reason to use Python is because there isn't a corresponding library for Go that accomplishes my task.",
+      "My first introduction to Go in my graduate distributed systems course. 2 years later, at SOSi, we selected Go as our language of choice for large scale data processing and writing APIs and I've been working with it ever since. If I were building a new web application today I would choose Go for the API layer of my stack. Managing thread safe concurrency with concepts like channel and select is where Go really excels, but there are many reasons to love this language. Through continuing education and building projects in Go my goal is to arrive at the point where the only reason to use Python is because there isn't a corresponding library for Go that accomplishes my task.",
   },
   {
     group: 'database',
@@ -291,7 +291,7 @@ export const skills = [
     title: 'material',
     r: 35,
     path: 'skill-icons/material.png',
-    years: '>3',
+    years: '>4',
     description:
       "I have been working with MD for over 4 years now. I appreciate the value of a standard set of principles from which to deviate and how having the design system in place frees up the developer to focus on implementation. Although most of MD has been abstracted through the use of libraries like Angular Material and Vuetify, I often refer to the Material spec when building any custom UI components. In all three of my software engineering jobs I've made the case for MD. One of my strongest arguments for adoption is that it is maintained by Google and will continue to evolve under the care of very good designers. Depending on the make up of your team and your budget that can be a very compelling reason to consider MD above the alternatives.",
   },
@@ -413,7 +413,7 @@ export const skills = [
     path: 'skill-icons/ansible.png',
     years: '>2',
     description:
-      "I've used Ansible to pick up where the hypervisor leaves off for managing a cloud of VMs. Examples of playbooks I've written include set up tasks such as creating file system partitions, network configuration, and installing software and maintenance tasks such as upgrading software, load balancing, and system health monitoring.",
+      "I've used Ansible to pick up where the hypervisor leaves off for managing a cloud of VMs. Examples of playbooks I've written include set up tasks such as creating file system partitions, network configuration, and installing software as well as maintenance tasks such as upgrading software, load balancing, and system health monitoring.",
   },
   {
     group: 'web',
@@ -429,11 +429,11 @@ export const skills = [
     group: 'web',
     display: 'CSS',
     title: 'css',
-    r: 25,
+    r: 35,
     path: 'skill-icons/css.png',
     years: '>5',
     description:
-      "I am not a CSS wizard, but I have years of experience using CSS to build SPAs using frameworks like Angular and Vue. This brand of CSS relies less on large style sheets and more on keeping styles scoped their individual components. Thus far any complex use cases for CSS like flexbox, transitions, and variables have all been easy enough to research and implement. My goal is to specialize more on the frontend and that means a renewed focus on my proficiency with CSS. Specifically, there are two aspects of CSS I'd like to learn in the near future: a framework like Tailwind and a preprocessor like SASS.",
+      "I am not a CSS wizard, but I have years of experience using CSS to build SPAs using frameworks like Angular and Vue. This brand of CSS relies less on large style sheets and more on keeping styles scoped to their individual components. Thus far any complex use cases for CSS like flexbox, transitions, and variables have all been easy enough to research and implement. My goal is to specialize more on the frontend and that means a renewed focus on my proficiency with CSS. Specifically, there are two aspects of CSS I'd like to learn in the near future: a framework like Tailwind and a preprocessor like SASS.",
   },
   {
     group: 'ops',

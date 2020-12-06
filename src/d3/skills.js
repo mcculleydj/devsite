@@ -4,6 +4,7 @@ import { skillProficiencies, skillCategories } from '@/common/constants'
 // selections
 let container
 let svg
+let legend
 let legendNodes
 let legendText
 let skillNodes
@@ -41,6 +42,7 @@ export async function initCanvas() {
   legendText = d3.selectAll('text.legend-text')
   skillNodes = d3.selectAll('circle.skill-node')
 
+  legend = svg.append('g')
   categoryLabels = svg.append('g')
 }
 
@@ -48,16 +50,16 @@ export async function initCanvas() {
 function updateCentroids() {
   const aspectRatio = width / height
 
-  if (aspectRatio < 0.7) {
+  if (aspectRatio < 0.9) {
     const workingHeight = height - 0.85 * imageHeight_
     centroids = {
-      web: { x: width / 2, y: workingHeight / 2 },
-      database: { x: 0.2 * width, y: 0.35 * workingHeight },
-      language: { x: 0.2 * width, y: 0.65 * workingHeight },
-      agile: { x: width / 2, y: 0.85 * workingHeight },
-      env: { x: 0.8 * width, y: 0.65 * workingHeight },
-      ui: { x: 0.8 * width, y: 0.35 * workingHeight },
-      ops: { x: width / 2, y: 0.15 * workingHeight },
+      web: { x: width / 2, y: 0.55 * workingHeight },
+      database: { x: 0.2 * width, y: 0.4 * workingHeight },
+      language: { x: 0.2 * width, y: 0.7 * workingHeight },
+      agile: { x: width / 2, y: 0.9 * workingHeight },
+      env: { x: 0.8 * width, y: 0.7 * workingHeight },
+      ui: { x: 0.8 * width, y: 0.4 * workingHeight },
+      ops: { x: width / 2, y: 0.2 * workingHeight },
     }
   } else if (aspectRatio > 1.3) {
     const workingWidth = width - 0.8 * imageWidth_
@@ -66,15 +68,15 @@ function updateCentroids() {
       web: { x: workingWidth / 2, y: height / 2 + heightOffset },
       database: { x: 0.2 * workingWidth, y: 0.35 * height + heightOffset },
       language: { x: 0.2 * workingWidth, y: 0.65 * height + heightOffset },
-      agile: { x: workingWidth / 2, y: 0.85 * height + heightOffset },
+      agile: { x: workingWidth / 2, y: 0.8 * height + heightOffset },
       env: { x: 0.8 * workingWidth, y: 0.65 * height + heightOffset },
       ui: { x: 0.8 * workingWidth, y: 0.35 * height + heightOffset },
       ops: { x: workingWidth / 2, y: 0.15 * height + heightOffset },
     }
-  } else {
-    const r1 = 0.75 * Math.min(width, height)
+  } else if (aspectRatio < 1.3 && aspectRatio > 1.1) {
+    const r1 = 0.7 * Math.min(width, height)
     const r2 = 0.9 * Math.min(width, height)
-    const r3 = 1.1 * Math.min(width, height)
+    const r3 = 1.05 * Math.min(width, height)
     const polarCoords = {
       web: {
         angle: (5 * Math.PI) / 4,
@@ -112,13 +114,52 @@ function updateCentroids() {
         y: height + r * Math.sin(a),
       }
     }
+  } else {
+    const r1 = 0.7 * Math.min(width, height)
+    const r2 = 0.9 * Math.min(width, height)
+    const r3 = 1.05 * Math.min(width, height)
+    const polarCoords = {
+      web: {
+        angle: (5 * Math.PI) / 4,
+        radius: 0.8 * r1,
+      },
+      language: {
+        angle: (28.5 * Math.PI) / 24,
+        radius: 0.9 * r3,
+      },
+      database: {
+        angle: (30.55 * Math.PI) / 24,
+        radius: 0.95 * r3,
+      },
+      agile: {
+        angle: (25.5 * Math.PI) / 24,
+        radius: 0.6 * r1,
+      },
+      ui: {
+        angle: (35 * Math.PI) / 24,
+        radius: r1,
+      },
+      env: {
+        angle: (26 * Math.PI) / 24,
+        radius: 0.835 * r2,
+      },
+      ops: {
+        angle: (33 * Math.PI) / 24,
+        radius: r2,
+      },
+    }
+    for (const k in polarCoords) {
+      const { angle: a, radius: r } = polarCoords[k]
+      centroids[k] = {
+        x: 0.95 * width + r * Math.cos(a),
+        y: height + r * Math.sin(a),
+      }
+    }
   }
-
-  return aspectRatio
 }
 
 // during resize events update the svg canvas and visualization
-export function updateCanvas(imageWidth, imageHeight) {
+export function updateCanvas(imageWidth, imageHeight, initSkills) {
   width = container.clientWidth
   height = container.clientHeight
   svg.attr('width', width).attr('height', height)
@@ -143,19 +184,20 @@ export function updateCanvas(imageWidth, imageHeight) {
   categoryLabels = svg.append('g')
 
   // figure out where groups should be placed following the resize event
-  const aspectRatio = updateCentroids()
+  updateCentroids()
 
+  const aspectRatio = width / height
   const offsets = skillCategories.map(c => ({
     x:
-      aspectRatio < 0.7 || aspectRatio > 1.3 ? c.hexOffset.x : c.radialOffset.x,
+      aspectRatio < 0.9 || aspectRatio > 1.3 ? c.hexOffset.x : c.radialOffset.x,
     y:
-      aspectRatio < 0.7 || aspectRatio > 1.3 ? c.hexOffset.y : c.radialOffset.y,
+      aspectRatio < 0.9 || aspectRatio > 1.3 ? c.hexOffset.y : c.radialOffset.y,
   }))
 
   // set line properties based on radial or hexagonal arrangement
   let lineWidth = 120
   let lineDepth = 30
-  if (aspectRatio < 0.7 || aspectRatio > 1.3) {
+  if (aspectRatio < 0.9 || aspectRatio > 1.3) {
     lineWidth = 150
     lineDepth = 15
   }
@@ -210,7 +252,7 @@ export function updateCanvas(imageWidth, imageHeight) {
       )
       .attr('stroke-opacity', 1)
 
-    if (aspectRatio < 0.7 || aspectRatio > 1.3) {
+    if (aspectRatio < 0.9 || aspectRatio > 1.3) {
       categoryLabels
         .append('line')
         .attr('x1', centroids[d.group].x + offsets[i].x + lineWidth)
@@ -228,6 +270,15 @@ export function updateCanvas(imageWidth, imageHeight) {
         .attr('stroke-opacity', 1)
     }
   })
+
+  if (!initSkills) {
+    legend
+      .transition(d3.transition())
+      .attr('opacity', 0)
+      .remove()
+    legend = svg.append('g')
+    setLegend()
+  }
 }
 
 export function initLegendSimulation(complete) {
@@ -261,25 +312,39 @@ export function initLegendSimulation(complete) {
 function setLegend(complete) {
   legendSimulation.stop()
 
+  const aspectRatio = width / height
+  let xOffset, yOffset
+
+  if (aspectRatio > 1.3) {
+    xOffset = width - 0.5 * imageWidth_
+    yOffset = 0.6 * (height - imageHeight_)
+  } else if (aspectRatio <= 1.3 && aspectRatio > 0.9) {
+    xOffset = width - 0.3 * imageWidth_
+    yOffset = 0.75 * (height - imageHeight_)
+  } else {
+    xOffset = 45 + width / 2
+    yOffset = 0.85 * height
+  }
+
   legendNodes
     .transition(d3.transition().duration(1000))
-    .attr('cx', 160)
-    .attr('cy', d => d.finalY)
+    .attr('cx', xOffset)
+    .attr('cy', d => d.finalY + yOffset)
     .attr('r', d => d.targetRadius / 3)
 
   legendText
     .transition(d3.transition().duration(1000))
-    .attr('x', 40)
-    .attr('y', d => d.finalY - 2)
+    .attr('x', xOffset - 120)
+    .attr('y', d => d.finalY - 2 + yOffset)
     .attr('font-size', 20)
 
   skillProficiencies.forEach(d => {
-    svg
+    legend
       .append('line')
-      .attr('x1', 40)
-      .attr('y1', d.finalY)
-      .attr('x2', 40)
-      .attr('y2', d.finalY)
+      .attr('x1', xOffset - 120)
+      .attr('y1', d.finalY + yOffset)
+      .attr('x2', xOffset - 120)
+      .attr('y2', d.finalY + yOffset)
       .attr('stroke', 'gray')
       .attr('stroke-width', 1)
       .transition(
@@ -288,24 +353,11 @@ function setLegend(complete) {
           .delay(1100)
           .duration(500),
       )
-      .attr('x2', 160)
-      .attr('y2', d.finalY)
-
-    svg
-      .append('circle')
-      .attr('cx', 160)
-      .attr('cy', d.finalY)
-      .attr('fill', 'gray')
-      .transition(
-        d3
-          .transition()
-          .delay(1200)
-          .duration(500),
-      )
-      .attr('r', 3)
+      .attr('x2', xOffset - d.targetRadius / 3)
+      .attr('y2', d.finalY + yOffset)
   })
 
-  setTimeout(complete, 1500)
+  setTimeout(complete, 2000)
 }
 
 export function addLegendNode(node) {
