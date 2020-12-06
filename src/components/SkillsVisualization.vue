@@ -21,6 +21,7 @@ import {
   addSkillNode,
 } from '@/d3/skills'
 import { skillProficiencies, skills } from '@/common/constants'
+import { sleep } from '@/common/functions'
 
 const legendReady$ = new Subject()
 const skillsReady$ = new Subject()
@@ -70,8 +71,8 @@ export default {
         pause()
       }),
       debounceTime(300),
-      tap(() => {
-        this.updateCanvas()
+      tap(async () => {
+        await this.updateCanvas()
         play()
       }),
     )
@@ -79,21 +80,29 @@ export default {
     return { legendNode$, skillNode$, resize$ }
   },
 
-  mounted() {
+  async mounted() {
     initCanvas()
-    this.updateCanvas()
+    await this.updateCanvas()
     initLegendSimulation(this.complete)
     legendReady$.next()
   },
 
   methods: {
-    updateCanvas(initSkills) {
+    async updateCanvas(initSkills) {
       const sketch = document.getElementById('sketch')
+      if (!sketch) {
+        return
+      }
+      if (!sketch.clientWidth || !sketch.clientHeight) {
+        await sleep(500)
+        this.updateCanvas(initSkills)
+        return
+      }
       updateCanvas(sketch.clientWidth, sketch.clientHeight, initSkills)
     },
 
-    complete() {
-      this.updateCanvas(true)
+    async complete() {
+      await this.updateCanvas(true)
       initSkillSimulation()
       skillsReady$.next()
     },

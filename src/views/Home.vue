@@ -11,34 +11,39 @@
         contact
       </v-tab>
     </v-tabs>
-    <Skills v-if="startVisualization && imageRendered" />
     <div
       v-if="startVisualization"
       v-show="showVisualization"
       id="svg-container"
     />
-    <div v-show="!showVisualization">
-      <h2>Need space</h2>
-    </div>
+    <SkillsVisualization v-if="startVisualization && imageRendered" />
+    <SkillsList v-show="!showVisualization" />
     <v-img
+      v-if="showVisualization"
       id="sketch"
       src="main.png"
       @load="checkDimensions()"
       max-width="650"
       width="33%"
     />
+    <v-snackbar v-model="showSnackbar" timeout="7000">
+      <span>Expand the window to bring this list to life.</span>
+      <v-icon class="ml-4">mdi-arrow-expand</v-icon>
+    </v-snackbar>
   </v-container>
 </template>
 
 <script>
 import { fromEvent } from 'rxjs'
 import { tap, debounceTime } from 'rxjs/operators'
-import Skills from '@/components/Skills'
+import SkillsVisualization from '@/components/SkillsVisualization'
+import SkillsList from '@/components/SkillsList'
 import { sleep } from '@/common/functions'
 
 export default {
   components: {
-    Skills,
+    SkillsVisualization,
+    SkillsList,
   },
 
   data: () => ({
@@ -46,6 +51,7 @@ export default {
     imageRendered: false,
     startVisualization: false,
     showVisualization: false,
+    showSnackbar: false,
   }),
 
   subscriptions() {
@@ -71,12 +77,10 @@ export default {
       window.innerWidth * window.innerHeight > 1000000 &&
       window.innerWidth > 800 &&
       window.innerHeight > 700
-    console.log(
-      window.innerWidth * window.innerHeight,
-      window.innerWidth,
-      window.innerHeight,
-    )
     this.showVisualization = this.startVisualization
+    if (!this.showVisualization) {
+      this.showSnackbar = true
+    }
   },
 
   methods: {

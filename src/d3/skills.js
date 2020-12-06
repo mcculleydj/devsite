@@ -449,7 +449,7 @@ export function initSkillSimulation() {
 }
 
 export function pause(simulation) {
-  if (simulation === 'legend') {
+  if (simulation === 'legend' || !skillSimulation) {
     legendSimulation.stop()
   } else {
     skillSimulation.stop()
@@ -457,7 +457,7 @@ export function pause(simulation) {
 }
 
 export function play(simulation) {
-  if (simulation === 'legend') {
+  if (simulation === 'legend' || !skillSimulation) {
     // TODO: need to reset forces here for update?
     legendSimulation.alpha(2).restart()
   } else {
