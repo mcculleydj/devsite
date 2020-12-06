@@ -63,7 +63,7 @@ export const skillCategories = [
     display: 'web',
     hexOffset: {
       x: -90,
-      y: -145,
+      y: -140,
     },
     radialOffset: {
       x: -110,
@@ -99,7 +99,7 @@ export const skillCategories = [
     display: 'agile',
     hexOffset: {
       x: -90,
-      y: -100,
+      y: -95,
     },
     radialOffset: {
       x: -90,
@@ -110,7 +110,7 @@ export const skillCategories = [
     group: 'ui',
     display: 'user interface',
     hexOffset: {
-      x: -60,
+      x: -90,
       y: -110,
     },
     radialOffset: {
@@ -134,8 +134,8 @@ export const skillCategories = [
     group: 'ops',
     display: 'ops',
     hexOffset: {
-      x: -90,
-      y: -135,
+      x: -60,
+      y: -140,
     },
     radialOffset: {
       x: -90,
@@ -393,7 +393,7 @@ export const skills = [
     path: 'skill-icons/docker.png',
     years: '>2',
     description:
-      'At SOSi, we used Docker and specifically docker-compose to quickly spin up dev environments in order to avoid the "works on my machine" problem and get new developers writing code on day one rather than installing multiple dependencies which may or may not be the same versions as the ones used by the rest of the team. GitLab provides a container registry for each project allowing for Docker Hub like image versioning. Aside from dev envs I\'ve used Docker and Go to spin up ephemeral services on demand as a do it yourself version of docker swarm or Kubernetes.',
+      'At SOSi, we used Docker and specifically docker-compose to quickly spin up dev environments in order to avoid the "works on my machine" problem and get new developers writing code on day one rather than setting up their environment. We took advantage of GitLab\'s container registry for each project allowing for Docker Hub like image versioning and the ability to add to extend an image without breaking any other project reliant on it. Aside from dev envs I\'ve used Docker and Go to spin up ephemeral services on demand as a do it yourself version of docker swarm or Kubernetes.',
   },
   {
     group: 'ops',

@@ -54,24 +54,24 @@ function updateCentroids() {
     const workingHeight = height - 0.85 * imageHeight_
     centroids = {
       web: { x: width / 2, y: 0.55 * workingHeight },
-      database: { x: 0.2 * width, y: 0.4 * workingHeight },
+      database: { x: 0.2 * width, y: 0.3 * workingHeight },
       language: { x: 0.2 * width, y: 0.7 * workingHeight },
       agile: { x: width / 2, y: 0.9 * workingHeight },
       env: { x: 0.8 * width, y: 0.7 * workingHeight },
-      ui: { x: 0.8 * width, y: 0.4 * workingHeight },
-      ops: { x: width / 2, y: 0.2 * workingHeight },
+      ops: { x: 0.8 * width, y: 0.3 * workingHeight },
+      ui: { x: width / 2, y: 0.2 * workingHeight },
     }
   } else if (aspectRatio > 1.3) {
     const workingWidth = width - 0.8 * imageWidth_
     const heightOffset = 0.05 * height
     centroids = {
       web: { x: workingWidth / 2, y: height / 2 + heightOffset },
-      database: { x: 0.2 * workingWidth, y: 0.35 * height + heightOffset },
-      language: { x: 0.2 * workingWidth, y: 0.65 * height + heightOffset },
-      agile: { x: workingWidth / 2, y: 0.8 * height + heightOffset },
-      env: { x: 0.8 * workingWidth, y: 0.65 * height + heightOffset },
-      ui: { x: 0.8 * workingWidth, y: 0.35 * height + heightOffset },
-      ops: { x: workingWidth / 2, y: 0.15 * height + heightOffset },
+      database: { x: 0.2 * workingWidth, y: 0.3 * height + heightOffset },
+      language: { x: 0.2 * workingWidth, y: 0.7 * height + heightOffset },
+      agile: { x: workingWidth / 2, y: 0.85 * height + heightOffset },
+      env: { x: 0.8 * workingWidth, y: 0.7 * height + heightOffset },
+      ops: { x: 0.8 * workingWidth, y: 0.3 * height + heightOffset },
+      ui: { x: workingWidth / 2, y: 0.15 * height + heightOffset },
     }
   } else if (aspectRatio < 1.3 && aspectRatio > 1.1) {
     const r1 = 0.7 * Math.min(width, height)
@@ -94,7 +94,7 @@ function updateCentroids() {
         angle: (25 * Math.PI) / 24,
         radius: r1,
       },
-      ui: {
+      ops: {
         angle: (35 * Math.PI) / 24,
         radius: r1,
       },
@@ -102,7 +102,7 @@ function updateCentroids() {
         angle: (27 * Math.PI) / 24,
         radius: r2,
       },
-      ops: {
+      ui: {
         angle: (33 * Math.PI) / 24,
         radius: r2,
       },
@@ -135,7 +135,7 @@ function updateCentroids() {
         angle: (25.5 * Math.PI) / 24,
         radius: 0.6 * r1,
       },
-      ui: {
+      ops: {
         angle: (35 * Math.PI) / 24,
         radius: r1,
       },
@@ -143,7 +143,7 @@ function updateCentroids() {
         angle: (26 * Math.PI) / 24,
         radius: 0.835 * r2,
       },
-      ops: {
+      ui: {
         angle: (33 * Math.PI) / 24,
         radius: r2,
       },
@@ -317,7 +317,7 @@ function setLegend(complete) {
 
   if (aspectRatio > 1.3) {
     xOffset = width - 0.5 * imageWidth_
-    yOffset = 0.6 * (height - imageHeight_)
+    yOffset = 0.45 * (height - imageHeight_)
   } else if (aspectRatio <= 1.3 && aspectRatio > 0.9) {
     xOffset = width - 0.3 * imageWidth_
     yOffset = 0.75 * (height - imageHeight_)
