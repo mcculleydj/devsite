@@ -1,9 +1,7 @@
 <template>
-  <div>
-    <v-dialog v-model="showDialog" width="unset">
-      <SkillDialog :skill="dialogSkill" />
-    </v-dialog>
-  </div>
+  <v-dialog v-model="showDialog" width="unset">
+    <SkillDialog :skill="skill" />
+  </v-dialog>
 </template>
 
 <script>
@@ -32,7 +30,7 @@ export default {
   },
 
   data: () => ({
-    dialogSkill: {},
+    skill: {},
     showDialog: false,
   }),
 
@@ -70,9 +68,9 @@ export default {
       tap(() => {
         pause()
       }),
-      debounceTime(300),
-      tap(async () => {
-        await this.updateCanvas()
+      debounceTime(1000),
+      tap(() => {
+        this.updateCanvas()
         play()
       }),
     )
@@ -80,35 +78,39 @@ export default {
     return { legendNode$, skillNode$, resize$ }
   },
 
-  async mounted() {
-    initCanvas()
-    await this.updateCanvas()
-    initLegendSimulation(this.complete)
-    legendReady$.next()
+  mounted() {
+    this.init()
   },
 
   methods: {
-    async updateCanvas(initSkills) {
+    async init() {
+      const container = document.getElementById('svg-container')
+
+      if (!container || !container.clientWidth || !container.clientHeight) {
+        await sleep(100)
+        this.init()
+        return
+      }
+
+      initCanvas()
+      this.updateCanvas()
+      initLegendSimulation(this.complete)
+      legendReady$.next()
+    },
+
+    updateCanvas(initSkills) {
       const sketch = document.getElementById('sketch')
-      if (!sketch) {
-        return
-      }
-      if (!sketch.clientWidth || !sketch.clientHeight) {
-        await sleep(500)
-        this.updateCanvas(initSkills)
-        return
-      }
       updateCanvas(sketch.clientWidth, sketch.clientHeight, initSkills)
     },
 
-    async complete() {
-      await this.updateCanvas(true)
+    complete() {
+      this.updateCanvas(true)
       initSkillSimulation()
       skillsReady$.next()
     },
 
     onClick(skill) {
-      this.dialogSkill = skill
+      this.skill = skill
       this.showDialog = true
     },
   },

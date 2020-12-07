@@ -333,7 +333,7 @@ export const skills = [
     path: 'skill-icons/jest.png',
     years: '>2',
     description:
-      "I use Jest with Vue Test Utils to unit test my Vue components. Prior to that I was using Karma + Jasmine which was the standard for applications scaffolded using Angular CLI. I find that there is a lot of overlap between JS testing frameworks, having experimented with Mocha and Chai as well. My research a few years ago suggested that for testing Vue applications Jest and Vue Test Utils was the winning combination and I haven't looked back since I've been happy with the results.",
+      "I use Jest with Vue Test Utils to unit test my Vue components. Prior to that I was using Karma and Jasmine which was the standard for applications scaffolded using the  Angular CLI. I have experimented with Mocha and Chai as well and find that there is a lot of overlap between JS testing frameworks. My research a few years ago suggested that for testing Vue applications Jest and Vue Test Utils was the winning combination and I haven't looked back since I've been happy with the results.",
   },
   {
     group: 'env',

@@ -1,7 +1,7 @@
 <template>
   <v-row>
     <v-dialog v-model="showDialog" width="unset">
-      <SkillDialog :skill="dialogSkill" />
+      <SkillDialog :skill="skill" />
     </v-dialog>
     <v-col>
       <h3>ops</h3>
@@ -36,7 +36,7 @@
           </v-list-item-content>
         </v-list-item>
       </v-list>
-      <div class="d-sm-none">
+      <template v-if="$vuetify.breakpoint.xsOnly">
         <h3>web</h3>
         <v-list rounded>
           <v-list-item
@@ -55,7 +55,7 @@
             </v-list-item-content>
           </v-list-item>
         </v-list>
-      </div>
+      </template>
     </v-col>
     <v-col>
       <h3>tools</h3>
@@ -106,7 +106,7 @@
           </v-list-item-content>
         </v-list-item>
       </v-list>
-      <div class="d-sm-none">
+      <template v-if="$vuetify.breakpoint.xsOnly">
         <h3>agile</h3>
         <v-list rounded>
           <v-list-item
@@ -125,9 +125,9 @@
             </v-list-item-content>
           </v-list-item>
         </v-list>
-      </div>
+      </template>
     </v-col>
-    <v-col class="d-none d-sm-inline">
+    <v-col v-if="$vuetify.breakpoint.smAndUp">
       <h3>web</h3>
       <v-list rounded>
         <v-list-item
@@ -175,7 +175,7 @@ export default {
 
   data: () => ({
     groups: {},
-    dialogSkill: {},
+    skill: {},
     showDialog: false,
   }),
 
@@ -197,7 +197,7 @@ export default {
 
   methods: {
     openDialog(skill) {
-      this.dialogSkill = skill
+      this.skill = skill
       this.showDialog = true
     },
   },
