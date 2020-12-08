@@ -1,7 +1,6 @@
 export const lines = [
   '',
   'class Daren extends Person {',
-  '  // press alt+x at any time to exit',
   '  constructor(intro) {',
   '    super()',
   "    this.name = 'Daren McCulley'",
@@ -14,29 +13,57 @@ export const lines = [
   'console.clear()',
 ]
 
-export const methods = ['love()', 'eat()', 'code()']
+export const methods = ['love()', 'play()', 'compete()']
 
-export const sources = ['love.jpg', 'eat.jpg', 'code.jpg']
+export const sources = ['love', 'play', 'compete']
 
 export const comments = [
-  `/**
- * comment one line one
- * comment one line two
- * comment one line three
- */
-  `,
-  `/**
- * comment two line one
- * comment two line two
- * comment two line three
- */
-  `,
-  `/**
- * comment three line one
- * comment three line two
- * comment three line three
- */
-  `,
+  ['comment one line one', 'comment one line two', 'comment one line three'],
+  ['comment two line one', 'comment two line two', 'comment two line three'],
+  [
+    'comment three line one',
+    'comment three line two',
+    'comment three line three',
+  ],
+]
+
+export const masks = [
+  [
+    '***********  **  ***  *************  *  ',
+    '************         ******  **         ',
+    '*********                               ',
+    '***********                             ',
+    '********                         *   *  ',
+    '******                          ********',
+    '*****                  **      *********',
+    '*****                 ****    **********',
+    '*****               ********************',
+    '****               *********************',
+  ],
+  [
+    '*********           ********************',
+    '*****                  *****************',
+    '****                      **************',
+    '***                         ************',
+    '**                             *********',
+    '**                                  ****',
+    '***                                    *',
+    '****                                 ***',
+    '******                              ****',
+    '*********                          *****',
+  ],
+  [
+    '****************      ******************',
+    '************             ***************',
+    '********                       *********',
+    '*******                              ***',
+    '***                                   **',
+    '***                                  ***',
+    '********                            ****',
+    '*******                            *****',
+    '********                          ******',
+    '**********                **************',
+  ],
 ]
 
 export const skillProficiencies = [
