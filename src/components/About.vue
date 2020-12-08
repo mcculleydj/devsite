@@ -7,7 +7,7 @@
         Or hang out here to learn more about me and my take on coding.
       </div>
     </div>
-    <v-row>
+    <v-row v-if="showTerminal">
       <v-col
         class="terminal-container mx-3"
         :style="{ 'min-height': terminalHeight + 'px' }"
@@ -15,20 +15,24 @@
         <Terminal :terminalHeight="terminalHeight" />
       </v-col>
     </v-row>
+    <Thoughts v-else />
   </div>
 </template>
 
 <script>
 import { fromEvent } from 'rxjs'
 import { tap, debounceTime } from 'rxjs/operators'
+import Thoughts from '@/components/Thoughts'
 import Terminal from '@/components/Terminal'
 
 export default {
   components: {
+    Thoughts,
     Terminal,
   },
 
   data: () => ({
+    showTerminal: false,
     terminalHeight: 0,
   }),
 

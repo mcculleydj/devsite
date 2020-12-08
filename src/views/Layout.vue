@@ -28,7 +28,12 @@
         <Contact />
       </v-tab-item>
     </v-tabs-items>
-    <v-img v-show="showSketch" id="sketch" src="main.png" max-width="33%" />
+    <v-img
+      v-show="showSketch"
+      id="sketch"
+      src="main-alt3.png"
+      max-width="33%"
+    />
   </v-container>
 </template>
 
@@ -62,5 +67,7 @@ export default {
   position: fixed;
   bottom: 0;
   right: 0;
+  z-index: 11;
+  pointer-events: none;
 }
 </style>
