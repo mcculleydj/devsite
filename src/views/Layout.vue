@@ -16,7 +16,7 @@
     </v-tabs>
     <v-tabs-items v-model="tab">
       <v-tab-item>
-        <About />
+        <About v-if="sketchHasDimensions" />
       </v-tab-item>
       <v-tab-item>
         <Skills />
@@ -31,18 +31,20 @@
     <v-img
       v-show="showSketch"
       id="sketch"
-      src="main-alt3.png"
+      :src="sketchSource"
       max-width="33%"
+      @load="getDimensions()"
     />
   </v-container>
 </template>
 
 <script>
-import { mapGetters } from 'vuex'
+import { mapGetters, mapActions } from 'vuex'
 import About from '@/components/About'
 import Skills from '@/components/Skills'
 import Projects from '@/components/Projects'
 import Contact from '@/components/Contact'
+import { sleep } from '@/common/functions'
 
 export default {
   components: {
@@ -53,12 +55,38 @@ export default {
   },
 
   computed: {
-    ...mapGetters(['showSketch']),
+    ...mapGetters(['showSketch', 'sketchSource']),
   },
 
   data: () => ({
     tab: 0,
+    sketchHasDimensions: false,
   }),
+
+  methods: {
+    ...mapActions({
+      dispatchSetSketchSource: 'setSketchSource',
+    }),
+
+    async getDimensions() {
+      const el = document.getElementById('sketch')
+      if (!el || !el.clientWidth || !el.clientHeight) {
+        await sleep(10)
+        this.getDimensions()
+      }
+      this.sketchHasDimensions = true
+    },
+  },
+
+  watch: {
+    tab() {
+      if (this.tab === 0) {
+        this.dispatchSetSketchSource('sketch-outlined.png')
+      } else {
+        this.dispatchSetSketchSource('sketch.png')
+      }
+    },
+  },
 }
 </script>
 

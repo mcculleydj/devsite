@@ -10,16 +10,17 @@
     <v-row v-if="showTerminal">
       <v-col
         class="terminal-container mx-3"
-        :style="{ 'min-height': terminalHeight + 'px' }"
+        :style="{ height: terminalHeight + 'px' }"
       >
-        <Terminal :terminalHeight="terminalHeight" />
+        <Terminal />
       </v-col>
     </v-row>
-    <Thoughts v-else />
+    <Thoughts v-else @intro="showIntro()" />
   </div>
 </template>
 
 <script>
+import { mapActions } from 'vuex'
 import { fromEvent } from 'rxjs'
 import { tap, debounceTime } from 'rxjs/operators'
 import Thoughts from '@/components/Thoughts'
@@ -53,15 +54,26 @@ export default {
     const bannerHeight = document.getElementById('banner').clientHeight
     this.terminalHeight = window.innerHeight - 1.2 * bannerHeight - 45
   },
+
+  methods: {
+    ...mapActions({
+      dispatchSetSketchSource: 'setSketchSource',
+    }),
+
+    showIntro() {
+      this.showTerminal = true
+      this.dispatchSetSketchSource('sketch.png')
+    },
+  },
 }
 </script>
 
 <style scope>
 #banner {
   color: #1976d2;
-  font-size: 1.5rem;
-  padding-top: 1.5rem;
-  padding-bottom: 1.5rem;
+  font-size: 1.8rem;
+  padding-top: 1.8rem;
+  padding-bottom: 1.8rem;
 }
 
 .terminal-container {

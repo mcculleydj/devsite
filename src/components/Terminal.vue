@@ -25,8 +25,6 @@ export default {
     TerminalImage,
   },
 
-  props: ['terminalHeight'],
-
   computed: {
     linePrompt() {
       // lines requiring the standard '>' prompt
@@ -92,7 +90,6 @@ export default {
   },
 
   beforeDestroy() {
-    console.log('dest')
     clearTimeout(this.timeout)
     clearInterval(this.interval)
     document.body.removeEventListener('keydown', this.keySubmitHandler)
