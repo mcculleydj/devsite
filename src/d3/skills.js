@@ -27,7 +27,7 @@ let skillData = []
 let legendSimulationComplete = false
 
 export function initCanvas() {
-  container = document.getElementById('svg-container')
+  container = document.getElementById('skills-svg-container')
   width = container.clientWidth
   height = container.clientHeight
 

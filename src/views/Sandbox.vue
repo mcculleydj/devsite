@@ -35,7 +35,7 @@ export default {
     masks,
     lines: [],
     displayedLines: new Array(15).fill(null).map(() => []),
-    sourceIndex: 1,
+    sourceIndex: 6,
   }),
 
   mounted() {

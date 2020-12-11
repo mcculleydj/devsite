@@ -68,21 +68,63 @@ export const lines = [
   'console.clear()',
 ]
 
-// ideas: code; hike; read; serve; fly; reinvent;
-export const methods = ['love()', 'eat()', 'roll()', 'play()', 'explore()']
+// ideas: scritch; code; hike; read; serve; study; fly; reinvent;
+export const methods = [
+  'love()',
+  'eat()',
+  'roll()',
+  'play()',
+  'explore()',
+  'learn()',
+  'read()',
+]
 
-export const sources = ['love', 'eat', 'roll', 'play', 'explore']
+export const sources = [
+  'love',
+  'eat',
+  'roll',
+  'play',
+  'explore',
+  'learn',
+  'read',
+]
 
 export const comments = [
-  ['comment one line one', 'comment one line two', 'comment one line three'],
-  ['comment two line one', 'comment two line two', 'comment two line three'],
   [
-    'comment three line one',
-    'comment three line two',
-    'comment three line three',
+    "i've known sara for more than half my life",
+    "i've spent the majority of that time in love with her",
+    "i'm always looking forward to our next adventure together",
   ],
-  ['comment four line one', 'comment four line two', 'comment four line three'],
-  ['comment five line one', 'comment five line two', 'comment five line three'],
+  [
+    'my favorite cuisine is tagine',
+    'i pick a new recipe to try every month',
+    'sweet, savory, full of spices, and slow-cooked to perfection',
+  ],
+  [
+    "i've recently gotten into D&D",
+    'having something analog and imaginative is an antidote for the digital overload i often feel as a developer',
+    'i play in a weekly game with my family and recommend it shamelessly to complete strangers',
+  ],
+  [
+    'my favorite sport is racquetball',
+    'i enjoy the workout i get chasing down shots, but also the fact that a dude in his 70s can whoop me without breaking a sweat',
+    'one of my retirement goals is to be that old man',
+  ],
+  [
+    'we spend our disposable income on travel',
+    'the recent addition of a dog to our family has led to more domestic camping and hiking trips',
+    'i would always rather shell out for an experience than a material object',
+  ],
+  [
+    'i hold a BS in Aerospace Engineering from the University of Maryland',
+    'and an MS in Computer Science from Boston University',
+    'these days i turn to conferences, meetups, and the web to continue my education',
+  ],
+  [
+    'reading the Sunday paper with a cup of coffee on the porch swing is one of my weekly rituals',
+    'on the Kindle, i try and alternate between fiction and non-fiction',
+    'i lean sci-fi and fantasy for fiction and econ for non-fiction',
+  ],
 ]
 
 export const masks = [
@@ -145,6 +187,30 @@ export const masks = [
     '*****                              *****',
     '********                 *****    ******',
     '**********              ****************',
+  ],
+  [
+    '*******   ******************     *******',
+    '**                                    **',
+    '*****                              *****',
+    '****                                ****',
+    '***                                  ***',
+    '***                                  ***',
+    '****                                ****',
+    '*****                              *****',
+    '****                               *****',
+    '***  ***                        **  ****',
+  ],
+  [
+    '*********         **********************',
+    '*******            *********************',
+    '********                ****************',
+    '*****                     **************',
+    '***                       **************',
+    '**                         *************',
+    '**                                   ***',
+    '**                                    **',
+    '*                                    ***',
+    '**                                ******',
   ],
 ]
 

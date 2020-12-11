@@ -1,7 +1,7 @@
 <template>
   <div>
     <template v-if="startVisualization">
-      <div v-show="showVisualization" id="svg-container" />
+      <div v-show="showVisualization" id="skills-svg-container" />
       <SkillsVisualization />
     </template>
     <template v-if="!showVisualization">
@@ -80,7 +80,7 @@ export default {
 </script>
 
 <style scoped>
-#svg-container {
+#skills-svg-container {
   position: fixed;
   top: 72px;
   bottom: 0px;

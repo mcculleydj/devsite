@@ -84,7 +84,7 @@ export default {
 
   methods: {
     async init() {
-      const container = document.getElementById('svg-container')
+      const container = document.getElementById('skills-svg-container')
 
       if (!container || !container.clientWidth || !container.clientHeight) {
         await sleep(100)
