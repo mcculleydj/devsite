@@ -2,51 +2,54 @@ export const thoughts = [
   {
     title: 'On presentation',
     text:
-      'A bad idea with a good presentation is doomed eventually, a good idea with a bad presentation is doomed from the start.',
+      'A bad idea with a good presentation is doomed eventually, a good idea with a bad presentation is doomed from the start. Brian Holt\'s famous <a href="https://twitter.com/holtbt/status/977419276251430912" target="_blank">fullstack developer horse</a> is the perfect depiction of a sad reality. A lot of really great code will never see the light of day because it is completely inaccessible to the people it was written for. I prefer to be the inverse of this horse and work my way down the stack in competency.',
   },
   {
     title: 'On readability',
     text:
-      'A line of code might be read thousands of times and written only once, therefore readable code is more important than saving lines.',
+      "A line of code might be read thousands of times and written only once, therefore readable code is more important than saving lines. Code complexity is often excused as elegant, because the solution relies on some subtle nuance of the language. For some reason achieving your goal in one line of code is more elegant than three even if the rest of your team can't easily read it. To me, simplicity without sacrificing performance is elegant, not brevity. When complexity is unavoidable, do everyone (especially yourself) a favor and add comments.",
   },
   {
     title: 'On whiteboards',
-    text: 'Spending an hour at a whiteboard can save you three at a keyboard.',
+    text:
+      "Spending a few hours at a whiteboard can save you a few days at a keyboard. This is the coder version of the old adage measure twice, cut once. The thing I really love about whiteboards is their ephemeral nature. People who spend a day on a PowerPoint presentation or writing a proposal often become defensive of their ideas simply because of the time they've already invested in their presentation. The same is true of code, once written. Inherent in whiteboard discussions is the idea that we can erase everything and start over as needed.",
   },
   {
-    title: 'On test-driven development',
+    title: 'On testing',
     text:
-      "I do not practice TDD, but I am open to the concept. I do practice BDD, in that I write down in English what a component should do in a spec file before writing any code. Once I have a decent beta version of the component I'll start writing tests based on that spec. In my experience writing the tests first often leads to rewriting the tests as your assumptions about what a component is responsible for change as you get into the implementation. When this happens the spec needs to change as well, but it is far easier to rework the spec than it is an entire battery of tests.",
+      "I have never practiced test-driven development, but I am open to the concept and would like to give it a try. I do practice behavior-driven design, in that I write down in English what a component should do in a spec file before writing any code. Once I have a decent beta version of the component I'll start writing tests based on the latest version of the spec. In my experience, writing the tests first often leads to rewriting the tests as your assumptions about the component's interface change during implementation. When this happens, the spec needs to change as well, but it is much easier to rework a Markdown file than it is an entire battery of tests.",
   },
   {
-    title: 'On foo',
+    title: 'On users',
     text:
-      'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.',
+      "There was an OS professor at Boston University who told his class every semester, \"I'm teaching you to build skyscrapers, and everyone else is teaching you to put wallpaper up on the 14th floor.\" Since then, I've occasionally run across the attitude that frontend developers are a lesser brand of engineer, more concerned with color themes than data structures. What people who haven't lived this life fail to realize is that in any user facing application the single most complex layer of the stack by leaps and bounds are the users themselves. At L3, I was surprised to be working with talented engineers who held dual degrees in psychology and computer science. Years later that combination makes perfect sense to me.",
   },
   {
-    title: 'On bar',
+    title: 'On design',
     text:
-      'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.',
+      'First and foremost, I am not a designer. I have opinions, but so does everyone else especially about how things look. When I consider building the view layer of an application I would want a team composed of at least three distinct roles: product managers, UI/UX designers, and engineers. There are people who can do all three, but in general engineers defining user requirements or designers implementing technical solutions leads to problems. In case you care about my design aesthetic, I prefer a light touch like Airbnb or Google\'s UI over anything flashy or noisy. I subscribe to the golden rule of UI/UX: "don\'t make me think."',
+    quote:
+      '"Without requirements or design, programming is the art of adding bugs to an empty text file." - Louis Srygley',
   },
   {
-    title: 'On baz',
+    title: 'On agile',
     text:
-      'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.',
+      'I was a skeptic when my boss insisted on adopting Agile and we entered into a weeklong onsite training. After a few sprints I was a true believer. Not necessarily in a particular version of Agile, but in the value of having an Agile-like system in place. Every organization is unique and they need to discover what works best for them, but developing software on a team has some commonalities that make the sprint cycle very effective.',
   },
   {
-    title: 'On bim',
+    title: 'On learning',
     text:
-      'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.',
+      'Every profession requires some degree of continuing education, but the rate of change in this profession makes it impossible to rest on your laurels even for a few months. At the beginning of 2018, I considered myself an expert in Angular development and now, merely familiar. This is an acknowledgement on my part that two years spent away from any evolving technology is enough to make it unrecognizable upon your return. Whenever possible, I take advantage of free (MIT OpenCourseWare, YouTube, Mongo University) or low cost (Udemy, PluralSight, Udacity) options for keeping up with the times. When hiring, I was always more interested in how willing someone was to learn something new and how quickly they could pick it up rather than what they already knew.',
   },
   {
-    title: 'On boo',
+    title: 'On scope',
     text:
-      'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.',
+      "If you're equally good at everything you are likely exceptional at nothing. We're taught early on to refactor functions when they become too large, but often fail to be a voice against scope creep in other aspects of software development. I learned this lesson the hard way during my time at the startup I co-founded. I take the lesson from Eric Ries to heart: assumptions should be challenged before investing time and and energy into implementation. Go and Redis stand out to me as two technologies that are successful because they are laser focused on at handling a few specific use cases better than anything else. Specialization is good thing. I would much rather have a garage full of tools than a garage full of Swiss army knives.",
   },
   {
-    title: 'On boi',
+    title: 'On ethics',
     text:
-      'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.',
+      'I am gravely concerned by the goto Silicon Valley excuse, "we\'re just a technology company." I recently finished Ernest Cline\'s <span style="text-decoration: underline">Ready Player One</span> and <span style="text-decoration: underline">Ready Player Two</span>, where he makes a case for social media, not WMD, being the <a href="https://en.wikipedia.org/wiki/Great_Filter" target="_blank">Great Filter</a> that prevents intelligent life from progressing beyond a certain point. We should consider the consequences of <a href="https://www.theguardian.com/technology/2018/feb/02/how-youtubes-algorithm-distorts-truth" target="_blank">what we build</a> and wield this double-edged sword responsibly.',
   },
 ]
 
@@ -65,9 +68,10 @@ export const lines = [
   'console.clear()',
 ]
 
-export const methods = ['love()', 'play()', 'compete()']
+// ideas: code; hike; read; serve; fly; reinvent;
+export const methods = ['love()', 'eat()', 'roll()', 'play()', 'explore()']
 
-export const sources = ['love', 'play', 'compete']
+export const sources = ['love', 'eat', 'roll', 'play', 'explore']
 
 export const comments = [
   ['comment one line one', 'comment one line two', 'comment one line three'],
@@ -77,6 +81,8 @@ export const comments = [
     'comment three line two',
     'comment three line three',
   ],
+  ['comment four line one', 'comment four line two', 'comment four line three'],
+  ['comment five line one', 'comment five line two', 'comment five line three'],
 ]
 
 export const masks = [
@@ -91,6 +97,18 @@ export const masks = [
     '*****                 ****    **********',
     '*****               ********************',
     '****               *********************',
+  ],
+  [
+    '***********               **         ***',
+    '**********                 **         **',
+    '********                               *',
+    '*******       **                        ',
+    '********     *****                      ',
+    '*****************                    ***',
+    '****************                    ****',
+    '*****************                  *****',
+    '*******************               ******',
+    '**********************          ********',
   ],
   [
     '*********           ********************',
@@ -115,6 +133,18 @@ export const masks = [
     '*******                            *****',
     '********                          ******',
     '**********                **************',
+  ],
+  [
+    '          *********************         ',
+    '***                                *****',
+    '********                         *******',
+    '*******                           ******',
+    '*                                *******',
+    '                               *********',
+    '*                               ********',
+    '*****                              *****',
+    '********                 *****    ******',
+    '**********              ****************',
   ],
 ]
 
@@ -272,7 +302,7 @@ export const skills = [
     path: 'skill-icons/postgres.png',
     years: '>2',
     description:
-      "I started my last job as a proponent of NoSQL's flexibility and left it with the attitude that it really depends on the data. I was introduced to Postgres in my graduate databases course and other than conducting a migration from MySQL to Mongo it has been the only flavor of SQL I've come into contact with. I am much more comfortable with SQL now than I was two years ago. I've been able to turn to internet for guidance when I need to do something more complex. I am very familiar with PgAdmin and I do not hesitate to use PSQL in my projects to store highly relational data.",
+      "I started my last job as a proponent of NoSQL's flexibility and left it with the attitude that it really depends on the data. I was introduced to Postgres in my graduate databases course and other than conducting a migration from MySQL to Mongo it has been the only flavor of SQL I've come into contact with. I am much more comfortable with SQL now than I was two years ago. I've been able to turn to and implement solutions from the documentation when I need to do something more complex. I am very familiar with PgAdmin and I use PSQL in my projects to store highly relational data.",
   },
   {
     group: 'database',
@@ -292,7 +322,7 @@ export const skills = [
     path: 'skill-icons/arango.png',
     years: '<1',
     description:
-      "I was introduced to Arango in the final 6 months of my time at SOSi where we used it to store graph data. Honestly, I wasn't very impressed with the query syntax or the current state of the product. That said, I became familiar with how data best represented by a graph can be stored and queried and the value of using a database. My short-term goal is to learn neo4j for handling nodes, edges, and paths. Combining neo4j with a visualization library like D3 for displaying networks brings data to life in a way that tables and charts never will.",
+      "I was introduced to Arango in the final 6 months of my time at SOSi where we used it to store graph data. Honestly, I wasn't very impressed with the query syntax or the current state of the product. That said, I became familiar with how data best represented by a graph should be stored and queried and the value of using a graph DB. My short-term goal is to learn neo4j for handling nodes, edges, and paths. Combining neo4j with a visualization library like D3 for displaying networks brings data to life in a way that tables and charts never will.",
   },
   {
     group: 'database',
@@ -322,7 +352,7 @@ export const skills = [
     path: 'skill-icons/solr.png',
     years: '>2',
     description:
-      "For open source full-text search your options are Solr or Elastic and both write indices in Lucene. We opted for the former and our use case was quite complex. I was not the primary engineer on the Solr cloud like I was for the Mongo cluster backing it, but I have enough experience with it now to effectively create and manage my own instance. At a MongoDB conference one of their engineers asked me why we didn't just use their full-text indexing. I replied, because I don't use a screwdriver to pound in a nail. More than a deep understanding of Solr, what I came away from this experience with is an appreciation for the complexity of maintaining fast full-text search on billions of records and why it is so important for your ability to scale to use the right tool for the job.",
+      "For open source full-text search your options are Solr or Elastic and both write indices in Lucene. We opted for the former and our use case was quite complex. I was not the primary engineer on the Solr and ZooKeeper cloud like I was for the Mongo cluster storing the same large dataset, but I have enough experience with it now to effectively create and manage my own cloud. At a MongoDB conference one of their engineers asked me why we didn't just use their full-text indexing. I replied, because I don't use a screwdriver to pound in a nail. I wasn't trying to be rude, but more than becoming an expert in Solr or Lucene, what I learned from this experience is an appreciation for the complexity of maintaining fast full-text search on billions of records. Your ability to scale depends on using the right tool for the job and not asking your DB to also be your search engine.",
   },
   {
     group: 'agile',
@@ -332,7 +362,7 @@ export const skills = [
     path: 'skill-icons/gitlab.png',
     years: '>2',
     description:
-      "At SOSi, we used GitLab to manage version control, run Agile, perform code reviews, and perform CI / CD. I have a high opinion of this product and the changes I've seen them make over the 2 years I've been using it. I'm not particularly wedded to GitLab over one of their competitors, but I am wedded to idea that building professional software on a team requires something like GitLab to manage issues, releases, access, etc. Getting into the weeds with deploy tokens, dockerized runners for CI / CD, and integrations with external tools like Mattermost was a valuable experience.",
+      "At SOSi, we used GitLab to manage version control, run Agile, perform code reviews, and perform CI / CD. I have a high opinion of this product and the changes I've seen them make over the 2 years I've been using it. I'm not particularly wedded to GitLab over one of their competitors, but I am wedded to idea that building professional software on a team requires something like GitLab to manage issues, releases, repository access, etc. Getting into the weeds with deploy tokens, dockerized runners for CI / CD, and integrations with external tools like Mattermost has forever changed my expectations of what a proper developer environment looks like.",
   },
   {
     group: 'agile',
@@ -342,7 +372,7 @@ export const skills = [
     path: 'skill-icons/trello.png',
     years: '>1',
     description:
-      "We used Trello at Zigg to manage a basic Kanban board. There were only three people on the team, but we were located across the country from each other. Trello was in its infancy at the time has since been purchased by Atlassian. It's been over two years since I've used it and I'm sure it's changed dramatically. Having co-founded Zigg after L3 which relied on the power of Atlassian's suite (Jira, BitBucket, Confluence, etc.) to coordinate thousands of engineers, product managers and designers, Trello was a welcome return to simplicity. If I needed an off-the-shelf Kanban board I'd certainly revisit Trello.",
+      "We used Trello at Zigg to manage a basic Kanban board. There were only three people on the team, but we were located across the country from each other. Trello was in its infancy at the time has since been purchased by Atlassian. It's been over two years since I've used it and I'm sure it's changed dramatically. Having co-founded Zigg after L3 which relied on the power of Atlassian's suite (Jira, BitBucket, Confluence, etc.) to coordinate thousands of engineers, product managers and designers, Trello was a welcome return to simplicity. If I needed an off-the-shelf Kanban board today I'd certainly revisit Trello.",
   },
   {
     group: 'agile',
@@ -462,7 +492,7 @@ export const skills = [
     path: 'skill-icons/macos.png',
     years: '>10',
     description:
-      "My years in the Navy forced me to use Windows both at home and at work. A decade ago I bought a MacBook air and I have not purchased a personal machine that was not a Mac since. L3 used Windows, but at Zigg and SOSi I developed on MacOS exclusively. I feel qualified to directly compare the two experiences and while Windows 10 was a step in the right direction (especially with the addition of a bash terminal) I still find it to be a better experience to develop on a Mac. One of the main reasons for this is that in every case my production environment is Linux. Building and testing the code on Unix-based MacOS provides an easier bridge to the Linux environment. In my opinion there are fewer steps involved in getting something working on prod as it did in dev going from Mac to Linux, vice starting from Windows. Outside of .NET I can't think of a good reason to opt for developing on Windows rather than Linux or MacOS and every software conference or meetup I've ever attended seems to confirm this as a widely held belief.",
+      "My years in the Navy forced me to use Windows both at home and work. A decade ago, I bought a MacBook air and I have not purchased a personal machine that was not a Mac since. At L3 I wrote code on Windows, but at Zigg and SOSi I developed on MacOS. When I compare the two experiences, I think that Windows 10 was a step in the right direction, especially with the addition of a bash terminal, but I much prefer developing on a Mac. One obvious advantage is that in every case my production environment is some flavor of Linux. Building and testing the code on Unix-based MacOS offers an easier bridge to the Linux environment. There are fewer steps involved in getting something working on prod as it did in dev going from Mac to Linux, vice starting from Windows. Outside of building .NET applications I can't think of a good reason to opt for developing on Windows rather than MacOS or Linux. Looking around the room at every software conference or meetup I've ever attended seems to confirm this as a widely held belief.",
   },
   {
     group: 'ops',

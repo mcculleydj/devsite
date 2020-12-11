@@ -1,58 +1,81 @@
 <template>
   <div>
-    <div id="banner">
-      <div>Welcome to my interactive self-promotion.</div>
-      <div>Check out skills and projects to see what I can do.</div>
-      <div>
-        Or hang out here to learn more about me and my take on coding.
-      </div>
-    </div>
-    <v-row v-if="showTerminal">
-      <v-col
-        class="terminal-container mx-3"
-        :style="{ height: terminalHeight + 'px' }"
-      >
-        <Terminal />
-      </v-col>
-    </v-row>
-    <Thoughts v-else @intro="showIntro()" />
+    <transition name="minimize-fade">
+      <Terminal
+        v-if="showTerminal"
+        :exitSignal="exitSignal"
+        @shutdown="quitTerminal()"
+      />
+    </transition>
+    <Thoughts v-if="showThoughts" />
+    <v-btn
+      v-if="showTerminal"
+      fixed
+      bottom
+      text
+      x-large
+      color="primary"
+      @click="exitSignal = true"
+      :loading="exitSignal"
+    >
+      <v-icon>mdi-close</v-icon>
+      <span class="lowercase">exit</span>
+    </v-btn>
+    <v-btn
+      v-else
+      fixed
+      bottom
+      text
+      x-large
+      color="primary"
+      @click="openTerminal()"
+    >
+      <v-icon>mdi-console</v-icon>
+      <span class="lowercase">whoami</span>
+    </v-btn>
+    <v-btn
+      fixed
+      bottom
+      text
+      x-large
+      color="primary"
+      style="left: 170px"
+      @click="showInfoDialog = true"
+    >
+      <v-icon>mdi-information-outline</v-icon>
+      <span class="lowercase">site info</span>
+    </v-btn>
+    <v-dialog v-model="showInfoDialog" max-width="800">
+      <InfoDialog />
+    </v-dialog>
   </div>
 </template>
 
 <script>
 import { mapActions } from 'vuex'
-import { fromEvent } from 'rxjs'
-import { tap, debounceTime } from 'rxjs/operators'
 import Thoughts from '@/components/Thoughts'
 import Terminal from '@/components/Terminal'
+import InfoDialog from '@/components/InfoDialog'
 
 export default {
   components: {
     Thoughts,
     Terminal,
+    InfoDialog,
   },
+
+  props: ['tab'],
 
   data: () => ({
+    showThoughts: true,
     showTerminal: false,
-    terminalHeight: 0,
+    exitSignal: false,
+    timeout: null,
+    showInfoDialog: false,
   }),
 
-  subscriptions() {
-    // listen for and handle resize events
-    const resize$ = fromEvent(window, 'resize').pipe(
-      debounceTime(500),
-      tap(() => {
-        const bannerHeight = document.getElementById('banner').clientHeight
-        this.terminalHeight = window.innerHeight - 1.2 * bannerHeight
-      }),
-    )
-
-    return { resize$ }
-  },
-
-  mounted() {
-    const bannerHeight = document.getElementById('banner').clientHeight
-    this.terminalHeight = window.innerHeight - 1.2 * bannerHeight - 45
+  beforeDestroy() {
+    clearTimeout(this.timeout)
   },
 
   methods: {
@@ -60,23 +83,49 @@ export default {
       dispatchSetSketchSource: 'setSketchSource',
     }),
 
-    showIntro() {
+    openTerminal() {
       this.showTerminal = true
+      this.showThoughts = false
       this.dispatchSetSketchSource('sketch.png')
+      this.exitSignal = false
+    },
+
+    quitTerminal() {
+      this.dispatchSetSketchSource('sketch-outlined.png')
+      this.showTerminal = false
+      this.timeout = setTimeout(() => {
+        this.showThoughts = true
+      }, 300)
+    },
+  },
+
+  watch: {
+    tab() {
+      if (this.tab !== 0) {
+        this.showTerminal = false
+        this.timeout = setTimeout(() => {
+          this.showThoughts = true
+        }, 300)
+      }
     },
   },
 }
 </script>
 
-<style scope>
-#banner {
-  color: #1976d2;
-  font-size: 1.8rem;
-  padding-top: 1.8rem;
-  padding-bottom: 1.8rem;
+<style scoped>
+.lowercase {
+  text-transform: lowercase;
+  margin-left: 8px;
 }
 
-.terminal-container {
-  border: 1px solid lightgray;
+.minimize-fade-enter-active,
+.minimize-fade-leave-active {
+  transition: all 0.3s ease;
+}
+
+.minimize-fade-enter,
+.minimize-fade-leave-to {
+  transform: translateX(50vw) translateY(50vh);
+  opacity: 0;
 }
 </style>

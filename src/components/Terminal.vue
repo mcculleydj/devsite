@@ -1,22 +1,29 @@
 <template>
-  <div class="terminal">
-    <template v-if="!introComplete">
-      <template v-for="(line, i) in displayedLines">
-        <div :key="`line-${i}`">{{ line }}</div>
+  <div
+    class="terminal-container mt-8 pa-3"
+    :style="{ height: terminalHeight + 'px' }"
+  >
+    <div class="terminal">
+      <template v-if="!introComplete">
+        <template v-for="(line, i) in displayedLines">
+          <div :key="`line-${i}`">{{ line }}</div>
+        </template>
+        <div>{{ line }}</div>
       </template>
-      <div>{{ line }}</div>
-    </template>
-    <div v-else-if="!sigtermReceived">
-      <div>{{ method }}</div>
-      <TerminalImage :sourceIndex="sourceIndex" @complete="next()" />
-    </div>
-    <div v-else>
-      {{ exitText }}
+      <div v-else-if="!sigtermReceived">
+        <div>{{ method }}</div>
+        <TerminalImage :sourceIndex="sourceIndex" @complete="next()" />
+      </div>
+      <div v-else>
+        {{ exitText }}
+      </div>
     </div>
   </div>
 </template>
 
 <script>
+import { fromEvent } from 'rxjs'
+import { tap, debounceTime } from 'rxjs/operators'
 import TerminalImage from '@/components/TerminalImage'
 import { lines, methods } from '@/common/constants'
 
@@ -24,6 +31,8 @@ export default {
   components: {
     TerminalImage,
   },
+
+  props: ['exitSignal'],
 
   computed: {
     linePrompt() {
@@ -55,7 +64,20 @@ export default {
     },
   },
 
+  subscriptions() {
+    // listen for and handle resize events
+    const resize$ = fromEvent(window, 'resize').pipe(
+      debounceTime(500),
+      tap(() => {
+        this.terminalHeight = window.innerHeight - 170
+      }),
+    )
+
+    return { resize$ }
+  },
+
   data: () => ({
+    terminalHeight: 0,
     cursorState: true,
     interval: null,
     timeout: null,
@@ -71,28 +93,17 @@ export default {
     exitText: '',
     sigtermReceived: false,
     sigtermReceivedLine: false,
-    keySubmitHandler: () => {},
   }),
 
   mounted() {
+    this.terminalHeight = window.innerHeight - 170
     this.blink()
-    this.timeout = setTimeout(() => this.typeLine(), 2000)
-    this.keySubmitHandler = e => {
-      if (e.altKey && e.keyCode === 88) {
-        if (this.introComplete) {
-          this.exit()
-        } else {
-          this.sigtermReceived = true
-        }
-      }
-    }
-    document.body.addEventListener('keydown', this.keySubmitHandler)
+    this.timeout = setTimeout(() => this.typeLine(), 1000)
   },
 
   beforeDestroy() {
     clearTimeout(this.timeout)
     clearInterval(this.interval)
-    document.body.removeEventListener('keydown', this.keySubmitHandler)
   },
 
   methods: {
@@ -138,7 +149,7 @@ export default {
           // for closing } and )
           const shortDelayIndices = [5, 6, 9]
           const delay = shortDelayIndices.includes(this.lineIndex)
-            ? 100
+            ? 50
             : Math.random() * 500 + 500
           this.timeout = setTimeout(this.typeLine, delay)
         } else {
@@ -226,7 +237,7 @@ export default {
       this.timeout = setTimeout(() => {
         this.characterIndex--
         this.deleteMethod()
-      }, Math.random() * 500 + 300)
+      }, Math.random() * 200 + 300)
     },
 
     exit(index) {
@@ -275,10 +286,25 @@ export default {
       }, Math.random() * 100 + 50)
     },
   },
+
+  watch: {
+    exitSignal() {
+      if (this.introComplete) {
+        this.exit()
+      } else {
+        this.sigtermReceived = true
+      }
+    },
+  },
 }
 </script>
 
 <style scoped>
+.terminal-container {
+  border: 1px solid lightgray;
+  overflow-y: scroll;
+}
+
 .terminal {
   font-family: monospace;
   color: #1976d2;
@@ -286,15 +312,5 @@ export default {
   word-wrap: break-word;
   white-space: pre-wrap;
   height: 100%;
-}
-
-.fade-enter-active,
-.fade-leave-active {
-  transition: opacity 1.5s;
-}
-
-.fade-enter,
-.fade-leave-to {
-  opacity: 0;
 }
 </style>

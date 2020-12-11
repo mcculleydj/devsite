@@ -1,83 +1,103 @@
 <template>
-  <div>
-    <div
-      v-for="(div, i) in divs"
-      class="box"
-      :key="div.title"
-      :style="rotate(i, div)"
-    >
-      <h3>{{ div.title }}</h3>
-      <p>{{ div.text }}</p>
-    </div>
-    <v-card
-      v-for="(div, i) in divs"
-      width="600"
-      class="card"
-      :key="'card' + div.title"
-      :style="rotateCard(i, div)"
-    >
-      <v-card-title>{{ div.title }}</v-card-title>
-      <v-card-text>{{ div.text }}</v-card-text>
-    </v-card>
+  <div class="terminal-comment">
+    {{ source }}
+    <v-row v-for="(line, i) in displayedLines" :key="`line-${i}`" no-gutters>
+      <template v-for="(s, j) in line">
+        <img
+          v-if="s.length > 1"
+          :key="`image-piece-${i}-${j}`"
+          :src="s"
+          class="image-piece"
+          width="14.41px"
+          height="35.56px"
+        />
+        <div v-else :key="`character-${i}-${j}`">{{ s }}</div>
+      </template>
+    </v-row>
   </div>
 </template>
 
 <script>
+import { sources, comments, masks } from '@/common/constants'
+
 export default {
+  computed: {
+    comments() {
+      return this.sourceIndex >= 0 ? comments[this.sourceIndex] : undefined
+    },
+
+    source() {
+      return this.sourceIndex >= 0 ? sources[this.sourceIndex] : undefined
+    },
+  },
+
   data: () => ({
-    divs: [
-      {
-        color: 'red',
-        title: 'foo',
-        text:
-          'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.',
-      },
-      {
-        color: 'blue',
-        title: 'bar',
-        text:
-          'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.',
-      },
-      {
-        color: 'green',
-        title: 'baz',
-        text:
-          'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.',
-      },
-    ],
+    masks,
+    lines: [],
+    displayedLines: new Array(15).fill(null).map(() => []),
+    sourceIndex: 1,
   }),
 
+  mounted() {
+    this.setLines()
+    this.changeLines()
+  },
+
   methods: {
-    rotate(i, div) {
-      return {
-        transform: `rotate(${10 * i}deg)`,
-        'transform-origin': 'center right',
-        'z-index': this.divs.length - i,
-        'background-color': div.color,
+    changeLines() {
+      // 15 lines => open comment; 3 comment lines; 10 picture lines; close comment
+      for (let i = 0; i < 15; i++) {
+        const governingLength = Math.max(
+          this.displayedLines[i].length,
+          this.lines[i].length,
+        )
+        for (let j = 0; j < governingLength; j++) {
+          if (j < this.lines[i].length) {
+            this.displayedLines[i].splice(j, 1, this.lines[i][j])
+          } else {
+            // TODO: trim these spaces after the cursor has passed over them
+            this.displayedLines[i].splice(j, 1, ' ')
+          }
+
+          if (j + 1 < governingLength) {
+            this.displayedLines[i].splice(j + 1, 1, '▕')
+          }
+        }
       }
+      this.$emit('complete')
     },
-    rotateCard(i) {
-      return {
-        transform: `rotate(${10 * i}deg)`,
-        'transform-origin': 'center right',
-        'z-index': this.divs.length - i,
-      }
+
+    setLines() {
+      const first = [['/', '*', '*']]
+      const prefix = [' ', '*', ' ']
+      const last = [[' ', '*', '/']]
+
+      // an array of arrays where each member is either an img URL
+      // or a single asterisk character based on the mask
+      const rows = masks[this.sourceIndex].map((row, i) =>
+        row
+          .split('')
+          .map((c, j) =>
+            c === '*' ? '·' : `intro/${this.source}-${i}-${j}.jpg`,
+          ),
+      )
+
+      this.lines = first
+        .concat(this.comments.map(comment => prefix.concat(comment.split(''))))
+        .concat(rows.map(r => prefix.concat(r)))
+        .concat(last)
     },
   },
 }
 </script>
 
 <style scoped>
-.box {
-  position: fixed;
-  top: 400px;
-  left: 400px;
-  width: 600px;
-}
-
-.card {
-  position: fixed;
-  top: 400px;
-  left: 400px;
+.terminal-comment {
+  font-family: monospace;
+  color: grey;
+  font-size: 24px;
+  word-wrap: break-word;
+  white-space: pre-wrap;
+  height: 100%;
 }
 </style>

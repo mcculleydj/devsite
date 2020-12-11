@@ -16,7 +16,7 @@
     </v-tabs>
     <v-tabs-items v-model="tab">
       <v-tab-item>
-        <About v-if="sketchHasDimensions" />
+        <About v-if="sketchHasDimensions" :tab="tab" />
       </v-tab-item>
       <v-tab-item>
         <Skills />
@@ -70,9 +70,10 @@ export default {
 
     async getDimensions() {
       const el = document.getElementById('sketch')
-      if (!el || !el.clientWidth || !el.clientHeight) {
-        await sleep(10)
+      if (!el || el.clientWidth === 0 || el.clientHeight === 0) {
+        await sleep(100)
         this.getDimensions()
+        return
       }
       this.sketchHasDimensions = true
     },

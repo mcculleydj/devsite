@@ -165,7 +165,7 @@ export function updateCanvas(imageWidth, imageHeight, initSkills) {
   svg.attr('width', width).attr('height', height)
 
   originX = width - 0.65 * imageWidth
-  originY = height - 0.75 * imageHeight
+  originY = height - 0.65 * imageHeight
 
   imageWidth_ = imageWidth
   imageHeight_ = imageHeight

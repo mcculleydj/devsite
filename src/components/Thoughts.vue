@@ -1,8 +1,21 @@
 <template>
   <div>
+    <div id="banner">
+      <div>Welcome to my interactive self-promotion.</div>
+      <div>Check out skills and projects to see what I can do.</div>
+      <div>
+        Or hang out here to learn more about me and my take on coding.
+      </div>
+    </div>
     <div class="sub-text">
-      lorem ipsum
-      <v-btn @click="$emit('intro')">Show Intro</v-btn>
+      <span>
+        When I'm interviewing a candidate I ask questions to learn about their
+        approach to building software. These questions are more philosophical
+        than technical in nature, but I've found that a candidate's experience
+        still shapes the quality of the answer. Here are ten "takes" on writing
+        code based on questions I've been asked as a candidate or questions I
+        like to ask as an interviewer to give you a sense of my beliefs.
+      </span>
     </div>
     <v-card
       v-for="(thought, i) in thoughts"
@@ -24,10 +37,11 @@
       @mouseup="selected = i"
       elevation="5"
     >
-      <v-card-title>{{ thought.title }}</v-card-title>
-      <v-card-text style="font-size: 1.1rem">
-        {{ selected === i ? thought.text : thought.text.slice(0, 25) }}
-      </v-card-text>
+      <v-card-title style="font-size: 1.3rem">{{ thought.title }}</v-card-title>
+      <v-card-text
+        style="font-size: 1.1rem"
+        v-html="selected === i ? thought.text : thought.text.slice(0, 25)"
+      />
       <v-card-actions v-if="selected === i" class="justify-end">
         <v-btn
           fab
@@ -98,11 +112,18 @@ export default {
 </script>
 
 <style scoped>
+#banner {
+  color: #1976d2;
+  font-size: 1.8rem;
+  padding-top: 1.8rem;
+  padding-bottom: 1.8rem;
+}
+
 .sub-text {
-  color: slategray;
-  font-size: 1.3rem;
-  padding-top: 1.3rem;
+  color: rgba(0, 0, 0, 0.6);
+  font-size: 1.1rem;
   padding-bottom: 1.3rem;
+  max-width: 800px;
 }
 
 .thought-card {
@@ -122,10 +143,10 @@ export default {
 }
 
 .selected {
-  position: absolute;
+  position: fixed;
   top: 0px;
   left: 0px;
-  transform: translate(0px, 160px) rotate(0deg);
+  transform: translate(12px, 50vh) rotate(0deg);
 }
 
 .selected:hover {
