@@ -691,3 +691,11 @@ export const skills = [
       'My experience with Selenium has been to perform JS enabled web scraping tasks. Selenium, Chromedriver, and the Python Selenium package is an extremely powerful combination. As more and more of the web relies on client side JS or AJAX to hydrate the page rather than a raw HTTP request open source collection will need tools like Selenium that allow for JS injection and waiting for DOM elements before capturing the HTML.',
   },
 ]
+
+export const projects = [
+  {
+    name: 'Cosign',
+  },
+  { name: 'VueRx Presentation' },
+  { name: 'Mastering D3' },
+]

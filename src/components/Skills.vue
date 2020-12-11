@@ -64,9 +64,9 @@ export default {
 
   mounted() {
     this.startVisualization =
-      window.innerWidth * window.innerHeight > 1000000 &&
-      window.innerWidth > 800 &&
-      window.innerHeight > 700
+      window.innerWidth * window.innerHeight > minArea &&
+      window.innerWidth > minWidth &&
+      window.innerHeight > minHeight
     this.showVisualization = this.startVisualization
     this.showSnackbar = !this.showVisualization
 

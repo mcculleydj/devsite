@@ -22,7 +22,7 @@
         <Skills />
       </v-tab-item>
       <v-tab-item>
-        <Projects />
+        <Projects v-if="sketchHasDimensions" />
       </v-tab-item>
       <v-tab-item>
         <Contact />
