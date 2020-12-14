@@ -85,25 +85,31 @@ export const lines = [
   'console.clear()',
 ]
 
-// ideas: scritch; code; hike; read; serve; study; fly; reinvent;
+// ideas: code; reinvent;
 export const methods = [
   'love()',
   'eat()',
+  'skritch()',
   'roll()',
+  'serve()',
   'play()',
   'explore()',
   'learn()',
   'read()',
+  'reinvent()',
 ]
 
 export const sources = [
   'love',
   'eat',
+  'skritch',
   'roll',
+  'serve',
   'play',
   'explore',
   'learn',
   'read',
+  'reinvent',
 ]
 
 export const comments = [
@@ -118,9 +124,19 @@ export const comments = [
     'tagines are sweet, savory, full of spices, and slow-cooked to perfection',
   ],
   [
+    'this is Rigby',
+    'she likes long walks in the woods, treats, and belly rubs',
+    "she's a loyal friend, but will gladly sellout for bacon",
+  ],
+  [
     'about two years ago i started getting into D&D',
     'i enjoy the narrative, imagination, and lack of screens',
     'my family plays every week and i recommend it shamelessly to complete strangers',
+  ],
+  [
+    'i was an officer in the Navy for 11 years',
+    'i miss the rush and the challenge of flying on and off an aircraft carrier',
+    'i miss the sailors and marines i was honored to work with even more',
   ],
   [
     'racquetball is my sport and aerobic workout of choice',
@@ -141,6 +157,11 @@ export const comments = [
     'a cup of coffee and the Sunday paper is a weekly ritual',
     'i alternate between fiction and non-fiction, unless i get sucked into a series',
     'like most nerds i prefer sci-fi and fantasy',
+  ],
+  [
+    'most of my former squadron mates are airline pilots',
+    "most people think i'm crazy for choosing to start over as a dev",
+    'i am not afraid to switch it up and this is more imaginative work',
   ],
 ]
 
@@ -170,6 +191,18 @@ export const masks = [
     '······················          ········',
   ],
   [
+    '···········         ····················',
+    '·····                     ··············',
+    '·                                 ······',
+    '·                               ········',
+    '··                             ·········',
+    '···                 ···                 ',
+    '····                 ··············     ',
+    '····     ··                  ···········',
+    '····    ····    ····              ······',
+    '·····················                 ··',
+  ],
+  [
     '·········           ····················',
     '·····                  ·················',
     '····                      ··············',
@@ -180,6 +213,18 @@ export const masks = [
     '····                                 ···',
     '······                              ····',
     '·········                          ·····',
+  ],
+  [
+    '·····················       ············',
+    '····················         ······     ',
+    '·····················        ··         ',
+    '················                        ',
+    '··············                          ',
+    '··············                       ···',
+    '··············                         ·',
+    '···············                        ·',
+    '···············                        ·',
+    '················                      ··',
   ],
   [
     '················      ··················',
@@ -228,6 +273,18 @@ export const masks = [
     '··                                    ··',
     '·                                    ···',
     '··                                ······',
+  ],
+  [
+    '· o ·· o ············ ___ ······ ___ ···',
+    '·· \\__/ ············ /.·.\\ o  o /.·.\\ ··',
+    '·· /oo\\ ··········· /·.~-.\\ \\/ /.~-.·\\ ·',
+    "·· \\()/ ··········· \\·'._..\\()/.._.'·/ ·",
+    '·· /~~\\ ············ \\.·.-.·||·.-.·./ ··',
+    "·· (~~) ······ /\\ ··· \\·`-'·||·`-'·/ ···",
+    '·· /~~) ····· /\\/ ···· \\___/||\\___/ ····',
+    '··· (~~)_____/\\/ ······ /.-.||.-.\\ ·····',
+    "···· /·|·|·\\·\\/ ······ /.-'./\\.-'.\\ ····",
+    '···· ~-~-~-~-~  ······ \\___/··\\___/ ····',
   ],
 ]
 
