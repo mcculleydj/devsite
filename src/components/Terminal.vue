@@ -14,9 +14,7 @@
         <div>{{ method }}</div>
         <TerminalImage :sourceIndex="sourceIndex" @complete="next()" />
       </div>
-      <div v-else>
-        {{ exitText }}
-      </div>
+      <div v-else>{{ exitText }}</div>
     </div>
   </div>
 </template>
@@ -173,6 +171,12 @@ export default {
     },
 
     typeMethod() {
+      if (this.sigtermReceived) {
+        this.introComplete = true
+        this.shutdown(0)
+        return
+      }
+
       if (!this.introComplete) {
         this.timeout = setTimeout(() => {
           this.introComplete = true

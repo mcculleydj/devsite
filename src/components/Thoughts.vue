@@ -8,14 +8,12 @@
       </div>
     </div>
     <div class="sub-text">
-      <span>
-        When I'm interviewing a candidate I ask questions to learn about their
-        approach to building software. These questions are more philosophical
-        than technical in nature, but I've found that a candidate's experience
-        still shapes the quality of the answer. Here are ten "takes" on writing
-        code based on questions I've been asked as a candidate or questions I
-        like to ask as an interviewer to give you a sense of my beliefs.
-      </span>
+      During an interview I ask certain questions to learn about a candidate's
+      approach to building software. They tend to be more philosophical than
+      technical in nature, but on the job experience correlates with the quality
+      of the answers. Here are ten "takes" on writing code based on questions
+      I've been asked as a candidate or questions I like to ask as an
+      interviewer designed to give you a sense of where I stand.
     </div>
     <v-card
       v-for="(thought, i) in thoughts"
@@ -24,8 +22,10 @@
         selected === i
           ? {
               'transform-origin': 'center right',
+              'border-left': '5px solid #1976d2',
             }
           : {
+              'border-left': '3px solid #1976d2',
               'transform-origin': 'center right',
               transform: `translate(${x}px, ${y}px) rotate(${10 * i}deg)`,
               'z-index': thoughts.length - i,
@@ -39,9 +39,12 @@
     >
       <v-card-title style="font-size: 1.3rem">{{ thought.title }}</v-card-title>
       <v-card-text
-        style="font-size: 1.1rem"
+        style="font-size: 1.1rem; "
         v-html="selected === i ? thought.text : thought.text.slice(0, 25)"
       />
+      <v-card-text v-if="selected === i" style="font-size: 1.3rem">
+        <i>{{ thought.quote }}</i>
+      </v-card-text>
       <v-card-actions v-if="selected === i" class="justify-end">
         <v-btn
           fab
@@ -122,8 +125,10 @@ export default {
 .sub-text {
   color: rgba(0, 0, 0, 0.6);
   font-size: 1.1rem;
-  padding-bottom: 1.3rem;
+  margin-bottom: 1.3rem;
   max-width: 800px;
+  border-left: 5px solid #1976d2;
+  padding-left: 16px;
 }
 
 .thought-card {

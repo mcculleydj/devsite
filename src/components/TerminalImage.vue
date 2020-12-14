@@ -75,7 +75,7 @@ export default {
         row
           .split('')
           .map((c, j) =>
-            c === '*' ? '·' : `intro/${this.source}-${i}-${j}.jpg`,
+            c !== ' ' ? c : `intro/${this.source}-${i}-${j}.jpg`,
           ),
       )
 
