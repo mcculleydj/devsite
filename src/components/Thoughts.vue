@@ -42,7 +42,7 @@
         style="font-size: 1.1rem; "
         v-html="selected === i ? thought.text : thought.text.slice(0, 25)"
       />
-      <v-card-text v-if="selected === i" style="font-size: 1.3rem">
+      <v-card-text v-if="selected === i" style="font-size: 1.1rem">
         <i>{{ thought.quote }}</i>
       </v-card-text>
       <v-card-actions v-if="selected === i" class="justify-end">

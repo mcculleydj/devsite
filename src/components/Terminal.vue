@@ -10,11 +10,10 @@
         </template>
         <div>{{ line }}</div>
       </template>
-      <div v-else-if="!sigtermReceived">
-        <div>{{ method }}</div>
+      <div v-else>
+        <div>{{ sigtermReceived ? exitText : method }}</div>
         <TerminalImage :sourceIndex="sourceIndex" @complete="next()" />
       </div>
-      <div v-else>{{ exitText }}</div>
     </div>
   </div>
 </template>
@@ -106,6 +105,10 @@ export default {
 
   methods: {
     next() {
+      if (this.methodIndex === methods.length - 1) {
+        setTimeout(this.exit, 3000)
+        return
+      }
       this.timeout = setTimeout(this.deleteMethod, 3000)
     },
 
@@ -171,7 +174,7 @@ export default {
     },
 
     typeMethod() {
-      if (this.sigtermReceived) {
+      if (this.sigtermReceived && this.methodIndex !== methods.length - 1) {
         this.introComplete = true
         this.shutdown(0)
         return
@@ -216,21 +219,13 @@ export default {
       }, Math.random() * 50 + 100)
     },
 
-    nextMethod() {
-      if (this.methodIndex === methods.length - 1) {
-        this.methodIndex = 0
-      } else {
-        this.methodIndex++
-      }
-    },
-
     deleteMethod() {
       clearInterval(this.interval)
 
       // base case
       if (this.characterIndex === 0) {
         this.blink()
-        this.nextMethod()
+        this.methodIndex++
         this.timeout = setTimeout(() => {
           this.typeMethod()
         }, 2000)
@@ -246,6 +241,7 @@ export default {
 
     exit(index) {
       if (index === undefined) {
+        this.exitText = this.method.slice(0, index)
         this.sigtermReceived = true
         clearInterval(this.interval)
         clearTimeout(this.timeout)
