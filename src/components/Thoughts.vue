@@ -27,7 +27,9 @@
           : {
               'border-left': '3px solid #1976d2',
               'transform-origin': 'center right',
-              transform: `translate(${x}px, ${y}px) rotate(${10 * i}deg)`,
+              transform: `translate(${x}px, ${y}px) rotate(${
+                selected > -1 ? 2 * i : 10 * i
+              }deg)`,
               'z-index': thoughts.length - i,
             }
       "
@@ -52,10 +54,13 @@
         </v-btn>
       </v-card-title>
       <v-card-text
-        style="font-size: 1.1rem; "
+        style="font-size: 1.1rem; line-height: 26.4px;"
         v-html="selected === i ? thought.text : thought.text.slice(0, 25)"
       />
-      <v-card-text v-if="selected === i" style="font-size: 1.1rem">
+      <v-card-text
+        v-if="selected === i"
+        style="font-size: 1.1rem; line-height: 26.4px;"
+      >
         <i>{{ thought.quote }}</i>
       </v-card-text>
     </v-card>
@@ -67,7 +72,8 @@ import { fromEvent } from 'rxjs'
 import { tap, debounceTime } from 'rxjs/operators'
 import { thoughts } from '@/common/constants'
 
-// circular overlay to prevent click events in image
+// TODO: circular overlay to prevent click events in image
+// TODO: below certain dimensions could just be a v-dialog
 
 export default {
   computed: {
@@ -153,7 +159,8 @@ export default {
   position: fixed;
   top: 0px;
   left: 0px;
-  transform: translate(12px, 420px) rotate(0deg);
+  width: 800px !important;
+  transform: translate(12px, 244px) rotate(0deg);
 }
 
 .selected:hover {

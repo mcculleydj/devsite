@@ -153,7 +153,7 @@ export default {
           const shortDelayIndices = [5, 6, 9]
           const delay = shortDelayIndices.includes(this.lineIndex)
             ? 50
-            : Math.random() * 500 + 200
+            : Math.random() * 200 + 500
           this.timeout = setTimeout(this.typeLine, delay)
         } else {
           // done with intro

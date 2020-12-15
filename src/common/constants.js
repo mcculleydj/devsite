@@ -2,14 +2,14 @@ export const thoughts = [
   {
     title: 'on presentation',
     text:
-      'Brian Holt\'s famous <a href="https://twitter.com/holtbt/status/977419276251430912" target="_blank">fullstack developer horse</a> is the perfect depiction of a sad reality. A lot of really great code will never see the light of day because it is completely inaccessible to the target audience. I see myself as the inverse of this horse, having worked my way top down through the typical web application stack.',
+      'Brian Holt\'s <a href="https://twitter.com/holtbt/status/977419276251430912" target="_blank">fullstack developer horse</a> is the perfect depiction of a sad reality. A lot of really great code will never see the light of day because it is completely inaccessible to the target audience for lack of a decent user interface. I see myself as the inverse of this horse, having worked my way top down through the typical web application stack.',
     quote:
       '"A bad idea with a good presentation is doomed eventually, a good idea with a bad presentation is doomed immediately." ― David Akin',
   },
   {
     title: 'on readability',
     text:
-      "A line of code might be read thousands of times and written once. Make it work, make it right, make it fast is a mantra we learn early. What about make it intuitive or maintainable? Complexity is often excused as elegant. Simplicity without sacrificing performance is elegant, not brevity for brevity's sake. When complexity is unavoidable, do everyone (especially yourself) a favor and add comments.",
+      'A line of code might be read thousands of times and written once. "Make it work, make it right, make it fast" is a mantra we learn early. What about make it intuitive or maintainable? Complexity is often excused as elegant. Simplicity without sacrificing performance is elegant, not brevity for brevity\'s sake. When complexity is unavoidable, do everyone ― especially yourself ― a favor and add comments.',
     quote:
       '"The functionality that you create today has a good chance of changing in the next release, but the readability of your code will have a profound effect on all the changes that will ever be made." ― Robert Martin',
   },
@@ -30,20 +30,20 @@ export const thoughts = [
   {
     title: 'on users',
     text:
-      'A professor at Boston University told his OS students every semester, "I\'m teaching you to build skyscrapers, and everyone else is teaching you to put wallpaper up on the 14th floor." I still run across the attitude that frontend developers are a lesser brand of engineer, more concerned with color themes than data structures. What people who haven\'t lived this life fail to realize is that in any user facing application the single most complex layer of the stack by leaps and bounds are the users themselves. At L3, I was surprised to be working with talented engineers who held dual degrees in psychology and computer science. Years unexpected user actions later that combination makes perfect sense to me.',
+      'An Operating Systems professor at Boston University declared to his students every semester, "I\'m teaching you to build skyscrapers, and everyone else is teaching you to wallpaper the 14th floor." I still run across the attitude that frontend developers are a lesser brand of engineer, more concerned with color themes than data structures. What people who haven\'t lived this life fail to realize is that in any user facing application the single most complex layer of the stack by leaps and bounds are the users themselves. At L3, I was surprised to be working with talented engineers who held dual degrees in psychology and computer science. Years of unexpected user actions later that combination makes perfect sense to me.',
     quote: '"Where is the \'any\' key?" — Homer Simpson',
   },
   {
     title: 'on design',
     text:
-      'First, I am not a designer. I have opinions, but so does everyone else, especially about how things look. When I consider building the view layer of an application I want a team composed of at least three distinct roles: product managers, UI/UX designers, and engineers. There are people who can do all three, but in general engineers defining user requirements or designers implementing technical solutions leads to problems. My personal design preference is for a light touch like Airbnb or Google\'s UI over anything flashy or noisy. I subscribe to the golden rule of UI/UX: "don\'t make me think."',
+      'First, I am not a designer. I have opinions, but so does everyone else, especially about how things look. When I consider building the view layer of an application I want a team composed of at least three distinct roles: product managers, UI/UX designers, and engineers. There are unicorns who can do all three, but in general engineers defining user requirements or designers implementing technical solutions leads to problems. My personal design preference is for a light touch like Airbnb or Google\'s UI over anything flashy or noisy. I subscribe to the golden rule of UI/UX: "Don\'t make me think."',
     quote:
       '"Without requirements or design, programming is the art of adding bugs to an empty text file." ― Louis Srygley',
   },
   {
     title: 'on agile',
     text:
-      'I was a skeptic when my boss insisted on adopting Agile and we entered into a weeklong onsite training. After a few sprints I was a true believer. Not necessarily in a particular version of Agile, but in the value of having an Agile-like system in place. Every organization is unique and they need to discover what works best for them, but developing software on a team has some commonalities that make the sprint cycle very effective.',
+      'I was a skeptic when my boss insisted on adopting Agile and we entered into a week-long onsite training. After a few sprints I was a true believer. Not in any dogmatic adoption of particular version of Agile, but in the value of having some Agile-like system in place. Every organization is unique and they need to discover what works best for them, but developing software on a team has some commonalities that make aspects of Agile very effective.',
     quote:
       '"The indispensable first step to getting the things you want out of life is this; decide what you want." ― Ben Stein',
   },
@@ -57,7 +57,7 @@ export const thoughts = [
   {
     title: 'on scope',
     text:
-      "The ability to communicate how new or changing requirements will impact the existing implementation and timeline is a critical skill. I learned this lesson the hard way during my startup experience. On a micro level: issues, commits, and merge requests need to be defended from scope creep to preserve incremental change and reduce unintended side-effects. On a macro level, when it comes to the question of what problem(s) does your software solve, I think the fewer the better. If you're equally good at everything you are likely exceptional at nothing. Go and Redis stand out to me as two technologies that are successful because they specialize. I would much rather have a box full of individual tools than a box full of Swiss army knives.",
+      "During my startup experience, I learned the hard way that communicating how new or changing requirements impact the existing code and timeline is a critical skill. On a micro level: issues, commits, and merge requests need to be well-defined in scope to facilitate review and reduce unintended side-effects. On a macro level: when it comes to the question of what problem(s) does your software solve, I think the fewer the better. If you're equally good at everything you are likely exceptional at nothing. In part, Go and Redis owe their success to specialization. I would much rather have a box full of distinct tools than a box full of Swiss army knives.",
     quote:
       '"Most of the appeal for me is not the features that Go has, but rather the features that have been intentionally left out." ― txxxxd (Hacker News)',
   },
@@ -88,10 +88,10 @@ export const lines = [
 export const methods = [
   'love()',
   'code()',
+  'serve()',
   'eat()',
   'skritch()',
   'roll()',
-  'serve()',
   'play()',
   'explore()',
   'learn()',
@@ -101,34 +101,34 @@ export const methods = [
 
 export const comments = [
   [
-    "i've known Sara for more than half my life",
+    "i've known my wife Sara for more than half my life",
     "and i've spent the majority of that time in love with her",
     'she gives me something to look forward to every day',
   ],
   [
-    'i started writing code back in 2014 when i began my degree program',
-    'no matter where my career takes me i plan on always writing code, even if it is just for me',
-    'imho, coding is the most fun and useful form of applied mathematics there is',
-  ],
-  [
-    'i like to prepare a North African dish called tagine',
-    "i pick a new recipe to try every month and i'm rarely disappointed",
-    'tagines are flavorful, full of spices, and slow-cooked to perfection',
-  ],
-  [
-    'this is our home alarm system, Rigby',
-    'she likes long walks in the woods, treats, and belly rubs',
-    "she's a loyal friend, but will gladly sell out for bacon",
-  ],
-  [
-    'about two years ago i picked up a d20 and learned how to play D&D',
-    'i really enjoy the narrative, improvisation, and lack of screens',
-    'my family plays every week and i recommend it shamelessly to complete strangers',
+    'i started writing code in 2014 in pursuit of my MS in CS',
+    "whether i'm the CTO or an Engineer I, i will write code for the rest of my life",
+    'coding is the most fun and useful form of applied mathematics there is',
   ],
   [
     'i served as an officer in the Navy for 11 years',
     'i miss the rush and challenge of flying on and off an aircraft carrier',
     'i miss the sailors and marines i was privileged to work with even more',
+  ],
+  [
+    'i like to prepare a North African dish called tagine',
+    'i pick a new recipe to try every month and have not been disappointed yet',
+    'tagines are flavorful, full of spices, and slow-cooked to perfection',
+  ],
+  [
+    'this is our live in home alarm system, Rigby',
+    'she likes long walks in the woods, treats, and belly rubs',
+    'she is a loyal friend, but will gladly sell out for bacon',
+  ],
+  [
+    'about two years ago i picked up a d20 and learned how to play D&D',
+    'i really enjoy the narrative, improvisation, and lack of screens',
+    'my family plays every week and i recommend it shamelessly to complete strangers',
   ],
   [
     'racquetball is my sport and aerobic workout of choice',
@@ -142,7 +142,7 @@ export const comments = [
   ],
   [
     'i hold a BS in Aerospace Engineering from the University of Maryland',
-    'and an MS in Computer Science from Boston University (+7 undergraduate CS courses)',
+    'and an MS in Computer Science from Boston University (+7 foundational undergraduate CS courses)',
     'these days, i turn to conferences, meetups, and classes on the web to remain current',
   ],
   [
@@ -183,6 +183,18 @@ export const masks = [
     '···················pair·programming·····',
   ],
   [
+    '······················     ·············',
+    '·····················       ·······     ',
+    '·····················       ···         ',
+    '················                        ',
+    '··············                          ',
+    '··············                       ···',
+    '··············                         ·',
+    '···············                        ·',
+    '·················                      ·',
+    '··················                    ··',
+  ],
+  [
     '···········               ··         ···',
     '··········                 ··         ··',
     '········                               ·',
@@ -217,18 +229,6 @@ export const masks = [
     '···                                  ···',
     '·····                               ····',
     '········                           ·····',
-  ],
-  [
-    '······················     ·············',
-    '·····················       ·······     ',
-    '·····················       ···         ',
-    '················                        ',
-    '··············                          ',
-    '··············                       ···',
-    '··············                         ·',
-    '···············                        ·',
-    '·················                      ·',
-    '··················                    ··',
   ],
   [
     '················      ··················',
@@ -288,7 +288,7 @@ export const masks = [
     '·· /~~) ····· /\\/ ···· \\___/||\\___/ ····',
     '··· (~~)_____/\\/ ······ /.-.||.-.\\ ·····',
     "···· /·|·|·\\·\\/ ······ /.-'./\\.-'.\\ ····",
-    '···· ~-~-~-~-~  ······ \\___/··\\___/ ····',
+    '···· ~-~-~-~-~ ······· \\___/··\\___/ ····',
   ],
 ]
 

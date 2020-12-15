@@ -120,7 +120,8 @@ function calculateEdgeVertices(radius, sideLength, imageWidth, imageHeight) {
   return [pathOne, pathTwo]
 }
 
-export function updateCanvas(imageWidth, imageHeight) {
+// TODO: implement click handler
+export function updateCanvas(imageWidth, imageHeight, onClick) {
   let sideLength = 120
   let radius = 250
   width = container.clientWidth
@@ -168,7 +169,8 @@ export function updateCanvas(imageWidth, imageHeight) {
   edges
     .enter()
     .append('path')
-    .attr('stroke', '#1976d2')
+    // .attr('stroke', '#1976d2')
+    .attr('stroke', 'lightgray')
     .attr('stroke-width', '2')
     .attr('class', 'edge')
     .attr('fill', 'none')
@@ -191,6 +193,21 @@ export function updateCanvas(imageWidth, imageHeight) {
     .attr('fill', (_, i) => `url(#project-image-${projects[i].title})`)
     .attr('stroke', 'rgba(0, 0, 0, 0.2')
     .attr('class', 'hex')
+    .on('mouseover', function() {
+      d3.select(this)
+        .style('cursor', 'pointer')
+        .transition(d3.transition())
+        .attr('stroke-width', 3)
+        .attr('stroke', '#1976d2')
+    })
+    .on('mouseleave', function() {
+      d3.select(this)
+        .style('cursor', 'normal')
+        .transition(d3.transition())
+        .attr('stroke-width', 1)
+        .attr('stroke', 'gray')
+    })
+    .on('click', (_, d) => onClick(d))
     .merge(hexagons)
     .transition(d3.transition().duration(300))
     .attr('points', d => d.map(v => [v.x, v.y].join(',')).join(' '))
