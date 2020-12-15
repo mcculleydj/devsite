@@ -11,9 +11,9 @@
       During an interview I ask certain questions to learn about a candidate's
       approach to building software. They tend to be more philosophical than
       technical in nature, but on the job experience correlates with the quality
-      of the answers. Here are ten "takes" on writing code based on questions
+      of the responses. Here are ten "takes" on writing code based on questions
       I've been asked as a candidate or questions I like to ask as an
-      interviewer designed to give you a sense of where I stand.
+      interviewer intended to give you a sense of where I stand.
     </div>
     <v-card
       v-for="(thought, i) in thoughts"
@@ -35,9 +35,22 @@
       :class="{ selected: selected === i }"
       :width="cardWidth"
       @mouseup="selected = i"
-      elevation="5"
+      :elevation="selected === i ? 0 : 5"
+      tile
+      :flat="selected === i"
     >
-      <v-card-title style="font-size: 1.3rem">{{ thought.title }}</v-card-title>
+      <v-card-title style="font-size: 1.3rem" class="justify-space-between">
+        <span>{{ thought.title }}</span>
+        <v-btn
+          v-if="selected === i"
+          fab
+          small
+          color="primary"
+          @click.stop="selected = -1"
+        >
+          <v-icon>mdi-chevron-right</v-icon>
+        </v-btn>
+      </v-card-title>
       <v-card-text
         style="font-size: 1.1rem; "
         v-html="selected === i ? thought.text : thought.text.slice(0, 25)"
@@ -45,17 +58,6 @@
       <v-card-text v-if="selected === i" style="font-size: 1.1rem">
         <i>{{ thought.quote }}</i>
       </v-card-text>
-      <v-card-actions v-if="selected === i" class="justify-end">
-        <v-btn
-          fab
-          small
-          color="primary"
-          style="transform: rotate(45deg)"
-          @click.stop="selected = -1"
-        >
-          <v-icon>mdi-chevron-right</v-icon>
-        </v-btn>
-      </v-card-actions>
     </v-card>
   </div>
 </template>
@@ -151,7 +153,7 @@ export default {
   position: fixed;
   top: 0px;
   left: 0px;
-  transform: translate(12px, 50vh) rotate(0deg);
+  transform: translate(12px, 420px) rotate(0deg);
 }
 
 .selected:hover {

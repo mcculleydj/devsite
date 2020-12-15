@@ -21,6 +21,8 @@ import { tap, debounceTime } from 'rxjs/operators'
 import SkillsVisualization from '@/components/SkillsVisualization'
 import SkillsList from '@/components/SkillsList'
 
+// TODO: allow opt in to list view
+
 // below these thresholds show the list view instead
 const minArea = 1000000
 const minWidth = 800

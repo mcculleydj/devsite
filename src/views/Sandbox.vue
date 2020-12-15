@@ -1,6 +1,5 @@
 <template>
   <div class="terminal-comment">
-    {{ source }}
     <v-row v-for="(line, i) in displayedLines" :key="`line-${i}`" no-gutters>
       <template v-for="(s, j) in line">
         <img
@@ -19,7 +18,7 @@
 </template>
 
 <script>
-import { sources, comments, masks } from '@/common/constants'
+import { methods, comments, masks } from '@/common/constants'
 
 export default {
   computed: {
@@ -28,7 +27,9 @@ export default {
     },
 
     source() {
-      return this.sourceIndex >= 0 ? sources[this.sourceIndex] : undefined
+      return this.sourceIndex >= 0
+        ? methods[this.sourceIndex].slice(0, -2)
+        : undefined
     },
   },
 
@@ -36,7 +37,7 @@ export default {
     masks,
     lines: [],
     displayedLines: new Array(15).fill(null).map(() => []),
-    sourceIndex: 9,
+    sourceIndex: 5,
   }),
 
   mounted() {
@@ -75,14 +76,13 @@ export default {
 
       // an array of arrays where each member is either an img URL
       // or a single asterisk character based on the mask
-      // const rows = masks[this.sourceIndex].map((row, i) =>
-      //   row
-      //     .split('')
-      //     .map((c, j) =>
-      //       c !== ' ' ? c : `intro/${this.source}-${i}-${j}.jpg`,
-      //     ),
-      // )
-      const rows = masks[this.sourceIndex].map(row => row.split(''))
+      const rows = masks[this.sourceIndex].map((row, i) =>
+        row
+          .split('')
+          .map((c, j) =>
+            c !== ' ' ? c : `intro/${this.source}-${i}-${j}.jpg`,
+          ),
+      )
 
       this.lines = first
         .concat(this.comments.map(comment => prefix.concat(comment.split(''))))

@@ -17,7 +17,7 @@
 </template>
 
 <script>
-import { sources, comments, masks } from '@/common/constants'
+import { methods, comments, masks } from '@/common/constants'
 import { sleep } from '@/common/functions'
 
 export default {
@@ -29,7 +29,9 @@ export default {
     },
 
     source() {
-      return this.sourceIndex >= 0 ? sources[this.sourceIndex] : undefined
+      return this.sourceIndex >= 0
+        ? methods[this.sourceIndex].slice(0, -2)
+        : undefined
     },
   },
 

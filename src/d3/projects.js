@@ -7,7 +7,8 @@ let svg
 let width
 let height
 let hexGroup
-const breakpoint = 1100
+// TODO: handle short screens as well
+const widthBreakpoint = 1100
 
 export function initCanvas() {
   container = document.getElementById('projects-svg-container')
@@ -39,7 +40,7 @@ function calculateVertices(sideLength, radius, centerX, centerY) {
     },
   ]
 
-  if (width < breakpoint) {
+  if (width < widthBreakpoint) {
     centerPoints.push({
       x: centerX + radius * Math.cos(0),
       y: centerY + radius * Math.sin(0),
@@ -81,7 +82,7 @@ function calculateEdgeVertices(radius, sideLength, imageWidth, imageHeight) {
     y: centerY + radius * Math.sin(0),
   }
 
-  if (width < breakpoint) {
+  if (width < widthBreakpoint) {
     center1 = {
       x: centerX + radius * Math.cos((2 * Math.PI) / 3),
       y: centerY + radius * Math.sin((2 * Math.PI) / 3),
@@ -103,7 +104,7 @@ function calculateEdgeVertices(radius, sideLength, imageWidth, imageHeight) {
     { x: center2.x, y: center2.y - sideLength },
     { x: originX, y: originY },
   ]
-  if (width < breakpoint) {
+  if (width < widthBreakpoint) {
     pathOne = [
       { x: center1.x, y: center1.y - sideLength },
       { x: center1.x + k * sideLength, y: center1.y - 0.5 * sideLength },
@@ -120,13 +121,13 @@ function calculateEdgeVertices(radius, sideLength, imageWidth, imageHeight) {
 }
 
 export function updateCanvas(imageWidth, imageHeight) {
-  let sideLength = 150
-  let radius = 300
+  let sideLength = 120
+  let radius = 250
   width = container.clientWidth
   height = container.clientHeight
   svg.attr('width', width).attr('height', height)
 
-  if (width < breakpoint) {
+  if (width < widthBreakpoint) {
     sideLength = width / 6
     radius = width / 3
   }

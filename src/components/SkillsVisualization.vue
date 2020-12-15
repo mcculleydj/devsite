@@ -24,6 +24,8 @@ import { sleep } from '@/common/functions'
 const legendReady$ = new Subject()
 const skillsReady$ = new Subject()
 
+// TODO: can break by resizing during legend animation
+
 export default {
   components: {
     SkillDialog,

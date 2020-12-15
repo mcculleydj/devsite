@@ -24,6 +24,8 @@ import { tap, debounceTime } from 'rxjs/operators'
 import TerminalImage from '@/components/TerminalImage'
 import { lines, methods } from '@/common/constants'
 
+// TODO: add a progress bar
+
 export default {
   components: {
     TerminalImage,
@@ -151,7 +153,7 @@ export default {
           const shortDelayIndices = [5, 6, 9]
           const delay = shortDelayIndices.includes(this.lineIndex)
             ? 50
-            : Math.random() * 500 + 500
+            : Math.random() * 500 + 200
           this.timeout = setTimeout(this.typeLine, delay)
         } else {
           // done with intro
