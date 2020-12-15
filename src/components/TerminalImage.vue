@@ -69,7 +69,10 @@ export default {
     setLines() {
       const first = [['/', '*', '*']]
       const prefix = [' ', '*', ' ']
-      const last = [[' ', '*', '/']]
+      const progress = new Array(this.sourceIndex + 1)
+        .fill('#')
+        .concat(new Array(methods.length - this.sourceIndex - 1).fill(' '))
+      const last = [` * progress [${progress.join('')}] */`.split('')]
 
       // an array of arrays where each member is either an img URL
       // or a single asterisk character based on the mask

@@ -107,7 +107,7 @@ export const comments = [
   ],
   [
     'i started writing code in 2014 in pursuit of my MS in CS',
-    "whether i'm the CTO or an Engineer I, i will write code for the rest of my life",
+    "whether i'm a CTO or an Engineer I, i will write code for the rest of my life",
     'coding is the most fun and useful form of applied mathematics there is',
   ],
   [
@@ -138,7 +138,7 @@ export const comments = [
   [
     'we spend most of our disposable income on travel',
     'and generally prefer a tent on a mountain top over a four-star hotel',
-    'maybe that will change as we get older, but i really hope not',
+    'maybe that will change as we get older, but i hope not',
   ],
   [
     'i hold a BS in Aerospace Engineering from the University of Maryland',
@@ -426,7 +426,7 @@ export const skills = [
     path: 'skill-icons/python.png',
     years: '>5',
     description:
-      "Python was the language Boston University used to teach me Computer Science. I was fortunate that they switched from Java to Python pretty early in the curriculum. I still avoid Java if possible. Python is the language I reach for when I need to rapidly prototype or I need access to its vast set of libraries. I'll also turn to Python for any ML needs based on my experience with Pandas and Scikit-Learn for off-the-shelf ways to train models. In my previous job, I helped build and maintain our largest and most complex API written in Python using Falcon / Hug. Finally, I built an open-source collection platform using Selenium driven by Python.",
+      "Python was the language Boston University used to teach me Computer Science. I was fortunate that they switched from Java to Python pretty early in the curriculum. I still avoid Java if I can. Python is the language I reach for when I need to rapidly prototype or I need access to a vast array of libraries. I'll also turn to Python for any ML needs based on my experience with Pandas and Scikit-Learn for off-the-shelf ways to train models. In my previous job, I helped build and maintain our largest and most complex API written in Python using Falcon / Hug and as well as scraping platform using Selenium driven by Python.",
   },
   {
     group: 'language',
@@ -766,7 +766,7 @@ export const skills = [
     path: 'skill-icons/selenium.png',
     years: '>2',
     description:
-      'My experience with Selenium has been to perform JS enabled web scraping tasks. Selenium, Chromedriver, and the Python Selenium package is an extremely powerful combination. As more and more of the web relies on client side JS or AJAX to hydrate the page rather than a raw HTTP request open source collection will need tools like Selenium that allow for JS injection and waiting for DOM elements before capturing the HTML.',
+      'My experience with Selenium has been to perform JS enabled web scraping tasks. Selenium, Chromedriver, and the Python Selenium package is an extremely powerful combination. As more and more of the web relies on client side JS or AJAX to hydrate the page rather than a raw HTTP request, open source collection will need tools like Selenium that allow for JS injection and waiting for DOM elements before capturing the HTML.',
   },
 ]
 
