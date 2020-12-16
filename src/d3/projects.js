@@ -123,7 +123,6 @@ function calculateEdgeVertices(radius, sideLength, imageWidth, imageHeight) {
   return [pathOne, pathTwo]
 }
 
-// TODO: implement click handler
 export function updateCanvas(imageWidth, imageHeight, onClick) {
   let sideLength = 120
   let radius = 250

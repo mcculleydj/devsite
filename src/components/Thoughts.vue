@@ -73,7 +73,8 @@ import { tap, debounceTime } from 'rxjs/operators'
 import { thoughts } from '@/common/constants'
 
 // TODO: circular overlay to prevent click events in image
-// TODO: below certain dimensions could just be a v-dialog
+// TODO: below certain dimensions take cards could open as dialogs
+//       or need to tell user that view port is not suppoted
 
 export default {
   computed: {

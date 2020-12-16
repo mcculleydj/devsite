@@ -170,7 +170,7 @@ export function updateCanvas(imageWidth, imageHeight, initSkills) {
   imageWidth_ = imageWidth
   imageHeight_ = imageHeight
 
-  // TODO: handle resize events during legend simulation and return
+  // the code beyond this point only applies the skills animation
   if (!legendSimulationComplete) return
 
   // remove category labels
@@ -273,6 +273,11 @@ export function updateCanvas(imageWidth, imageHeight, initSkills) {
   })
 
   if (!initSkills) {
+    // updateCanvas is called once the legend animation is complete
+    // just prior to initSkillsSimulation() as an initialization step
+    // during that call this code should not execute
+    // initSkills is a bool that distinguishes between a resize event and the
+    // initial updateCanvas ahead of the skills animation
     legend
       .transition(d3.transition())
       .attr('opacity', 0)
@@ -449,18 +454,22 @@ export function initSkillSimulation() {
     })
 }
 
-export function pause(simulation) {
-  if (simulation === 'legend' || !skillSimulation) {
+export function pause() {
+  if (!skillSimulation) {
+    console.log('pause legend')
     legendSimulation.stop()
   } else {
     skillSimulation.stop()
   }
 }
 
-export function play(simulation) {
-  if (simulation === 'legend' || !skillSimulation) {
-    // TODO: need to reset forces here for update?
-    legendSimulation.alpha(2).restart()
+export function play() {
+  if (!skillSimulation) {
+    legendSimulation
+      .alpha(2)
+      .force('x', d3.forceX((width - imageWidth_) / 2).strength(0.01))
+      .force('y', d3.forceY((_, i) => ((1 + i) * height) / 4).strength(0.008))
+      .restart()
   } else {
     skillSimulation
       .alpha(2)
@@ -534,5 +543,5 @@ export function addSkillNode(node, onClick) {
     })
 
   skillSimulation.nodes(skillData)
-  play('skills')
+  play()
 }

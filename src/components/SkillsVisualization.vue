@@ -24,7 +24,6 @@ import { sleep } from '@/common/functions'
 const legendReady$ = new Subject()
 const skillsReady$ = new Subject()
 
-// TODO: can break by resizing during legend animation
 // TODO: can't handle navigating away
 
 export default {

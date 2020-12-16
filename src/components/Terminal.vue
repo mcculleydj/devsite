@@ -24,8 +24,6 @@ import { tap, debounceTime } from 'rxjs/operators'
 import TerminalImage from '@/components/TerminalImage'
 import { lines, methods } from '@/common/constants'
 
-// TODO: add a progress bar
-
 export default {
   components: {
     TerminalImage,
