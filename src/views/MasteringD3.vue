@@ -29,11 +29,11 @@
 </template>
 
 <script>
-import Cryptocurrency from '@/components/Cryptocurrency'
-import GapMinder from '@/components/GapMinder'
-import FruitDonut from '@/components/FruitDonut'
-import DCDivided from '@/components/DCDivided'
-import Dashboard from '@/components/Dashboard'
+import Cryptocurrency from '@/components/mastering-d3/Cryptocurrency'
+import GapMinder from '@/components/mastering-d3/GapMinder'
+import FruitDonut from '@/components/mastering-d3/FruitDonut'
+import DCDivided from '@/components/mastering-d3/DCDivided'
+import Dashboard from '@/components/mastering-d3/Dashboard'
 
 export default {
   components: {

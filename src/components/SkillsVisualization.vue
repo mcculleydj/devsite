@@ -48,6 +48,7 @@ export default {
     skill: {},
     showDialog: false,
     hasViewed: false,
+    hasResized: false,
   }),
 
   subscriptions() {
@@ -79,6 +80,9 @@ export default {
 
     // listen for and handle resize events
     const resize$ = fromEvent(window, 'resize').pipe(
+      tap(() => {
+        this.hasResized = true
+      }),
       filter(() => this.tab === 1 && !this.showListView),
       tap(() => {
         pause()
@@ -148,11 +152,12 @@ export default {
 
   watch: {
     async tab() {
-      if (this.tab === 1 && this.hasViewed) {
+      if (this.tab === 1 && this.hasViewed && this.hasResized) {
         await this.waitForContainerDimensions()
         this.updateCanvas()
         play()
       } else if (this.tab !== 1) {
+        this.hasResized = false
         pause()
       }
     },

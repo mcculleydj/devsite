@@ -8,42 +8,57 @@
         :style="{
           width: `${sideLength * 2}px`,
           height: `${sideLength}px`,
-          transform: `translate(-${sideLength}px, -${sideLength / 4}px)`,
+          transform: `translate(-${sideLength}px, -${0.33 * sideLength}px)`,
         }"
       >
-        <span>{{ project.description }}</span>
+        <div>{{ project.description }}</div>
         <v-row v-if="project.description !== ''" justify="center" class="mt-3">
           <!-- TODO: this might be href not to -->
-          <v-btn
-            v-if="project.link"
-            icon
-            large
-            color="primary"
-            :to="project.link"
-            target="_blank"
-          >
-            <v-icon>mdi-open-in-new</v-icon>
-          </v-btn>
-          <v-btn
-            v-if="project.github"
-            icon
-            large
-            color="primary"
-            :href="project.github"
-            target="_blank"
-          >
-            <v-icon>mdi-github</v-icon>
-          </v-btn>
-          <v-btn
-            v-if="project.youtube"
-            icon
-            large
-            color="primary"
-            :href="project.youtube"
-            target="_blank"
-          >
-            <v-icon>mdi-youtube</v-icon>
-          </v-btn>
+          <v-tooltip bottom v-if="project.link">
+            <template v-slot:activator="{ on }">
+              <v-btn
+                icon
+                large
+                color="primary"
+                :to="project.link"
+                target="_blank"
+                v-on="on"
+              >
+                <v-icon>mdi-open-in-new</v-icon>
+              </v-btn>
+            </template>
+            <span>Demo</span>
+          </v-tooltip>
+          <v-tooltip bottom v-if="project.github">
+            <template v-slot:activator="{ on }">
+              <v-btn
+                icon
+                large
+                color="primary"
+                :href="project.github"
+                target="_blank"
+                v-on="on"
+              >
+                <v-icon>mdi-github</v-icon>
+              </v-btn>
+            </template>
+            <span>Code</span>
+          </v-tooltip>
+          <v-tooltip bottom v-if="project.youtube">
+            <template v-slot:activator="{ on }">
+              <v-btn
+                icon
+                large
+                color="primary"
+                :href="project.youtube"
+                target="_blank"
+                v-on="on"
+              >
+                <v-icon>mdi-youtube</v-icon>
+              </v-btn>
+            </template>
+            <span>Video</span>
+          </v-tooltip>
         </v-row>
       </div>
     </transition>
@@ -57,6 +72,9 @@ import { tap, debounceTime, delay, filter } from 'rxjs/operators'
 import { initCanvas, updateCanvas } from '@/d3/projects'
 import { sleep } from '@/common/functions'
 
+// TODO: handle resize events
+//       hide text below a certain sideLength?
+
 export default {
   computed: {
     ...mapGetters(['tab']),
@@ -67,11 +85,15 @@ export default {
     project: {},
     sideLength: 0,
     hasViewed: false,
+    hasResized: false,
   }),
 
   subscriptions() {
     // listen for and handle resize events
     const resize$ = fromEvent(window, 'resize').pipe(
+      tap(() => {
+        this.hasResized = true
+      }),
       filter(() => this.tab === 2),
       tap(() => {
         this.showText = false
@@ -132,9 +154,11 @@ export default {
 
   watch: {
     async tab() {
-      if (this.tab === 2 && this.hasViewed) {
+      if (this.tab === 2 && this.hasViewed && this.hasResized) {
         await this.waitForContainerDimensions()
         this.updateCanvas()
+      } else if (this.tab !== 2) {
+        this.hasResized = false
       }
     },
   },

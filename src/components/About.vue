@@ -57,6 +57,8 @@ import Thoughts from '@/components/Thoughts'
 import Terminal from '@/components/Terminal'
 import InfoDialog from '@/components/InfoDialog'
 
+// TODO: include work history dialog
+
 export default {
   components: {
     Thoughts,

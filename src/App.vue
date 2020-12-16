@@ -7,5 +7,15 @@
 </template>
 
 <script>
-export default {}
+export default {
+  watch: {
+    $route() {
+      if (this.$route.name === 'vuerx') {
+        this.$vuetify.theme.dark = true
+      } else {
+        this.$vuetify.theme.dark = false
+      }
+    },
+  },
+}
 </script>
