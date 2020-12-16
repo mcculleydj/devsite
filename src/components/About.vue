@@ -52,7 +52,7 @@
 </template>
 
 <script>
-import { mapActions } from 'vuex'
+import { mapGetters, mapActions } from 'vuex'
 import Thoughts from '@/components/Thoughts'
 import Terminal from '@/components/Terminal'
 import InfoDialog from '@/components/InfoDialog'
@@ -64,7 +64,9 @@ export default {
     InfoDialog,
   },
 
-  props: ['tab'],
+  computed: {
+    ...mapGetters(['tab']),
+  },
 
   data: () => ({
     showThoughts: true,

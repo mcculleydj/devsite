@@ -456,7 +456,6 @@ export function initSkillSimulation() {
 
 export function pause() {
   if (!skillSimulation) {
-    console.log('pause legend')
     legendSimulation.stop()
   } else {
     skillSimulation.stop()

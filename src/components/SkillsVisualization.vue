@@ -5,8 +5,16 @@
 </template>
 
 <script>
+import { mapGetters } from 'vuex'
 import { fromEvent, interval, Subject } from 'rxjs'
-import { takeWhile, map, tap, debounceTime, exhaustMap } from 'rxjs/operators'
+import {
+  filter,
+  takeWhile,
+  map,
+  tap,
+  debounceTime,
+  exhaustMap,
+} from 'rxjs/operators'
 import SkillDialog from '@/components/SkillDialog'
 import {
   initCanvas,
@@ -21,19 +29,23 @@ import {
 import { skillProficiencies, skills } from '@/common/constants'
 import { sleep } from '@/common/functions'
 
+const resizeReady$ = new Subject()
 const legendReady$ = new Subject()
 const skillsReady$ = new Subject()
-
-// TODO: can't handle navigating away
 
 export default {
   components: {
     SkillDialog,
   },
 
+  computed: {
+    ...mapGetters(['tab']),
+  },
+
   data: () => ({
     skill: {},
     showDialog: false,
+    hasViewed: false,
   }),
 
   subscriptions() {
@@ -65,6 +77,7 @@ export default {
 
     // listen for and handle resize events
     const resize$ = fromEvent(window, 'resize').pipe(
+      filter(() => this.tab === 1),
       tap(() => {
         pause()
       }),
@@ -84,18 +97,16 @@ export default {
 
   methods: {
     async init() {
-      const container = document.getElementById('skills-svg-container')
+      resizeReady$.next()
 
-      if (!container || !container.clientWidth || !container.clientHeight) {
-        await sleep(100)
-        this.init()
-        return
-      }
+      await this.waitForContainerDimensions()
 
       initCanvas()
       this.updateCanvas()
       initLegendSimulation(this.complete)
       legendReady$.next()
+
+      this.hasViewed = true
     },
 
     updateCanvas(initSkills) {
@@ -112,6 +123,27 @@ export default {
     onClick(skill) {
       this.skill = skill
       this.showDialog = true
+    },
+
+    async waitForContainerDimensions() {
+      let container = document.getElementById('skills-svg-container')
+
+      while (!container || !container.clientWidth || !container.clientHeight) {
+        await sleep(100)
+        container = document.getElementById('skills-svg-container')
+      }
+    },
+  },
+
+  watch: {
+    async tab() {
+      if (this.tab === 1 && this.hasViewed) {
+        await this.waitForContainerDimensions()
+        this.updateCanvas()
+        play()
+      } else if (this.tab !== 1) {
+        pause()
+      }
     },
   },
 }

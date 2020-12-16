@@ -51,29 +51,34 @@
 </template>
 
 <script>
+import { mapGetters } from 'vuex'
 import { fromEvent } from 'rxjs'
-import { tap, debounceTime, delay } from 'rxjs/operators'
+import { tap, debounceTime, delay, filter } from 'rxjs/operators'
 import { initCanvas, updateCanvas } from '@/d3/projects'
 import { sleep } from '@/common/functions'
 
 export default {
+  computed: {
+    ...mapGetters(['tab']),
+  },
+
   data: () => ({
     showText: true,
     project: {},
     sideLength: 0,
+    hasViewed: false,
   }),
 
   subscriptions() {
     // listen for and handle resize events
     const resize$ = fromEvent(window, 'resize').pipe(
+      filter(() => this.tab === 2),
       tap(() => {
         this.showText = false
       }),
       debounceTime(1000),
       tap(() => {
-        const imageWidth = document.getElementById('sketch').clientWidth
-        const imageHeight = document.getElementById('sketch').clientHeight
-        this.sideLength = updateCanvas(imageWidth, imageHeight, this.onClick)
+        this.updateCanvas()
       }),
       delay(500),
       tap(() => {
@@ -99,7 +104,12 @@ export default {
       }
 
       initCanvas()
+      this.updateCanvas()
 
+      this.hasViewed = true
+    },
+
+    updateCanvas() {
       const imageWidth = document.getElementById('sketch').clientWidth
       const imageHeight = document.getElementById('sketch').clientHeight
       this.sideLength = updateCanvas(imageWidth, imageHeight, this.onClick)
@@ -108,6 +118,24 @@ export default {
     onClick(project, sideLength) {
       this.project = project
       this.sideLength = sideLength
+    },
+
+    async waitForContainerDimensions() {
+      let container = document.getElementById('projects-svg-container')
+
+      while (!container || !container.clientWidth || !container.clientHeight) {
+        await sleep(100)
+        container = document.getElementById('projects-svg-container')
+      }
+    },
+  },
+
+  watch: {
+    async tab() {
+      if (this.tab === 2 && this.hasViewed) {
+        await this.waitForContainerDimensions()
+        this.updateCanvas()
+      }
     },
   },
 }

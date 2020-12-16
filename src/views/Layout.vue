@@ -1,6 +1,6 @@
 <template>
   <v-container fluid>
-    <v-tabs v-model="tab">
+    <v-tabs v-model="tab" @change="handleTabChange">
       <v-tab>
         ABOUT
       </v-tab>
@@ -16,13 +16,13 @@
     </v-tabs>
     <v-tabs-items v-model="tab">
       <v-tab-item>
-        <About v-if="sketchHasDimensions" :tab="tab" />
+        <About v-if="sketchHasDimensions" />
       </v-tab-item>
       <v-tab-item>
         <Skills />
       </v-tab-item>
       <v-tab-item>
-        <Projects v-if="sketchHasDimensions" />
+        <Projects />
       </v-tab-item>
       <v-tab-item>
         <Contact />
@@ -65,6 +65,7 @@ export default {
 
   methods: {
     ...mapActions({
+      dispatchSetTab: 'setTab',
       dispatchSetSketchSource: 'setSketchSource',
     }),
 
@@ -77,15 +78,11 @@ export default {
       }
       this.sketchHasDimensions = true
     },
-  },
 
-  watch: {
-    tab() {
-      if (this.tab === 0) {
-        this.dispatchSetSketchSource('sketch-outlined.png')
-      } else {
-        this.dispatchSetSketchSource('sketch.png')
-      }
+    handleTabChange(tab) {
+      this.dispatchSetTab(tab)
+      // relies on 0 being falsy
+      this.dispatchSetSketchSource(tab ? 'sketch.png' : 'sketch-outlined.png')
     },
   },
 }
