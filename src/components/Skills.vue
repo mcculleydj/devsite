@@ -2,7 +2,7 @@
   <div>
     <template v-if="startVisualization">
       <div v-show="hasSpace && !showListView" id="skills-svg-container" />
-      <SkillsVisualization />
+      <SkillsVisualization :showListView="showListView" />
     </template>
     <template v-if="!hasSpace || showListView">
       <SkillsList />
@@ -82,7 +82,7 @@ export default {
         }
 
         // hide the sketch image in list view
-        this.dispatchSetShowSketch(this.hasSpace)
+        this.dispatchSetShowSketch(this.hasSpace && !this.showListView)
       }),
     )
 

@@ -38,6 +38,8 @@ export default {
     SkillDialog,
   },
 
+  props: ['showListView'],
+
   computed: {
     ...mapGetters(['tab']),
   },
@@ -77,7 +79,7 @@ export default {
 
     // listen for and handle resize events
     const resize$ = fromEvent(window, 'resize').pipe(
-      filter(() => this.tab === 1),
+      filter(() => this.tab === 1 && !this.showListView),
       tap(() => {
         pause()
       }),
@@ -133,6 +135,15 @@ export default {
         container = document.getElementById('skills-svg-container')
       }
     },
+
+    async waitForSketchDimensions() {
+      let sketch = document.getElementById('skills-svg-container')
+
+      while (!sketch || !sketch.clientWidth || !sketch.clientHeight) {
+        await sleep(100)
+        sketch = document.getElementById('skills-svg-container')
+      }
+    },
   },
 
   watch: {
@@ -142,6 +153,16 @@ export default {
         this.updateCanvas()
         play()
       } else if (this.tab !== 1) {
+        pause()
+      }
+    },
+
+    async showListView(current, previous) {
+      if (previous && !current) {
+        await this.waitForSketchDimensions()
+        this.updateCanvas()
+        play()
+      } else if (current) {
         pause()
       }
     },
