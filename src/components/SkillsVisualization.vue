@@ -5,8 +5,8 @@
 </template>
 
 <script>
-import { concat, fromEvent, from, interval, Subject } from 'rxjs'
-import { map, tap, debounceTime, exhaustMap, zip } from 'rxjs/operators'
+import { fromEvent, interval, Subject } from 'rxjs'
+import { takeWhile, map, tap, debounceTime, exhaustMap } from 'rxjs/operators'
 import SkillDialog from '@/components/SkillDialog'
 import {
   initCanvas,
@@ -40,27 +40,25 @@ export default {
   subscriptions() {
     const legendNode$ = legendReady$.pipe(
       exhaustMap(() =>
-        concat(
-          from([skillProficiencies[0]]),
-          from(skillProficiencies.slice(1)).pipe(
-            zip(interval(1000)),
-            map(z => z[0]),
-          ),
-        ).pipe(
-          tap(node => {
-            addLegendNode(node)
-          }),
+        interval(1000).pipe(
+          takeWhile(i => i < skillProficiencies.length),
+          map(i => skillProficiencies[i]),
+          tap(addLegendNode),
         ),
       ),
     )
 
+    // TODO: manually define the order so that sorting is unecessary
+    //       and we don't launch 5 ops skils in a row
+    const sortedSkills = skills.sort((s1, s2) => s1.r - s2.r)
+
     const skillNode$ = skillsReady$.pipe(
       exhaustMap(() =>
-        from(skills.sort((s1, s2) => s1.r - s2.r)).pipe(
-          zip(interval(500)),
-          map(z => z[0]),
-          tap(skill => {
-            addSkillNode(skill, this.onClick)
+        interval(500).pipe(
+          takeWhile(i => i < skills.length),
+          map(i => sortedSkills[i]),
+          tap(s => {
+            addSkillNode(s, this.onClick)
           }),
         ),
       ),

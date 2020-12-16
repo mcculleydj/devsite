@@ -18,7 +18,13 @@
 </template>
 
 <script>
+import { concat, Subject, from, interval } from 'rxjs'
+import { exhaustMap, tap, zip, map, takeWhile } from 'rxjs/operators'
+import { skillProficiencies } from '@/common/constants'
+
 import { methods, comments, masks } from '@/common/constants'
+
+const legendReady$ = new Subject()
 
 export default {
   computed: {
@@ -40,7 +46,41 @@ export default {
     sourceIndex: 5,
   }),
 
+  subscriptions() {
+    const test$ = legendReady$.pipe(
+      exhaustMap(() =>
+        interval(5000).pipe(
+          takeWhile(i => i < skillProficiencies.length),
+          map(i => skillProficiencies[i]),
+          tap(s => console.log(s)),
+        ),
+      ),
+    )
+
+    const legendNode$ = legendReady$.pipe(
+      exhaustMap(
+        () =>
+          concat(
+            from([skillProficiencies[0]]),
+            from(skillProficiencies.slice(1)).pipe(
+              zip(interval(3000)),
+              map(z => z[0]),
+            ),
+          ),
+        // .pipe(
+        //   tap(node => {
+        //     console.log('addLegendNode', node)
+        //   }),
+        // ),
+      ),
+    )
+
+    return { legendNode$, test$ }
+  },
+
   mounted() {
+    legendReady$.next()
+
     this.setLines()
     this.changeLines()
   },
