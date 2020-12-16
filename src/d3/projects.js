@@ -7,6 +7,8 @@ let svg
 let width
 let height
 let hexGroup
+let selectedHex
+
 // TODO: handle short screens as well
 const widthBreakpoint = 1100
 
@@ -64,9 +66,10 @@ function calculateVertices(sideLength, radius, centerX, centerY) {
     { x: 0, y: -sideLength },
   ]
 
-  return centerPoints.map(({ x: cx, y: cy }) =>
-    vertices.map(v => ({ x: cx + v.x, y: cy + v.y })),
-  )
+  return centerPoints.map(({ x: cx, y: cy }, i) => ({
+    vertices: vertices.map(v => ({ x: cx + v.x, y: cy + v.y })),
+    project: projects[i],
+  }))
 }
 
 function calculateEdgeVertices(radius, sideLength, imageWidth, imageHeight) {
@@ -129,8 +132,8 @@ export function updateCanvas(imageWidth, imageHeight, onClick) {
   svg.attr('width', width).attr('height', height)
 
   if (width < widthBreakpoint) {
-    sideLength = width / 6
-    radius = width / 3
+    sideLength = Math.min(width / 7, 120)
+    radius = Math.min(250, width / 3)
   }
 
   const images = hexGroup.selectAll('image').data(projects)
@@ -169,7 +172,6 @@ export function updateCanvas(imageWidth, imageHeight, onClick) {
   edges
     .enter()
     .append('path')
-    // .attr('stroke', '#1976d2')
     .attr('stroke', 'lightgray')
     .attr('stroke-width', '2')
     .attr('class', 'edge')
@@ -198,17 +200,26 @@ export function updateCanvas(imageWidth, imageHeight, onClick) {
         .style('cursor', 'pointer')
         .transition(d3.transition())
         .attr('stroke-width', 3)
-        .attr('stroke', '#1976d2')
     })
     .on('mouseleave', function() {
       d3.select(this)
         .style('cursor', 'normal')
         .transition(d3.transition())
         .attr('stroke-width', 1)
-        .attr('stroke', 'gray')
     })
-    .on('click', (_, d) => onClick(d))
+    .on('click', function(_, d) {
+      if (selectedHex) {
+        selectedHex.attr('stroke-width', 1).attr('stroke', 'rgba(0, 0, 0, 0.2')
+      }
+      selectedHex = d3
+        .select(this)
+        .attr('stroke-width', 3)
+        .attr('stroke', '#1976d2')
+      onClick(d.project, sideLength)
+    })
     .merge(hexagons)
     .transition(d3.transition().duration(300))
-    .attr('points', d => d.map(v => [v.x, v.y].join(',')).join(' '))
+    .attr('points', d => d.vertices.map(v => [v.x, v.y].join(',')).join(' '))
+
+  return sideLength
 }

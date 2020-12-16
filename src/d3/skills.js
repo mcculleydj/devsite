@@ -218,6 +218,7 @@ export function updateCanvas(imageWidth, imageHeight, initSkills) {
           .duration(500),
       )
       .attr('fill-opacity', 1)
+      .attr('class', `category-label-${d.group}`)
       .text(d.display)
 
     categoryLabels
@@ -508,19 +509,26 @@ export function addSkillNode(node, onClick) {
         .attr('stroke-width', 1)
         .attr('class', 'skill-node')
         .attr('fill', d => (d.path ? `url(#image-${d.title})` : 'white'))
-        .on('mouseover', function() {
+        .on('mouseover', function(_, d) {
           d3.select(this)
             .style('cursor', 'pointer')
             .transition(d3.transition())
             .attr('stroke-width', 3)
             .attr('stroke', '#1976d2')
+
+          categoryLabels.select(`.category-label-${d.group}`).text(d.display)
         })
-        .on('mouseleave', function() {
+        .on('mouseleave', function(_, d) {
           d3.select(this)
             .style('cursor', 'normal')
             .transition(d3.transition())
             .attr('stroke-width', 1)
             .attr('stroke', 'gray')
+
+          const category = skillCategories.find(c => c.group === d.group)
+          categoryLabels
+            .select(`.category-label-${d.group}`)
+            .text(category.display)
         })
         .on('click', (_, d) => onClick(d))
     })

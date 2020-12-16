@@ -9,7 +9,7 @@
   },
   "dependencies": {
     "@babel/polyfill": "^7.4.4",
-    "@mdi/font": "^3.6.95",
+    "@mdi/font": "5.8.55",
     "core-js": "^3.6.5",
     "d3": "^6.2.0",
     "d3-geo-projection": "^3.0.0",

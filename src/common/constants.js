@@ -107,8 +107,8 @@ export const comments = [
   ],
   [
     'i started writing code in 2014 in pursuit of my MS in CS',
-    "whether i'm a CTO or an Engineer I, i will write code for the rest of my life",
     'coding is the most fun and useful form of applied mathematics there is',
+    'i pair program whenever possible',
   ],
   [
     'i served as an officer in the Navy for 11 years',
@@ -686,7 +686,7 @@ export const skills = [
     path: 'skill-icons/css.png',
     years: '>5',
     description:
-      "I am not a CSS wizard, but I have years of experience using CSS to build SPAs using frameworks like Angular and Vue. This brand of CSS relies less on large style sheets and more on keeping styles scoped to their individual components. Thus far any complex use cases for CSS like flexbox, transitions, and variables have all been easy enough to research and implement. My goal is to specialize more on the frontend and that means a renewed focus on my proficiency with CSS. Specifically, there are two aspects of CSS I'd like to learn in the near future: a framework like Tailwind and a preprocessor like SASS.",
+      "I am not a CSS wizard, but I have years of experience using CSS to build SPAs using frameworks like Angular and Vue. This brand of CSS relies less on large style sheets and more on keeping styles scoped to their individual components. So far, any complex use cases for CSS like flexbox, transitions, and variables have all been easy enough to research and implement. My goal is to specialize more on the frontend and that means a renewed focus on my proficiency with CSS. Specifically, there are two aspects of CSS I'd like to learn in the near future: a framework like Tailwind and a preprocessor like SASS.",
   },
   {
     group: 'ops',
@@ -775,8 +775,38 @@ export const projects = [
     name: 'Cosign',
     title: 'cosign',
     path: '',
+    description: 'hello world1',
+    link: '',
+    github: '',
+    youtube: '',
   },
-  { name: 'VueRx Presentation', title: 'vuerx', path: 'vuerx.png' },
-  { name: 'Mastering D3', title: 'd3', path: 'd3.png' },
-  { name: 'Project 4', title: 'four', path: '' },
+  {
+    name: 'VueRx Presentation',
+    title: 'vuerx',
+    path: 'vuerx.png',
+    description:
+      "A live coding presentation for VueDC on how to use RxJS with Vue. I follow Ben Lesh's canonical RxJS example, but my version is built using Vue, VueRx, and lots of lovable dogs!",
+    link: 'foo',
+    github: 'https://github.com/mcculleydj/vuerx-presentation',
+    youtube: 'https://www.youtube.com/watch?v=sgSV681n18I&t=863s',
+  },
+  {
+    name: 'Mastering D3',
+    title: 'd3',
+    path: 'd3.png',
+    description:
+      "Interactive visualizations created while completing Adam Janes' Mastering D3 course. I put my own spin on the implementations and substituted Vue and Vuetify for jQuery and Bootstrap.",
+    link: '',
+    github: 'https://github.com/mcculleydj/udemy-mastering-d3',
+    youtube: '',
+  },
+  {
+    name: 'Project 4 (Maybe Boston?)',
+    title: 'four',
+    path: '',
+    description: 'hello world4',
+    link: '',
+    github: '',
+    youtube: '',
+  },
 ]
