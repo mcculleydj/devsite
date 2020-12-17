@@ -171,8 +171,8 @@ export function updateCanvas(imageWidth, imageHeight, onClick) {
   edges
     .enter()
     .append('path')
-    .attr('stroke', 'lightgray')
-    .attr('stroke-width', '2')
+    .attr('stroke', 'gray')
+    .attr('stroke-width', '1')
     .attr('class', 'edge')
     .attr('fill', 'none')
     .merge(edges)
@@ -192,23 +192,25 @@ export function updateCanvas(imageWidth, imageHeight, onClick) {
     .enter()
     .append('polygon')
     .attr('fill', (_, i) => `url(#project-image-${projects[i].title})`)
-    .attr('stroke', 'rgba(0, 0, 0, 0.2')
+    .attr('stroke', 'gray')
     .attr('class', 'hex')
     .on('mouseover', function() {
       d3.select(this)
         .style('cursor', 'pointer')
+        .attr('stroke-width', 1)
         .transition(d3.transition())
         .attr('stroke-width', 3)
     })
     .on('mouseleave', function() {
       d3.select(this)
         .style('cursor', 'normal')
+        .attr('stroke-width', 3)
         .transition(d3.transition())
         .attr('stroke-width', 1)
     })
     .on('click', function(_, d) {
       if (selectedHex) {
-        selectedHex.attr('stroke-width', 1).attr('stroke', 'rgba(0, 0, 0, 0.2')
+        selectedHex.attr('stroke-width', 1).attr('stroke', 'gray')
       }
       selectedHex = d3
         .select(this)

@@ -11,15 +11,11 @@ const routes = [
     name: 'layout',
     component: Layout,
   },
+  // TODO: remove Sandbox in final version
   {
     path: '/sandbox',
     name: 'sandbox',
     component: Sandbox,
-  },
-  {
-    path: '/projects',
-    name: 'projects',
-    component: () => import('@/views/Projects'),
   },
   {
     path: '/d3',
