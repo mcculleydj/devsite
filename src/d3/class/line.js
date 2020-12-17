@@ -69,9 +69,13 @@ export default class LinePlot {
     // axis groups
     this.xAxis = this.plot
       .append('g')
-      .attr('class', 'x axis')
+      .attr('class', 'x-axis')
+      .style('font-size', '12px')
       .attr('transform', `translate(0, ${this.height})`)
-    this.yAxis = this.plot.append('g').attr('class', 'y axis')
+    this.yAxis = this.plot
+      .append('g')
+      .attr('class', 'y-axis')
+      .style('font-size', '12px')
 
     // y-axis label
     this.yAxisLabel = this.yAxis

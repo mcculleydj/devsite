@@ -1,6 +1,32 @@
 <template>
-  <v-container style="max-width: 800px" class="mt-5">
-    <v-row justify="center" align="center" class="mb-8 mx-12">
+  <v-container class="mt-5">
+    <v-row style="max-width: 800px">
+      <v-col>
+        <p>
+          This is a reproduction of a
+          <a href="https://www.youtube.com/watch?v=jbkSRLYSojo" target="_blank"
+            >famous data visualization</a
+          >
+          that uses four dimensions to explain how the quality of life has
+          changed in each country over the past two centuries. Life expectancy
+          and income are on the axes. Population is represented by the area of
+          the circle and geographic location by the color. The state necessary
+          to play, pause, and reset are maintained by the containing Vue
+          component. You can click on a country to highlight it and follow its
+          progress over time.
+        </p>
+        <p>
+          An important lesson learned while building this is how easy it would
+          be to misconstrue the data. Failure to make it clear to the reader
+          that the x-axis is logarithmic results in thinking that the income gap
+          between Somalia and the US is much smaller than it actually is.
+          Similarly, it is less complex to relate population to the radius,
+          however the human brain constrasts circles by area and area scales
+          with r<sup>2</sup> not r.
+        </p>
+      </v-col>
+    </v-row>
+    <v-row style="max-width: 800px" align="center" class="mb-8">
       <v-col cols="auto">
         <v-btn @click="play ? pauseFn() : playFn()" color="primary" outlined>
           <v-icon>{{ play ? 'mdi-pause' : 'mdi-play' }}</v-icon>
@@ -27,7 +53,7 @@
         />
       </v-col>
     </v-row>
-    <v-row justify="center" class="mx-12">
+    <v-row style="max-width: 800px">
       <v-col>
         <v-slider
           v-model="year"
@@ -39,7 +65,7 @@
         />
       </v-col>
     </v-row>
-    <v-row justify="center">
+    <v-row>
       <div id="gap-minder-svg-container" />
     </v-row>
   </v-container>

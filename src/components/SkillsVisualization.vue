@@ -62,15 +62,11 @@ export default {
       ),
     )
 
-    // TODO: manually define the order so that sorting is unecessary
-    //       and we don't launch 5 ops skils in a row
-    const sortedSkills = skills.sort((s1, s2) => s1.r - s2.r)
-
     const skillNode$ = skillsReady$.pipe(
       exhaustMap(() =>
         interval(500).pipe(
           takeWhile(i => i < skills.length),
-          map(i => sortedSkills[i]),
+          map(i => skills[i]),
           tap(s => {
             addSkillNode(s, this.onClick)
           }),

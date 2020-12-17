@@ -1,5 +1,20 @@
 <template>
   <v-container>
+    <v-row style="max-width: 800px">
+      <v-col>
+        The final project for Adam's course is a data dashboard where each
+        visualization is interconnected. Once again, I've elected to hold the
+        shared state in the containing Vue component. One of the main objectives
+        of this excercise is to demonstrate the value in taking an OOP approach
+        to these visualizations using ES6 classes. I was able to break the D3
+        brush date range selection feature by reducing the range to zero and
+        causing division by zero errors in the rest of the code. So I researched
+        and implemented a way to enforce a minimum range in a user friendly
+        manner. Create a brush area by clicking the gray area chart and dragging
+        left or right. Then click drag that rectangle left or right to see the
+        bar charts and donut chart react to the changes in the input data.
+      </v-col>
+    </v-row>
     <v-row>
       <!-- left column -->
       <v-col cols="12" lg="6">
@@ -12,8 +27,12 @@
               dense
               style="max-width: 200px"
               @change="updateMetric()"
-              class="metric-select"
+              hide-details
             />
+          </v-col>
+        </v-row>
+        <v-row>
+          <v-col>
             <div id="stacked-area-container"></div>
           </v-col>
         </v-row>
@@ -75,7 +94,7 @@ const donutColorMap = new Map([
 
 const stackedAreaSize = {
   width: 550,
-  height: 445,
+  height: 400,
   margins: {
     left: 50,
     right: 30,
@@ -86,7 +105,7 @@ const stackedAreaSize = {
 
 const timelineSize = {
   width: 550,
-  height: 150,
+  height: 153,
   margins: {
     left: 50,
     right: 30,
@@ -176,7 +195,7 @@ export default {
       this.stackedArea.update(
         this.aggregatedData,
         this.metric,
-        this.maxSums[this.metric] * 1.2,
+        this.maxSums[this.metric],
       )
       this.timeline.update(
         cleanData(
@@ -191,7 +210,7 @@ export default {
       this.stackedArea.update(
         this.aggregatedData,
         this.metric,
-        this.maxSums[this.metric] * 1.2,
+        this.maxSums[this.metric],
         dateRange,
       )
       this.donut.update(
@@ -215,10 +234,3 @@ export default {
   },
 }
 </script>
-
-<style scoped>
-.metric-select {
-  position: absolute;
-  left: 330px;
-}
-</style>

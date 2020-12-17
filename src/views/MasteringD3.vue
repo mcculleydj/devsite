@@ -1,30 +1,24 @@
 <template>
   <v-container>
-    <h1>Mastering D3</h1>
-    <v-tabs v-model="tab" class="mt-5">
-      <v-tab>Cryptocurrency</v-tab>
-      <v-tab>Gap Minder</v-tab>
-      <v-tab>Fruit Donut</v-tab>
-      <v-tab>DC Divided</v-tab>
-      <v-tab>Dashboard</v-tab>
-    </v-tabs>
-    <v-tabs-items v-model="tab">
-      <v-tab-item>
-        <Cryptocurrency />
-      </v-tab-item>
-      <v-tab-item>
-        <GapMinder />
-      </v-tab-item>
-      <v-tab-item>
-        <FruitDonut />
-      </v-tab-item>
-      <v-tab-item>
-        <DCDivided />
-      </v-tab-item>
-      <v-tab-item>
-        <Dashboard />
-      </v-tab-item>
-    </v-tabs-items>
+    <v-navigation-drawer permanent app>
+      <h1 class="pa-4">Mastering D3</h1>
+      <v-list>
+        <v-list-item
+          v-for="item in items"
+          :key="item.title"
+          :input-value="component === item.component"
+          @click="component = item.component"
+        >
+          <v-list-item-icon>
+            <v-icon>{{ item.icon }}</v-icon>
+          </v-list-item-icon>
+          <v-list-item-content>
+            <v-list-item-title>{{ item.title }}</v-list-item-title>
+          </v-list-item-content>
+        </v-list-item>
+      </v-list>
+    </v-navigation-drawer>
+    <component class="mt-10" :is="component" />
   </v-container>
 </template>
 
@@ -36,16 +30,27 @@ import DCDivided from '@/components/mastering-d3/DCDivided'
 import Dashboard from '@/components/mastering-d3/Dashboard'
 
 export default {
-  components: {
-    Cryptocurrency,
-    GapMinder,
-    FruitDonut,
-    DCDivided,
-    Dashboard,
-  },
-
   data: () => ({
-    tab: 0,
+    component: Cryptocurrency,
+    items: [
+      {
+        title: 'Cryptocurrency',
+        component: Cryptocurrency,
+        icon: 'mdi-chart-line',
+      },
+      {
+        title: 'Gap Minder',
+        component: GapMinder,
+        icon: 'mdi-chart-scatter-plot',
+      },
+      {
+        title: 'Fruit Donut',
+        component: FruitDonut,
+        icon: 'mdi-chart-arc',
+      },
+      { title: 'DC Divided', component: DCDivided, icon: 'mdi-map' },
+      { title: 'Dashboard', component: Dashboard, icon: 'mdi-view-dashboard' },
+    ],
   }),
 }
 </script>

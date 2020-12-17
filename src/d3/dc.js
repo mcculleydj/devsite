@@ -5,11 +5,11 @@ const width = 800
 const height = 800
 
 const colors = {
-  Black: 'purple',
-  White: 'green',
-  'Asian / Pacific Islander': 'red',
-  Other: 'pink',
-  Hispanic: 'orange',
+  Black: 'cornflowerblue',
+  White: 'salmon',
+  'Asian / Pacific Islander': 'mediumspringgreen',
+  Other: 'floralwhite',
+  Hispanic: 'yellow',
 }
 
 let svg
@@ -34,13 +34,20 @@ export async function drawCanvas() {
     .datum(mapData)
     .append('path')
     .attr('d', d3.geoPath().projection(projection))
-    .attr('fill', 'white')
-    .attr('stroke', 'gray')
+    .attr('fill', '#333')
+    .attr('stroke', 'white')
 
   // legend
   const legend = svg
     .append('g')
     .attr('transform', `translate(${width - 200}, 10)`)
+
+  legend
+    .append('rect')
+    .attr('width', 200)
+    .attr('height', 110)
+    .attr('fill', '#333')
+    .attr('transform', `translate(-10, -10)`)
 
   Object.keys(colors).forEach((r, i) => {
     const legendRow = legend.append('g')
@@ -58,6 +65,7 @@ export async function drawCanvas() {
       .attr('font-size', '15px')
       .attr('x', 20)
       .attr('y', 20 * i + 10)
+      .attr('fill', 'white')
       .text(r)
   })
 }

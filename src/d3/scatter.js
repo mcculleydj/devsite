@@ -82,6 +82,7 @@ export function drawCanvas() {
   plot
     .append('g')
     .attr('transform', `translate(0, ${height})`)
+    .style('font-size', '12px')
     .call(
       d3
         .axisBottom(x)
@@ -101,7 +102,10 @@ export function drawCanvas() {
     .text('GDP Per Capita - Logrithmic ($)')
 
   // y-axis
-  plot.append('g').call(d3.axisLeft(y))
+  plot
+    .append('g')
+    .style('font-size', '12px')
+    .call(d3.axisLeft(y))
 
   // y-axis label
   plot

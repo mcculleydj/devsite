@@ -44,6 +44,7 @@ export default class TimeLine {
     this.xAxis = this.plot
       .append('g')
       .attr('transform', `translate(0, ${this.height})`)
+      .style('font-size', '12px')
 
     // area plot
     this.areaPath = this.plot.append('path').attr('fill', 'gray')

@@ -61,7 +61,7 @@
         v-if="selected === i"
         style="font-size: 1.1rem; line-height: 26.4px;"
       >
-        <i>{{ thought.quote }}</i>
+        <i v-html="thought.quote" />
       </v-card-text>
     </v-card>
   </div>

@@ -1,5 +1,16 @@
 <template>
   <v-container>
+    <v-row style="max-width: 800px">
+      <v-col>
+        This visualization displays price, value, and volume data for five
+        cryptocurrencies over time. The line graph is responsive to hover events
+        allowing a user to see a specific y-value for the date corresponding to
+        the x-position of the cursor. The area chart below uses D3 brushes to
+        give a user the ability to narrow the date range to a particular window
+        by clicking and dragging left or right. To return to the full date range
+        simply click anywhere on the area chart outside of the brush zone.
+      </v-col>
+    </v-row>
     <v-row align="center">
       <v-col cols="auto">
         <v-select

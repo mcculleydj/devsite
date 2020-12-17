@@ -127,7 +127,7 @@ export function updateChart(chart, data, fruit) {
 
       // NOTE: the use of ES6 arrow notation for functions (() => {})
       //       cannot be used with this method of preserving state
-      //       because the keyword this does not have the same context
+      //       because the this keyword does not have the same context
       this._current = d
     })
 }
