@@ -66,6 +66,7 @@ export default {
   methods: {
     ...mapActions({
       dispatchSetTab: 'setTab',
+      dispatchSetShowSketch: 'setShowSketch',
       dispatchSetSketchSource: 'setSketchSource',
     }),
 
@@ -82,6 +83,7 @@ export default {
     handleTabChange(tab) {
       this.dispatchSetTab(tab)
       // relies on 0 being falsy
+      this.dispatchSetShowSketch(tab !== 1)
       this.dispatchSetSketchSource(tab ? 'sketch.png' : 'sketch-outlined.png')
     },
   },

@@ -1,153 +1,13 @@
 <template>
-  <v-row>
+  <v-row class="list-container">
     <v-dialog v-model="showDialog" width="unset">
       <SkillDialog :skill="skill" />
     </v-dialog>
-    <v-col>
-      <h3>ops</h3>
-      <v-list rounded>
+    <v-col v-for="list in lists" :key="list.name" cols="auto">
+      <span class="ml-6 header">{{ list.name }}</span>
+      <v-list rounded width="230">
         <v-list-item
-          v-for="skill in groups.ops.sort((s1, s2) => s2.r - s1.r)"
-          :key="`${skill.title}-list-item`"
-          @click="openDialog(skill)"
-        >
-          <v-list-item-avatar size="50" style="border: 1px solid grey">
-            <v-img alt="" :src="skill.path" />
-          </v-list-item-avatar>
-          <v-list-item-content>
-            <v-list-item-title>{{ skill.display }}</v-list-item-title>
-            <v-list-item-subtitle>{{ skill.proficiency }}</v-list-item-subtitle>
-          </v-list-item-content>
-        </v-list-item>
-      </v-list>
-      <h3>databases</h3>
-      <v-list rounded>
-        <v-list-item
-          v-for="skill in groups.database.sort((s1, s2) => s2.r - s1.r)"
-          :key="`${skill.title}-list-item`"
-          @click="openDialog(skill)"
-        >
-          <v-list-item-avatar size="50" style="border: 1px solid grey">
-            <v-img alt="" :src="skill.path" />
-          </v-list-item-avatar>
-          <v-list-item-content>
-            <v-list-item-title>{{ skill.display }}</v-list-item-title>
-            <v-list-item-subtitle>{{ skill.proficiency }}</v-list-item-subtitle>
-          </v-list-item-content>
-        </v-list-item>
-      </v-list>
-      <template v-if="$vuetify.breakpoint.xsOnly">
-        <h3>web</h3>
-        <v-list rounded>
-          <v-list-item
-            v-for="skill in groups.web.sort((s1, s2) => s2.r - s1.r)"
-            :key="`${skill.title}-list-item`"
-            @click="openDialog(skill)"
-          >
-            <v-list-item-avatar size="50" style="border: 1px solid grey">
-              <v-img alt="" :src="skill.path" />
-            </v-list-item-avatar>
-            <v-list-item-content>
-              <v-list-item-title>{{ skill.display }}</v-list-item-title>
-              <v-list-item-subtitle>
-                {{ skill.proficiency }}
-              </v-list-item-subtitle>
-            </v-list-item-content>
-          </v-list-item>
-        </v-list>
-      </template>
-    </v-col>
-    <v-col>
-      <h3>tools</h3>
-      <v-list rounded>
-        <v-list-item
-          v-for="skill in groups.env.sort((s1, s2) => s2.r - s1.r)"
-          :key="`${skill.title}-list-item`"
-          @click="openDialog(skill)"
-        >
-          <v-list-item-avatar size="50" style="border: 1px solid grey">
-            <v-img alt="" :src="skill.path" />
-          </v-list-item-avatar>
-          <v-list-item-content>
-            <v-list-item-title>{{ skill.display }}</v-list-item-title>
-            <v-list-item-subtitle>{{ skill.proficiency }}</v-list-item-subtitle>
-          </v-list-item-content>
-        </v-list-item>
-      </v-list>
-      <h3>languages</h3>
-      <v-list rounded>
-        <v-list-item
-          v-for="skill in groups.language.sort((s1, s2) => s2.r - s1.r)"
-          :key="`${skill.title}-list-item`"
-          @click="openDialog(skill)"
-        >
-          <v-list-item-avatar size="50" style="border: 1px solid grey">
-            <v-img alt="" :src="skill.path" />
-          </v-list-item-avatar>
-          <v-list-item-content>
-            <v-list-item-title>{{ skill.display }}</v-list-item-title>
-            <v-list-item-subtitle>{{ skill.proficiency }}</v-list-item-subtitle>
-          </v-list-item-content>
-        </v-list-item>
-      </v-list>
-      <h3>user interface</h3>
-      <v-list rounded>
-        <v-list-item
-          v-for="skill in groups.ui.sort((s1, s2) => s2.r - s1.r)"
-          :key="`${skill.title}-list-item`"
-          @click="openDialog(skill)"
-        >
-          <v-list-item-avatar size="50" style="border: 1px solid grey">
-            <v-img alt="" :src="skill.path" />
-          </v-list-item-avatar>
-          <v-list-item-content>
-            <v-list-item-title>{{ skill.display }}</v-list-item-title>
-            <v-list-item-subtitle>{{ skill.proficiency }}</v-list-item-subtitle>
-          </v-list-item-content>
-        </v-list-item>
-      </v-list>
-      <template v-if="$vuetify.breakpoint.xsOnly">
-        <h3>agile</h3>
-        <v-list rounded>
-          <v-list-item
-            v-for="skill in groups.agile.sort((s1, s2) => s2.r - s1.r)"
-            :key="`${skill.title}-list-item`"
-            @click="openDialog(skill)"
-          >
-            <v-list-item-avatar size="50" style="border: 1px solid grey">
-              <v-img alt="" :src="skill.path" />
-            </v-list-item-avatar>
-            <v-list-item-content>
-              <v-list-item-title>{{ skill.display }}</v-list-item-title>
-              <v-list-item-subtitle>
-                {{ skill.proficiency }}
-              </v-list-item-subtitle>
-            </v-list-item-content>
-          </v-list-item>
-        </v-list>
-      </template>
-    </v-col>
-    <v-col v-if="$vuetify.breakpoint.smAndUp">
-      <h3>web</h3>
-      <v-list rounded>
-        <v-list-item
-          v-for="skill in groups.web.sort((s1, s2) => s2.r - s1.r)"
-          :key="`${skill.title}-list-item`"
-          @click="openDialog(skill)"
-        >
-          <v-list-item-avatar size="50" style="border: 1px solid grey">
-            <v-img alt="" :src="skill.path" />
-          </v-list-item-avatar>
-          <v-list-item-content>
-            <v-list-item-title>{{ skill.display }}</v-list-item-title>
-            <v-list-item-subtitle>{{ skill.proficiency }}</v-list-item-subtitle>
-          </v-list-item-content>
-        </v-list-item>
-      </v-list>
-      <h3>agile</h3>
-      <v-list rounded>
-        <v-list-item
-          v-for="skill in groups.agile.sort((s1, s2) => s2.r - s1.r)"
+          v-for="skill in groups[list.group].sort((s1, s2) => s2.r - s1.r)"
           :key="`${skill.title}-list-item`"
           @click="openDialog(skill)"
         >
@@ -168,6 +28,9 @@
 import SkillDialog from '@/components/SkillDialog'
 import { skills } from '@/common/constants'
 
+// TODO: replace bubble view button with a message when contraction occurs in list view
+//       below min width for visualization
+
 export default {
   components: {
     SkillDialog,
@@ -177,6 +40,15 @@ export default {
     groups: {},
     skill: {},
     showDialog: false,
+    lists: [
+      { name: 'web', group: 'web' },
+      { name: 'ops', group: 'ops' },
+      { name: 'databases', group: 'database' },
+      { name: 'tools', group: 'env' },
+      { name: 'languages', group: 'language' },
+      { name: 'user interface', group: 'ui' },
+      { name: 'agile', group: 'agile' },
+    ],
   }),
 
   created() {
@@ -210,5 +82,16 @@ h3 {
   text-decoration: underline;
   margin-top: 12px;
   margin-left: 12px;
+}
+
+.header {
+  color: gray;
+  font-size: 18px;
+}
+
+.list-container {
+  overflow-y: auto;
+  max-height: calc(100vh - 140px);
+  border-bottom: 1px solid rgba(0, 0, 0, 0.2);
 }
 </style>
