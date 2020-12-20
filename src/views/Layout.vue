@@ -82,8 +82,10 @@ export default {
 
     handleTabChange(tab) {
       this.dispatchSetTab(tab)
-      // relies on 0 being falsy
-      this.dispatchSetShowSketch(tab !== 1)
+      // list view may hide sketch
+      if (tab !== 1) {
+        this.dispatchSetShowSketch(true)
+      }
       this.dispatchSetSketchSource(tab ? 'sketch.png' : 'sketch-outlined.png')
     },
   },

@@ -45,8 +45,23 @@
       <v-icon>mdi-information-outline</v-icon>
       <span class="lowercase">site info</span>
     </v-btn>
+    <v-btn
+      fixed
+      bottom
+      text
+      x-large
+      color="primary"
+      style="left: 335px"
+      @click="showCareerDialog = true"
+    >
+      <v-icon>mdi-briefcase-outline</v-icon>
+      <span class="lowercase">career</span>
+    </v-btn>
     <v-dialog v-model="showInfoDialog" max-width="800">
       <InfoDialog />
+    </v-dialog>
+    <v-dialog v-model="showCareerDialog" max-width="800">
+      <CareerDialog />
     </v-dialog>
   </div>
 </template>
@@ -56,14 +71,14 @@ import { mapGetters, mapActions } from 'vuex'
 import Thoughts from '@/components/Thoughts'
 import Terminal from '@/components/Terminal'
 import InfoDialog from '@/components/InfoDialog'
-
-// TODO: include work history dialog
+import CareerDialog from '@/components/CareerDialog'
 
 export default {
   components: {
     Thoughts,
     Terminal,
     InfoDialog,
+    CareerDialog,
   },
 
   computed: {
@@ -76,6 +91,7 @@ export default {
     exitSignal: false,
     timeout: null,
     showInfoDialog: false,
+    showCareerDialog: false,
   }),
 
   beforeDestroy() {

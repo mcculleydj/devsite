@@ -4,13 +4,7 @@
       <div v-show="hasSpace && !showListView" id="skills-svg-container" />
       <SkillsVisualization :showListView="showListView" />
     </template>
-    <template v-if="!hasSpace || showListView">
-      <SkillsList />
-      <v-snackbar v-model="showSnackbar" timeout="7000">
-        <span>Expand the window to bring this list to life.</span>
-        <v-icon class="ml-4">mdi-arrow-expand</v-icon>
-      </v-snackbar>
-    </template>
+    <SkillsList v-if="!hasSpace || showListView" />
     <v-btn
       v-if="hasSpace && !showListView"
       fixed
@@ -37,11 +31,15 @@
       <v-icon>mdi-chart-bubble</v-icon>
       <span class="lowercase">bubble view</span>
     </v-btn>
+    <v-btn v-if="!hasSpace" disabled text x-large fixed bottom>
+      <v-icon>mdi-arrow-expand-all</v-icon>
+      <span class="lowercase">expand window</span>
+    </v-btn>
   </div>
 </template>
 
 <script>
-import { mapActions } from 'vuex'
+import { mapGetters, mapActions } from 'vuex'
 import { fromEvent } from 'rxjs'
 import { tap, debounceTime } from 'rxjs/operators'
 import SkillsVisualization from '@/components/SkillsVisualization'
@@ -56,6 +54,10 @@ export default {
   components: {
     SkillsVisualization,
     SkillsList,
+  },
+
+  computed: {
+    ...mapGetters(['tab']),
   },
 
   data: () => ({
@@ -106,6 +108,14 @@ export default {
     toggleListView() {
       this.showListView = !this.showListView
       this.dispatchSetShowSketch(!this.showListView)
+    },
+  },
+
+  watch: {
+    tab() {
+      if (this.tab === 1) {
+        this.dispatchSetShowSketch(this.hasSpace && !this.showListView)
+      }
     },
   },
 }

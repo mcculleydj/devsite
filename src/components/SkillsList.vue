@@ -5,7 +5,7 @@
     </v-dialog>
     <v-col v-for="list in lists" :key="list.name" cols="auto">
       <span class="ml-6 header">{{ list.name }}</span>
-      <v-list rounded width="230">
+      <v-list rounded width="250">
         <v-list-item
           v-for="skill in groups[list.group].sort((s1, s2) => s2.r - s1.r)"
           :key="`${skill.title}-list-item`"
@@ -91,7 +91,7 @@ h3 {
 
 .list-container {
   overflow-y: auto;
-  max-height: calc(100vh - 140px);
+  height: calc(100vh - 140px);
   border-bottom: 1px solid rgba(0, 0, 0, 0.2);
 }
 </style>

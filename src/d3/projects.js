@@ -201,12 +201,16 @@ export function updateCanvas(imageWidth, imageHeight, onClick) {
         .transition(d3.transition())
         .attr('stroke-width', 3)
     })
-    .on('mouseleave', function() {
+    .on('mouseleave', function(_, d) {
       d3.select(this)
         .style('cursor', 'normal')
         .attr('stroke-width', 3)
         .transition(d3.transition())
-        .attr('stroke-width', 1)
+        .attr('stroke-width', function() {
+          return selectedHex && this.__data__.project.name === d.project.name
+            ? 3
+            : 1
+        })
     })
     .on('click', function(_, d) {
       if (selectedHex) {

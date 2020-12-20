@@ -21,7 +21,7 @@
         <a href="https://turfjs.org/" target="_blank">Turf</a> library to reduce
         the complexity and client-side runtime of Aaron's implementation on
         Observable. I found shapefiles for DC with ward boundaries on the city's
-        open data platform and converted them into GeoJSON.
+        open data platform and converted them into GeoJSON to produce the map.
       </v-col>
     </v-row>
     <v-row>

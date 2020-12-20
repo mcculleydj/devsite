@@ -616,7 +616,7 @@ export const skills = [
     path: 'skill-icons/docker.png',
     years: '>2',
     description:
-      'At SOSi, we used Docker and specifically docker-compose to quickly spin up dev environments in order to avoid the "works on my machine" problem and get new developers writing code on day one rather than setting up their environment. We took advantage of GitLab\'s container registry for each project allowing for Docker Hub like image versioning and the ability to update an image without breaking any other project reliant on it. Aside from dev envs I\'ve used Docker and Go to spin up ephemeral services on demand as a DIY version of docker swarm or Kubernetes accessible through an API.',
+      'In my previous job, we used Docker and specifically docker-compose to quickly spin up dev environments in order to avoid the "works on my machine" problem and get new developers writing code on day one rather than setting up their environment. We took advantage of GitLab\'s container registry for each project allowing for Docker Hub like image versioning and the ability to update an image without breaking any other project reliant on it. Aside from dev envs I\'ve used Docker and Go to spin up ephemeral services on demand as a DIY version of docker swarm or Kubernetes accessible through an API.',
   },
   {
     group: 'web',
@@ -676,7 +676,7 @@ export const skills = [
     path: 'skill-icons/mongo.png',
     years: '>4',
     description:
-      "My first introduction to Mongo was in my Urban Data Mechanics course at Boston University not long after 10gen became Mongo. Since that time Mongo's market share and core product have improved dramatically. Their recent addition of transactions for sharded clusters is a great example of what sets this DB apart. One of my first contributions to SOSi was migrating a single MySQL instance to a Mongo sharded cluster reducing storage costs by 75% and allowing us to scale. I've completed every available Mongo University course and I've managed a sharded cluster composed of 33 VMs storing hundreds of millions of records. Mongo remains my first choice for the persistence layer, but not if the data is better represented in a relational or graph database.",
+      "My first introduction to Mongo was in my Urban Data Mechanics course at Boston University not long after 10gen became Mongo. Since that time Mongo's market share and core product have improved dramatically. Their recent addition of transactions for sharded clusters is a great example of what sets this DB apart. One of my first contributions at my previous job was migrating a single MySQL instance to a Mongo sharded cluster reducing storage costs by 75% and allowing us to scale. I've completed every available Mongo University course and I've managed a sharded cluster composed of 33 VMs storing hundreds of millions of records. Mongo remains my first choice for the persistence layer, but not if the data is better represented in a relational or graph database.",
   },
 
   {
@@ -687,7 +687,7 @@ export const skills = [
     path: 'skill-icons/gitlab.png',
     years: '>2',
     description:
-      "At SOSi, we used GitLab to manage version control, run Agile, perform code reviews, and perform CI / CD. I have a high opinion of this product and the changes I've seen them make over the 2 years I've been using it. I'm not particularly wedded to GitLab over one of their competitors, but I am wedded to idea that building professional software on a team requires something like GitLab to manage issues, releases, repository access, etc. Getting into the weeds with deploy tokens, dockerized runners for CI / CD, and integrations with external tools like Mattermost has forever changed my expectations of what a proper developer environment looks like.",
+      "In my previous job, we used GitLab to manage version control, run Agile, perform code reviews, and perform CI / CD. I have a high opinion of this product and the changes I've seen them make over the 2 years I've been using it. I'm not particularly wedded to GitLab over one of their competitors, but I am wedded to idea that building professional software on a team requires something like GitLab to manage issues, releases, repository access, etc. Getting into the weeds with deploy tokens, dockerized runners for CI / CD, and integrations with external tools like Mattermost has forever changed my expectations of what a proper developer environment looks like.",
   },
   {
     group: 'ui',
@@ -697,7 +697,7 @@ export const skills = [
     path: 'skill-icons/vuetify.png',
     years: '>2',
     description:
-      "When I started working at SOSi the team had just started using Vue. They had picked BootstrapVue as their UI framework. I was partial to Material Design based on my experience with Angular Material at Zigg. One of my first major decisions was to convert the existing BootstrapVue code to Vuetify. Not for aesthetic reasons, but because Vuetify had more to offer at the time (e.g. a datepicker) and the community around it seemed more vibrant. That decision turned out to be a very good one as Vuetify has become the UI framework of choice for Vue. Since that decision, I've become a big Vuetify fan. I'm active on their Discord and I've made small open source contributions to their code. Ultimately, I do not think that deep knowledge of a particular UI framework is crucial, however understanding the code behind it and how to bend the framework to your needs is an important skill if you opt to use one.",
+      "When I started the dev team at my previous job had just switch to using Vue. They picked BootstrapVue as their UI framework. One of my first major decisions was to convert the existing BootstrapVue code to Vuetify. Not for aesthetic reasons, but because Vuetify had more to offer at the time (e.g. a datepicker) and the community around it seemed more vibrant. That decision turned out to be a good one as Vuetify has become the UI framework of choice for Vue. Since that decision, I've become a big Vuetify fan. I'm active on their Discord and I've made small open source contributions to their code. I do not believe in-depth knowledge of a particular UI framework is necessary if it is well-documented, however understanding the code behind it and how to bend the framework to your needs is an important skill if you opt to use one.",
   },
   {
     group: 'env',
@@ -717,7 +717,7 @@ export const skills = [
     path: 'skill-icons/macos.png',
     years: '>10',
     description:
-      "My years in the Navy forced me to use Windows both at home and work. A decade ago, I bought a MacBook air and I have not purchased a personal machine that was not a Mac since. At L3 I wrote code on Windows, but at Zigg and SOSi I developed on MacOS. When I compare the two experiences, I think that Windows 10 was a step in the right direction, especially with the addition of a bash terminal, but I much prefer developing on a Mac. One obvious advantage is that in every case my production environment is some flavor of Linux. Building and testing the code on Unix-based MacOS offers an easier bridge to the Linux environment. There are fewer steps involved in getting something working on prod as it did in dev going from Mac to Linux, vice starting from Windows. Outside of building .NET applications I can't think of a good reason to opt for developing on Windows rather than MacOS or Linux. Looking around the room at every software conference or meetup I've ever attended seems to confirm this as a widely held belief.",
+      "My years in the Navy forced me to use Windows both at home and work. A decade ago, I bought a MacBook air and I have not purchased a personal machine that was not a Mac since. At L3 they used Windows, but every line of code I've written since has been on a Mac. When I compare the two experiences, I much prefer developing on Mac. One obvious advantage is that in every case my production environment is some flavor of Linux. Building and testing the code on Unix-based MacOS offers an easier bridge to the Linux environment. Outside of building .NET applications I can't think of a good reason to opt for developing on Windows rather than MacOS or Linux. Looking around the room at every software conference or meetup I've ever attended seems to confirm this as a widely held belief.",
   },
   {
     group: 'web',
@@ -727,7 +727,7 @@ export const skills = [
     path: 'skill-icons/html.png',
     years: '>5',
     description:
-      "The majority of my work with HTML has been in the context of producing templates for Angular and Vue. Two areas I will be focusing on in the near future are accessibility and SEO. For my purposes, even with all the new features in HTML5, it is nothing more than a way to get the bones of my application into the DOM. I find it easier to rely on JS and CSS to provide a consistent experience across all browsers rather than relying on each browser's interpretation of an advanced HTML5 feature.",
+      "The majority of the HTML I've written has been in the context of producing templates for Angular and Vue. During my time off, I plan to focus on learning accessibility and SEO. Despite the latest advances in HTML5, I only use it to write framework templates. I find it easier to rely on JS and CSS to provide a consistent experience across all browsers rather than relying on each browser's interpretation of an advanced HTML5 feature.",
   },
   {
     group: 'language',
@@ -737,7 +737,7 @@ export const skills = [
     path: 'skill-icons/python.png',
     years: '>5',
     description:
-      "Python was the language Boston University used to teach me Computer Science. I was fortunate that they switched from Java to Python pretty early in the curriculum. I still avoid Java if I can. Python is the language I reach for when I need to rapidly prototype or I need access to a vast array of libraries. I'll also turn to Python for any ML needs based on my experience with Pandas and Scikit-Learn for off-the-shelf ways to train models. In my previous job, I helped build and maintain our largest and most complex API written in Python using Falcon / Hug and as well as scraping platform using Selenium driven by Python.",
+      "Python was the language Boston University used to teach me computer science. I was fortunate that they switched from Java to Python pretty early in the curriculum. I still avoid Java if I can. Python is the language I reach for when I need to rapidly prototype or I need access to a vast array of libraries. I'll also turn to Python for any ML needs based on my experience with Pandas and Scikit-Learn for off-the-shelf ways to train models. In my previous job, I helped build and maintain our largest and most complex API written in Python using Falcon / Hug and as well as scraping platform using Selenium driven by Python.",
   },
   {
     group: 'database',
@@ -747,7 +747,7 @@ export const skills = [
     path: 'skill-icons/redis.png',
     years: '>2',
     description:
-      "I was introduced to Redis at L3 and it was a staple at SOSi. More than any other product I can think of, Redis is a shining example of the philosophy: do one thing and do it well. I turn to Redis whenever I need an in-memory caching layer, but I've also used it as a communication bus between disparate processes and as a concurrency management tool since it is both thread safe and fast.",
+      "I was introduced to Redis at L3 and it was a staple of just about every complex application we built in my previous job. More than any other product I can think of, Redis is a shining example of the philosophy: do one thing and do it well. I turn to Redis whenever I need an in-memory caching layer, but I've also used it as a communication bus between disparate processes and as a concurrency management tool since it is both thread safe and fast.",
   },
   {
     group: 'env',
@@ -757,7 +757,7 @@ export const skills = [
     path: 'skill-icons/vscode.png',
     years: '>4',
     description:
-      "I grew up using Macs in the 80s and 90s before the iMac, iPod, and iPhone changed the brand. This was the Apple that Microsoft had to bailout to keep them afloat. I've complained about Microsoft making inferior products my whole life and then VS Code and TypeScript really shut me up. I love this light weight IDE and its extensibility. The only language I use another IDE for is Python, namely PyCharm, and I have a feeling that's coming to an end soon as well in favor of VS Code's lighter more opt-in approach.",
+      "I grew up using Macs in the 80s and 90s before the iMac, iPod, and iPhone changed the brand. The Apple of my childhood required a Microsoft bailout to keep them afloat. I've complained about Microsoft making inferior knockoffs for years and then VS Code and TypeScript really shut me up. I really enjoy this light weight IDE and its extensibility. The only language I use another IDE for is Python and I think it will only be a matter of time before I'm writing Python in VS Code as well.",
   },
   {
     group: 'web',
@@ -767,7 +767,7 @@ export const skills = [
     path: 'skill-icons/vue.png',
     years: '>2',
     description:
-      "I learned Vue out of necessity when I started working at SOSi. They made the decision to migrate a PHP application to Vue before I arrived or I may have strongly advocated for Angular. I knew Angular very well at that point and giving up TypeScript and a framework backed by Google to adopt a less mature framework controlled by a single individual made me nervous. However, that die had already been cast and I was hired in part to help bolster their JS and frontend capabilities. One of the major selling points of Vue is the excellent documentation and the shallow learning curve. Coming from Angular, I had the basics of Vue down within 2-3 days and was actively leading the migration effort within my first week on the job. Since making the transition I've developed several applications in Vue; joined Vue DC, a local meetup, where I've given three talks; attended a national Vue conference; completed courses on Udemy; and consumed every course on Vue Mastery. No framework is perfect and every application is different, but Vue has a vibrant and growing community and the core team is not afraid to innovate. I'm happy to call it home for now.",
+      "I learned Vue out of necessity when I started working at my previous job. They made the decision to migrate a PHP application to Vue before I arrived or I may have strongly advocated for Angular. I knew Angular very well at that point and giving up TypeScript and a framework backed by Google to adopt a less mature framework controlled by a single individual made me nervous. However, that die had already been cast and I was hired in part to help bolster their JS and frontend capabilities. One of the major selling points of Vue is the excellent documentation and the shallow learning curve. Coming from Angular, I had the basics of Vue down within 2-3 days and was actively leading the migration effort within my first week on the job. Since making the transition I've developed several applications in Vue; joined Vue DC, a local meetup, where I've presented three times; attended a national Vue conference; completed courses on Udemy; and consumed every course on Vue Mastery. No framework is perfect and every application is different, but Vue has a vibrant and growing community and the core team is not afraid to innovate. I'm happy to call it home for now.",
   },
 ]
 
@@ -775,10 +775,11 @@ export const projects = [
   {
     name: 'Cosign',
     title: 'cosign',
-    path: '',
-    description: 'hello world1',
-    link: '',
-    github: '',
+    path: 'cosign.png',
+    description:
+      'An app built using Mongo, Go, and Vue to explore bipartisan sponsorship of legislation. Originally built to learn Vue and Go and then extended to demo full-stack capabilities.',
+    link: 'https://cosign.mcculleydj.dev',
+    github: 'https://github.com/mcculleydj/cosign',
     youtube: '',
   },
   {
