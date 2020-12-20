@@ -8,55 +8,31 @@
       />
     </transition>
     <Thoughts v-if="showThoughts" />
-    <v-btn
-      v-if="showTerminal"
-      fixed
-      bottom
-      text
-      x-large
-      color="primary"
-      @click="exitSignal = true"
-      :loading="exitSignal"
-    >
-      <v-icon>mdi-close</v-icon>
-      <span class="lowercase">exit</span>
-    </v-btn>
-    <v-btn
-      v-else
-      fixed
-      bottom
-      text
-      x-large
-      color="primary"
-      @click="openTerminal()"
-    >
-      <v-icon>mdi-console</v-icon>
-      <span class="lowercase">whoami</span>
-    </v-btn>
-    <v-btn
-      fixed
-      bottom
-      text
-      x-large
-      color="primary"
-      style="left: 170px"
-      @click="showInfoDialog = true"
-    >
-      <v-icon>mdi-information-outline</v-icon>
-      <span class="lowercase">site info</span>
-    </v-btn>
-    <v-btn
-      fixed
-      bottom
-      text
-      x-large
-      color="primary"
-      style="left: 335px"
-      @click="showCareerDialog = true"
-    >
-      <v-icon>mdi-briefcase-outline</v-icon>
-      <span class="lowercase">career</span>
-    </v-btn>
+    <div class="button-container">
+      <v-btn
+        v-if="showTerminal"
+        text
+        x-large
+        color="primary"
+        @click="exitSignal = true"
+        :loading="exitSignal"
+      >
+        <v-icon>mdi-close</v-icon>
+        <span class="lowercase">exit</span>
+      </v-btn>
+      <v-btn v-else text x-large color="primary" @click="openTerminal()">
+        <v-icon>mdi-console</v-icon>
+        <span class="lowercase">whoami</span>
+      </v-btn>
+      <v-btn text x-large color="primary" @click="showInfoDialog = true">
+        <v-icon>mdi-information-outline</v-icon>
+        <span class="lowercase">site info</span>
+      </v-btn>
+      <v-btn text x-large color="primary" @click="showCareerDialog = true">
+        <v-icon>mdi-briefcase-outline</v-icon>
+        <span class="lowercase">career</span>
+      </v-btn>
+    </div>
     <v-dialog v-model="showInfoDialog" max-width="800">
       <InfoDialog />
     </v-dialog>
@@ -147,5 +123,10 @@ export default {
 .minimize-fade-leave-to {
   transform: translateX(50vw) translateY(50vh);
   opacity: 0;
+}
+
+.button-container {
+  position: fixed;
+  bottom: 12px;
 }
 </style>

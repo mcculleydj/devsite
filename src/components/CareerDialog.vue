@@ -53,5 +53,10 @@
 </template>
 
 <script>
+// TODO: make this into a collapsible timeline
+// transition
+// L3
+// Startup
+// SOSi
 export default {}
 </script>

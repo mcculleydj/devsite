@@ -6,13 +6,21 @@
         v-if="showText"
         class="text-area"
         :style="{
-          width: `${sideLength * 2}px`,
-          height: `${sideLength}px`,
-          transform: `translate(-${sideLength}px, -${0.33 * sideLength}px)`,
+          width: `${radius}px`,
+          height: `${0.65 * radius}px`,
+          transform: `translate(-${0.5 * radius}px, -${0.2 * radius}px)`,
         }"
       >
-        <div>{{ project.description }}</div>
-        <v-row v-if="project.description !== ''" justify="center" class="mt-3">
+        <div
+          class="text-area-text"
+          :style="{
+            width: `${radius}px`,
+            height: `${0.65 * radius}px`,
+          }"
+        >
+          {{ project.description }}
+        </div>
+        <v-row v-if="project.description !== ''" justify="center">
           <v-tooltip bottom v-if="project.link">
             <template v-slot:activator="{ on }">
               <v-btn
@@ -71,9 +79,6 @@ import { tap, debounceTime, delay, filter } from 'rxjs/operators'
 import { initCanvas, updateCanvas } from '@/d3/projects'
 import { sleep } from '@/common/functions'
 
-// TODO: handle resize events
-//       hide text below a certain sideLength?
-
 export default {
   computed: {
     ...mapGetters(['tab']),
@@ -82,7 +87,7 @@ export default {
   data: () => ({
     showText: true,
     project: {},
-    sideLength: 0,
+    radius: 0,
     hasViewed: false,
     hasResized: false,
   }),
@@ -133,12 +138,12 @@ export default {
     updateCanvas() {
       const imageWidth = document.getElementById('sketch').clientWidth
       const imageHeight = document.getElementById('sketch').clientHeight
-      this.sideLength = updateCanvas(imageWidth, imageHeight, this.onClick)
+      this.radius = updateCanvas(imageWidth, imageHeight, this.onClick)
     },
 
-    onClick(project, sideLength) {
+    onClick(project, radius) {
       this.project = project
-      this.sideLength = sideLength
+      this.radius = radius
     },
 
     async waitForContainerDimensions() {
@@ -179,6 +184,10 @@ export default {
   top: 50%;
   left: 50%;
   z-index: 13;
+}
+
+.text-area-text {
+  overflow-y: scroll;
 }
 
 .fade-enter-active,

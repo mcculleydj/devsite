@@ -41,7 +41,7 @@
 <script>
 import { mapGetters, mapActions } from 'vuex'
 import { fromEvent } from 'rxjs'
-import { tap, debounceTime } from 'rxjs/operators'
+import { tap, debounceTime, filter } from 'rxjs/operators'
 import SkillsVisualization from '@/components/SkillsVisualization'
 import SkillsList from '@/components/SkillsList'
 
@@ -70,6 +70,7 @@ export default {
   subscriptions() {
     // listen for and handle resize events
     const resize$ = fromEvent(window, 'resize').pipe(
+      filter(() => this.tab === 1),
       debounceTime(500),
       tap(() => {
         // decide to show visualization or list

@@ -757,7 +757,7 @@ export const skills = [
     path: 'skill-icons/vscode.png',
     years: '>4',
     description:
-      "I grew up using Macs in the 80s and 90s before the iMac, iPod, and iPhone changed the brand. The Apple of my childhood required a Microsoft bailout to keep them afloat. I've complained about Microsoft making inferior knockoffs for years and then VS Code and TypeScript really shut me up. I really enjoy this light weight IDE and its extensibility. The only language I use another IDE for is Python and I think it will only be a matter of time before I'm writing Python in VS Code as well.",
+      "I grew up using Macs in the 80s and 90s before the iMac, iPod, and iPhone changed the brand. The Apple of my childhood required a Microsoft bailout to keep them afloat. I've complained about Microsoft making inferior knockoff versions of Apple software for years and then VS Code and TypeScript shut me up. I enjoy this light weight IDE and its extensibility. The only language I use another IDE for is Python and I think it will only be a matter of time before I'm writing Python in VS Code as well.",
   },
   {
     group: 'web',
@@ -777,7 +777,7 @@ export const projects = [
     title: 'cosign',
     path: 'cosign.png',
     description:
-      'An app built using Mongo, Go, and Vue to explore bipartisan sponsorship of legislation. Originally built to learn Vue and Go and then extended to demo full-stack capabilities.',
+      'An app built using Mongo, Go, and Vue to explore bipartisan sponsorship of legislation. Originally built to learn Vue and Go and then extended as a demo of my full-stack capabilities.',
     link: 'https://cosign.mcculleydj.dev',
     github: 'https://github.com/mcculleydj/cosign',
     youtube: '',

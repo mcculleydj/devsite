@@ -220,11 +220,11 @@ export function updateCanvas(imageWidth, imageHeight, onClick) {
         .select(this)
         .attr('stroke-width', 3)
         .attr('stroke', '#1976d2')
-      onClick(d.project, sideLength)
+      onClick(d.project, radius)
     })
     .merge(hexagons)
     .transition(d3.transition().duration(300))
     .attr('points', d => d.vertices.map(v => [v.x, v.y].join(',')).join(' '))
 
-  return sideLength
+  return radius
 }
