@@ -27,6 +27,7 @@ const routes = [
     name: 'vuerx',
     component: () => import('@/views/VueRx'),
   },
+  // TODO: 404 page
 ]
 
 const router = new VueRouter({

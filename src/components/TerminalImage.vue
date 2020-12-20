@@ -17,6 +17,7 @@
 </template>
 
 <script>
+import Vue from 'vue'
 import { methods, comments, masks } from '@/common/constants'
 import { sleep } from '@/common/functions'
 
@@ -38,22 +39,26 @@ export default {
   data: () => ({
     masks,
     lines: [],
-    displayedLines: new Array(15).fill(null).map(() => []),
+    displayedLines: new Array(16).fill(null).map(() => []),
   }),
 
   methods: {
     async changeLines() {
-      // 15 lines => open comment; 3 comment lines; 10 picture lines; close comment
-      for (let i = 0; i < 15; i++) {
+      // 16 lines => open comment; 3 comment lines; 10 picture lines; close comment
+      for (let i = 0; i < 16; i++) {
+        const trimmedLength =
+          i < 3
+            ? this.displayedLines[i].join('').trimEnd().length
+            : this.displayedLines[i].length
         const governingLength = Math.max(
-          this.displayedLines[i].length,
+          // remove trailing spaces from consideration
+          trimmedLength,
           this.lines[i].length,
         )
         for (let j = 0; j < governingLength; j++) {
           if (j < this.lines[i].length) {
             this.displayedLines[i].splice(j, 1, this.lines[i][j])
           } else {
-            // TODO: trim these spaces after the cursor has passed over them
             this.displayedLines[i].splice(j, 1, ' ')
           }
 
@@ -61,6 +66,13 @@ export default {
             this.displayedLines[i].splice(j + 1, 1, '▕')
           }
           await sleep(10)
+        }
+        if (i > 0 && i < 4) {
+          const displayedLine = this.displayedLines[i]
+            .join('')
+            .trimEnd()
+            .split('')
+          Vue.set(this.displayedLines, i, displayedLine)
         }
       }
       this.$emit('complete')
@@ -72,7 +84,8 @@ export default {
       const progress = new Array(this.sourceIndex + 1)
         .fill('#')
         .concat(new Array(methods.length - this.sourceIndex - 1).fill(' '))
-      const last = [` * progress [${progress.join('')}] */`.split('')]
+      const progressLine = [` * progress [${progress.join('')}]`.split('')]
+      const last = [[' ', '*', '/']]
 
       // an array of arrays where each member is either an img URL
       // or a single asterisk character based on the mask
@@ -87,6 +100,7 @@ export default {
       this.lines = first
         .concat(this.comments.map(comment => prefix.concat(comment.split(''))))
         .concat(rows.map(r => prefix.concat(r)))
+        .concat(progressLine)
         .concat(last)
     },
   },

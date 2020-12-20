@@ -18,13 +18,9 @@
 </template>
 
 <script>
-import { concat, Subject, from, interval } from 'rxjs'
-import { exhaustMap, tap, zip, map, takeWhile } from 'rxjs/operators'
-import { skillProficiencies } from '@/common/constants'
-
+import Vue from 'vue'
 import { methods, comments, masks } from '@/common/constants'
-
-const legendReady$ = new Subject()
+import { sleep } from '@/common/functions'
 
 export default {
   computed: {
@@ -40,57 +36,27 @@ export default {
   },
 
   data: () => ({
+    sourceIndex: 0,
     masks,
     lines: [],
-    displayedLines: new Array(15).fill(null).map(() => []),
-    sourceIndex: 5,
+    displayedLines: new Array(16).fill(null).map(() => []),
   }),
 
-  subscriptions() {
-    const test$ = legendReady$.pipe(
-      exhaustMap(() =>
-        interval(5000).pipe(
-          takeWhile(i => i < skillProficiencies.length),
-          map(i => skillProficiencies[i]),
-          tap(s => console.log(s)),
-        ),
-      ),
-    )
-
-    const legendNode$ = legendReady$.pipe(
-      exhaustMap(
-        () =>
-          concat(
-            from([skillProficiencies[0]]),
-            from(skillProficiencies.slice(1)).pipe(
-              zip(interval(3000)),
-              map(z => z[0]),
-            ),
-          ),
-        // .pipe(
-        //   tap(node => {
-        //     console.log('addLegendNode', node)
-        //   }),
-        // ),
-      ),
-    )
-
-    return { legendNode$, test$ }
-  },
-
   mounted() {
-    legendReady$.next()
-
-    this.setLines()
-    this.changeLines()
+    this.sourceIndex++
   },
 
   methods: {
-    changeLines() {
-      // 15 lines => open comment; 3 comment lines; 10 picture lines; close comment
-      for (let i = 0; i < 15; i++) {
+    async changeLines() {
+      // 16 lines => open comment; 3 comment lines; 10 picture lines; progress; close comment
+      for (let i = 0; i < 16; i++) {
+        const trimmedLength =
+          i < 3
+            ? this.displayedLines[i].join('').trimEnd().length
+            : this.displayedLines[i].length
         const governingLength = Math.max(
-          this.displayedLines[i].length,
+          // remove trailing spaces from consideration
+          trimmedLength,
           this.lines[i].length,
         )
         for (let j = 0; j < governingLength; j++) {
@@ -98,20 +64,35 @@ export default {
             this.displayedLines[i].splice(j, 1, this.lines[i][j])
           } else {
             // TODO: trim these spaces after the cursor has passed over them
+            // so that we don't have " ", " " for the shorter strings
             this.displayedLines[i].splice(j, 1, ' ')
           }
 
           if (j + 1 < governingLength) {
             this.displayedLines[i].splice(j + 1, 1, '▕')
           }
+          await sleep(10)
+        }
+        if (i > 0 && i < 4) {
+          const displayedLine = this.displayedLines[i]
+            .join('')
+            .trimEnd()
+            .split('')
+          Vue.set(this.displayedLines, i, displayedLine)
         }
       }
-      this.$emit('complete')
+      setTimeout(() => {
+        this.sourceIndex++
+      }, 2000)
     },
 
     setLines() {
       const first = [['/', '*', '*']]
       const prefix = [' ', '*', ' ']
+      const progress = new Array(this.sourceIndex + 1)
+        .fill('#')
+        .concat(new Array(methods.length - this.sourceIndex - 1).fill(' '))
+      const progressLine = [` * progress [${progress.join('')}]`.split('')]
       const last = [[' ', '*', '/']]
 
       // an array of arrays where each member is either an img URL
@@ -127,52 +108,18 @@ export default {
       this.lines = first
         .concat(this.comments.map(comment => prefix.concat(comment.split(''))))
         .concat(rows.map(r => prefix.concat(r)))
+        .concat(progressLine)
         .concat(last)
     },
   },
+
+  watch: {
+    sourceIndex() {
+      this.setLines()
+      this.changeLines()
+    },
+  },
 }
-
-// import * as d3 from 'd3'
-
-// const hexPoints = [
-//   { x: 899.5, y: 279.6923788646684 },
-//   { x: 1029.403810567666, y: 354.6923788646684 },
-//   { x: 1029.403810567666, y: 504.6923788646684 },
-//   { x: 899.5, y: 579.6923788646684 },
-//   { x: 769.5961894323342, y: 504.6923788646684 },
-//   { x: 769.5961894323342, y: 354.6923788646684 },
-//   { x: 899.5, y: 279.6923788646684 },
-// ]
-
-// export default {
-//   mounted() {
-//     const svg = d3
-//       .select('#svg-container')
-//       .append('svg')
-//       .attr('width', 2000)
-//       .attr('height', 2000)
-
-//     console.log(hexPoints.map(v => [v.x, v.y].join(',')).join(' '))
-
-//     svg
-//       .append('defs')
-//       .append('pattern')
-//       .attr('id', 'my-img')
-//       .attr('width', 1)
-//       .attr('height', 1)
-//       .append('svg:image')
-//       .attr('xlink:href', 'd3.png')
-//       .attr('width', 290)
-//       .attr('height', 290)
-//       .attr('x', -12)
-
-//     svg
-//       .append('polygon')
-//       .attr('stroke', 'rgba(0, 0, 0, 0.2')
-//       .attr('points', hexPoints.map(v => [v.x, v.y].join(',')).join(' '))
-//       .attr('fill', 'url(#my-img)')
-//   },
-// }
 </script>
 
 <style scoped>
@@ -184,13 +131,4 @@ export default {
   white-space: pre-wrap;
   height: 100%;
 }
-
-/* #svg-container {
-  position: fixed;
-  top: 72px;
-  bottom: 0px;
-  left: 0px;
-  right: 0px;
-  z-index: 12;
-} */
 </style>
