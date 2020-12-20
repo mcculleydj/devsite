@@ -1,7 +1,12 @@
 import Vue from 'vue'
 import Vuex from 'vuex'
+import axios from 'axios'
 
 Vue.use(Vuex)
+
+const api = axios.create({
+  baseURL: `${window.location.origin}/api/`,
+})
 
 export default new Vuex.Store({
   state: {
@@ -41,6 +46,10 @@ export default new Vuex.Store({
 
     setSketchSource({ commit }, payload) {
       commit('SET_SKETCH_SOURCE', payload)
+    },
+
+    sendMail(_, payload) {
+      api.post('mail', payload)
     },
   },
 })
