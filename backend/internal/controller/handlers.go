@@ -3,7 +3,6 @@ package controller
 import (
 	"backend/pkg/mail"
 	"encoding/json"
-	"fmt"
 	"net/http"
 )
 
@@ -15,8 +14,6 @@ func sendMail(w http.ResponseWriter, r *http.Request) {
 		WriteError(w, http.StatusBadRequest, "Unable to parse request body", err.Error())
 		return
 	}
-
-	fmt.Println(body)
 
 	err = mail.SendMail(body)
 	if err != nil {
