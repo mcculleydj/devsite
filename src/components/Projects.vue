@@ -13,14 +13,13 @@
       >
         <div>{{ project.description }}</div>
         <v-row v-if="project.description !== ''" justify="center" class="mt-3">
-          <!-- TODO: this might be href not to -->
           <v-tooltip bottom v-if="project.link">
             <template v-slot:activator="{ on }">
               <v-btn
                 icon
                 large
                 color="primary"
-                :to="project.link"
+                :href="project.link"
                 target="_blank"
                 v-on="on"
               >
