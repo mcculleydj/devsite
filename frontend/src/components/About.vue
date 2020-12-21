@@ -30,7 +30,7 @@
       </v-btn>
       <v-btn text x-large color="primary" @click="showCareerDialog = true">
         <v-icon>mdi-briefcase-outline</v-icon>
-        <span class="lowercase">career</span>
+        <span class="lowercase">work exp</span>
       </v-btn>
     </div>
     <v-dialog v-model="showInfoDialog" max-width="800">

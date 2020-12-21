@@ -30,13 +30,13 @@ export const thoughts = [
   {
     title: 'on users',
     text:
-      'An Operating Systems professor at Boston University declared to his students every semester, "I\'m teaching you to build skyscrapers, and everyone else is teaching you to wallpaper the 14th floor." I still run across the attitude that frontend developers are a lesser brand of engineer, more concerned with color themes than data structures. What people who haven\'t lived this life fail to realize is that in any user facing application the single most complex layer of the stack by leaps and bounds are the users themselves. At L3, I was surprised to be working with talented engineers who held dual degrees in psychology and computer science. Years of unexpected user actions later that combination makes perfect sense to me.',
+      'An Operating Systems professor at Boston University declared to his students every semester, "I\'m teaching you to build skyscrapers, and everyone else is teaching you to wallpaper the 14th floor." I challenge the attitude that frontend developers are a lesser brand of engineer, more concerned with color themes than data structures. What people who haven\'t lived this life fail to realize is that in any user facing application the single most complex layer of the stack by leaps and bounds are the users themselves. At L3, I was surprised to be working with talented engineers who held dual degrees in psychology and computer science. Years of unexpected user actions later that combination makes perfect sense to me.',
     quote: '"Where is the \'any\' key?"<br /> ― Homer Simpson',
   },
   {
     title: 'on design',
     text:
-      'First, I am not a designer. I have opinions, but so does everyone else, especially about how things look. When I consider building the view layer of an application I want a team composed of at least three distinct roles: product managers, UI/UX designers, and engineers. There are unicorns who can do all three, but in general, engineers defining user requirements or designers implementing technical solutions leads to problems. My personal design preference is for a light touch like Airbnb or Google\'s UI over anything flashy or noisy. I subscribe to the golden rule of UI/UX: "Don\'t make me think."',
+      'First, I am not a designer. I have opinions, but so does everyone else, especially about how things look. When I consider building the view layer of an application I want a team composed of at least three distinct roles: product managers, UI/UX designers, and engineers. There are unicorns who can do all three, but in general, engineers defining user requirements or designers dictating technical solutions leads to problems. My personal design preference is for a light touch like Airbnb or Google\'s UI over anything flashy or noisy. I subscribe to the golden rule of UI/UX: "Don\'t make me think."',
     quote:
       '"Without requirements or design, programming is the art of adding bugs to an empty text file."<br /> ― Louis Srygley',
   },
@@ -64,7 +64,7 @@ export const thoughts = [
   {
     title: 'on ethics',
     text:
-      'I am concerned by the goto Silicon Valley defense, "we\'re a technology company." In <span style="text-decoration: underline">Ready Player One</span> and <span style="text-decoration: underline">Ready Player Two</span>, Ernest Cline makes a case for social media, not WMD, being the <a href="https://en.wikipedia.org/wiki/Great_Filter" target="_blank">Great Filter</a> that prevents intelligent life from progressing beyond a certain point and I am inclined to agree. We should consider the consequences of <a href="https://www.theguardian.com/technology/2018/feb/02/how-youtubes-algorithm-distorts-truth" target="_blank">what we build</a> and not blindly optimize for profit.',
+      'I am troubled by the goto Silicon Valley defense, "we\'re just a technology company." In <span style="text-decoration: underline">Ready Player One</span> and <span style="text-decoration: underline">Ready Player Two</span>, Ernest Cline makes a case for social media, not WMD, being the <a href="https://en.wikipedia.org/wiki/Great_Filter" target="_blank">Great Filter</a> that prevents intelligent life from progressing beyond a certain point and I am inclined to agree. We should consider the consequences of <a href="https://www.theguardian.com/technology/2018/feb/02/how-youtubes-algorithm-distorts-truth" target="_blank">what we build</a> and not blindly optimize for profit.',
     quote:
       '"Science and technology are what we can do; morality is what we agree we should or should not do."<br /> ― Edward Wilson',
   },
@@ -290,6 +290,51 @@ export const masks = [
     "···· /·|·|·\\·\\/ ······ /.-'./\\.-'.\\ ····",
     '···· ~-~-~-~-~ ······· \\___/··\\___/ ····',
   ],
+]
+
+export const experiences = [
+  {
+    name: 'Navy',
+    path: 'experience/navy.png',
+    years: '2005-2017',
+    description:
+      'I went to college on an NROTC scholarship and was commissioned as an officer in the Navy upon graduation. After finishing flight school, I joined a C-2 squadron out of Norfolk, VA. I deployed three times with aircraft carrier strike groups combating piracy off the Horn of Africa and supporting forces in Iraq and Afghanistan.<br /><br />In 2013, I accepted orders to Boston to serve out the remainder of my naval career as an NROTC instructor. Training the next generation of naval officers was an extremely rewarding experience and working on a college campus was the perfect opportunity to reinvent myself.',
+  },
+  {
+    name: 'Transition',
+    path: 'experience/bu.png',
+    years: '2014-2016',
+    description:
+      'While serving as an NROTC instructor, I decided to pursue a graduate degree in computer science. I was 9 years out from my undergraduate degree in aerospace engineering and had little to no coding experience. When I approached the professor in charge of the MS in CS degree program at Boston University, he was rightly skeptical of my plan and tried to dissuade me several times. Despite his reservations, he offered me a viable path to earning a graduate degree before my final tour of duty was up.<br /><br />While I prepared for the GRE, I had to take several foundational CS undergraduate courses and earn the recommendations of each of those professors as well as maintain a 4.0 GPA. Then I could apply to compete for a spot with all of the other applicants and the board would overlook the fact that I was not a recent graduate of a CS program or someone with professional experience in the field.<br /><br />I accepted his terms and spent my first year rapidly closing the knowledge gap and earn a spot in the program. Working full-time and pursuing a graduate degree under a full course load (including summers) is not something I would recommend, but as the sun set on my naval career, the sun rose on a new chapter made possible by three years of getting very little sleep.',
+  },
+  {
+    name: 'L3',
+    path: 'experience/l3.png',
+    years: '2017',
+    description:
+      "We moved out to Salt Lake City where my wife had a one-year judicial clerkship following law school. We had no idea if we would put down roots and stay when the year was up, so I began interviewing after taking a few weeks off to ski and research companies in the area. I joined the UI team at L3 Communications Systems working on an Angular frontend and Node API.<br /><br />A few months into our time in Utah, we made the decision to return to the east coast after the year was up. Knowing that I wasn't going to build a career in UT, I left L3 to co-found a startup with my cousin and his girlfriend. Despite my short tenure at L3, the amazing group of UI engineers I worked with greatly influenced my passion for building user-focused software.",
+  },
+  {
+    name: 'Zigg',
+    path: 'experience/zigg.png',
+    years: '2017-2018',
+    description:
+      'When my cousin called me to pitch his startup idea, we had just decided to move to DC after my wife finished her clerkship. The timing was perfect for me to take this leap or look for remote work that would not be impacted by another cross-country move. The goal of our startup, Zigg, was to prevent turnover in rental properties by reducing friction between DIY landlords and their tenants. The initial focus was on improving communication using services like Twillio and rent payment using services like Stripe. We attended the Y Combinator Startup School and got to work.<br /><br />A few pivots and many 80-hour work weeks later it was time to say goodbye to Salt Lake and time to re-evaluate continuing with Zigg. I had gained proficiency in Angular and TypeScript, API design, UI frameworks, integrating external libraries, handling asynchrony, setting up cloud services, and building a proper dev environment. In addition to the technical trial by fire, as the sole developer on the team, I learned the importance of effective communication with non-developers to the success any software project. The startup may have failed, but the experience made me a more successful engineer.',
+  },
+  {
+    name: 'SOSi',
+    path: 'experience/sosi.png',
+    years: '2018-2020',
+    description:
+      'Shortly after moving to DC, I joined a small team of engineers building large scale data processing and web applications for SOSi. My niche on this team was JS and the frontend, but our small numbers and ambitious requirements required that each of us embrace our full-stack potential. During my two and half years with the company, our team doubled in size and I moved into a leadership role.<br /><br />Helping develop software from prototype to stable release was a defining experience. I understand now why so many entrepreneurs become serial entrepreneurs. While managing every layer from the VM hypervisor through the user-interface was a rewarding challenge, it stretches you thin.<br /><br />I learned something new everyday at SOSi and pushed the limits of what I thought I was capable of this early in my career. In my next job, I am hoping to gain depth in the UI / API layers by giving back some breadth as a dev ops engineer, DBA, and systems architect.',
+  },
+  {
+    name: 'DSCC',
+    path: 'experience/dscc.png',
+    years: '2020',
+    description:
+      "In October, I decided that I was ready for a change and with the election around the corner there was a compelling volunteer opportunity that suited my skill set. I left SOSi and started working for the Democratic Senatorial Campaign Committee building data processing pipelines and visualizations to track rejected ballots in order to get them fixed in time for them to count.<br /><br />Since election day, I've been working on this site, researching open positions, and taking online courses. I've also been enjoying my first sabbatical since I joined the Navy back in 2005 and taking some time to consider what comes next.",
+  },
 ]
 
 export const skillProficiencies = [

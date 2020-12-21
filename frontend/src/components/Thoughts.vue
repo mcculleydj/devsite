@@ -1,19 +1,17 @@
 <template>
   <div>
     <div id="banner">
+      <div>Hello, world!</div>
+      <div>I am Daren McCulley, a humble coder seeking a fresh start.</div>
       <div>Welcome to my interactive self-promotion.</div>
-      <div>Check out skills and projects to see what I can do.</div>
-      <div>
-        Or hang out here to learn more about me and my take on coding.
-      </div>
     </div>
     <div class="sub-text">
-      During an interview I ask certain questions to learn about a candidate's
+      During an interview, I ask certain questions to learn about a candidate's
       approach to building software. They tend to be more philosophical than
-      technical in nature, but on the job experience correlates with the quality
-      of the responses. Here are ten "takes" on writing code based on questions
-      I've been asked as a candidate or questions I like to ask as an
-      interviewer intended to give you a sense of where I stand.
+      technical in nature, but job experience correlates with the quality of the
+      responses. Here are ten "takes" on writing code based on questions I've
+      been asked as a candidate or questions I like to ask as an interviewer
+      intended to give you a sense of where I stand.
     </div>
     <v-card
       v-for="(thought, i) in thoughts"
