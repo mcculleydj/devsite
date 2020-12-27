@@ -848,12 +848,13 @@ export const projects = [
     youtube: '',
   },
   {
-    name: 'Project 4 (Maybe Boston?)',
-    title: 'four',
-    path: '',
-    description: 'hello world4',
-    link: '',
-    github: '',
+    name: 'Rosetta Code',
+    title: 'rosetta',
+    path: 'rosetta.png',
+    description:
+      'A series of HackerRank-like problems solved in the three languages I know best.  I find that these exercises help me to think Go linguistically, Pythonically, or whatever the hell the JS/TS version of that is.',
+    link: 'https://rosetta.mcculleydj.dev',
+    github: 'https://github.com/mcculleydj/rosetta-code',
     youtube: '',
   },
 ]
