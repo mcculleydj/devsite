@@ -20,7 +20,6 @@
 <script>
 import Vue from 'vue'
 import { methods, comments, masks } from '@/common/constants'
-import { sleep } from '@/common/functions'
 
 export default {
   computed: {
@@ -36,7 +35,7 @@ export default {
   },
 
   data: () => ({
-    sourceIndex: 0,
+    sourceIndex: 3,
     masks,
     lines: [],
     displayedLines: new Array(16).fill(null).map(() => []),
@@ -71,7 +70,6 @@ export default {
           if (j + 1 < governingLength) {
             this.displayedLines[i].splice(j + 1, 1, '▕')
           }
-          await sleep(10)
         }
         if (i > 0 && i < 4) {
           const displayedLine = this.displayedLines[i]
@@ -81,9 +79,9 @@ export default {
           Vue.set(this.displayedLines, i, displayedLine)
         }
       }
-      setTimeout(() => {
-        this.sourceIndex++
-      }, 2000)
+      // setTimeout(() => {
+      //   this.sourceIndex++
+      // }, 2000)
     },
 
     setLines() {
