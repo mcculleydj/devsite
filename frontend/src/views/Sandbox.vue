@@ -91,7 +91,7 @@ export default {
         .fill('#')
         .concat(new Array(methods.length - this.sourceIndex - 1).fill(' '))
       let progressLine = [` * progress [${progress.join('')}]`.split('')]
-      
+
       if (this.sourceIndex === 10) {
         progressLine[0].push(...' - Thanks for your attention!'.split(''))
       }
