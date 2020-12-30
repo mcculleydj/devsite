@@ -35,7 +35,7 @@ export default {
   },
 
   data: () => ({
-    sourceIndex: 3,
+    sourceIndex: 0,
     masks,
     lines: [],
     displayedLines: new Array(16).fill(null).map(() => []),

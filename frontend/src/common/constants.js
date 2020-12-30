@@ -64,7 +64,7 @@ export const thoughts = [
   {
     title: 'on ethics',
     text:
-      'I am troubled by the goto Silicon Valley defense, "we\'re just a technology company." In <span style="text-decoration: underline">Ready Player One</span> and <span style="text-decoration: underline">Ready Player Two</span>, Ernest Cline makes a case for social media, not WMD, being the <a href="https://en.wikipedia.org/wiki/Great_Filter" target="_blank">Great Filter</a> that prevents intelligent life from progressing beyond a certain point and I am inclined to agree. We should consider the consequences of <a href="https://www.theguardian.com/technology/2018/feb/02/how-youtubes-algorithm-distorts-truth" target="_blank">what we build</a> and not blindly optimize for profit.',
+      'I am troubled by the go-to Silicon Valley defense, "we\'re just a technology company." In <span style="text-decoration: underline">Ready Player One</span> and <span style="text-decoration: underline">Ready Player Two</span>, Ernest Cline makes a case for social media, not WMD, being the <a href="https://en.wikipedia.org/wiki/Great_Filter" target="_blank">Great Filter</a> that prevents intelligent life from progressing beyond a certain point and I am inclined to agree. We should consider the consequences of <a href="https://www.theguardian.com/technology/2018/feb/02/how-youtubes-algorithm-distorts-truth" target="_blank">what we build</a> and not blindly optimize for profit.',
     quote:
       '"Science and technology are what we can do; morality is what we agree we should or should not do."<br /> ― Edward Wilson',
   },
@@ -107,8 +107,8 @@ export const comments = [
   ],
   [
     'i started writing code in 2014 in pursuit of my MS in CS',
-    'coding is the most fun and useful form of applied mathematics there is',
-    'i pair program whenever possible',
+    'programming is the perfect mix of art and science',
+    'enjoy responsibly and if possible, with a friend',
   ],
   [
     'i served as an officer in the Navy for 11 years',
@@ -171,16 +171,16 @@ export const masks = [
     '····               ·····················',
   ],
   [
-    '········································',
-    '········································',
-    '········································',
-    '········································',
-    '········································',
-    '········································',
-    '········································',
-    '········································',
-    '········································',
-    '···················pair·programming·····',
+    '····················     ···············',
+    '·············     ··       ·············',
+    '············                  ··········',
+    '············                   ·········',
+    '·······    ··                 ··········',
+    '·····                        ···········',
+    '······                         ·········',
+    '·······                        ·········',
+    '·····                            ·······',
+    '···                               ······',
   ],
   [
     '······················     ·············',
