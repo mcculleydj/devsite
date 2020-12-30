@@ -9,7 +9,7 @@ export const thoughts = [
   {
     title: 'on readability',
     text:
-      'A line of code might be read thousands of times and written once. "Make it work, make it right, make it fast" is a mantra we learn early. What about make it intuitive or maintainable? Complexity is often excused as elegant. Simplicity without sacrificing performance is elegant, not brevity for brevity\'s sake. When complexity is unavoidable, do everyone ― especially yourself ― a favor and add comments.',
+      'A line of code might be read thousands of times and written once. "Make it work, make it right, make it fast" is a mantra we learn early. What about make it intuitive or maintainable? Complexity is often excused as elegance. Simplicity without sacrificing performance is elegant, not brevity for brevity\'s sake. When complexity is unavoidable, do everyone ― especially yourself ― a favor and add comments.',
     quote:
       '"The functionality that you create today has a good chance of changing in the next release, but the readability of your code will have a profound effect on all the changes that will ever be made."<br /> ― Robert Martin',
   },

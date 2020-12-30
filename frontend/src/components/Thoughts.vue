@@ -6,8 +6,8 @@
       <div>Welcome to my interactive self-promotion.</div>
     </div>
     <div class="sub-text">
-      During an interview, I ask certain questions to learn about a candidate's
-      approach to building software. They tend to be more philosophical than
+      During an interview, I try to get a feel for a candidate's approach to
+      building software. My questions tend to be more philosophical than
       technical in nature, but job experience correlates with the quality of the
       responses. Here are ten "takes" on writing code based on questions I've
       been asked as a candidate or questions I like to ask as an interviewer
@@ -26,7 +26,7 @@
               'border-left': '3px solid #1976d2',
               'transform-origin': 'center right',
               transform: `translate(${x}px, ${y}px) rotate(${
-                selected > -1 ? 2 * i : 10 * i
+                selected > -1 ? 1.5 * i : 10 * i
               }deg)`,
               'z-index': thoughts.length - i,
             }
