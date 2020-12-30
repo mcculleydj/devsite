@@ -77,7 +77,7 @@ import { thoughts } from '@/common/constants'
 export default {
   computed: {
     cardWidth() {
-      return 1.3 * this.imageWidth
+      return 1.2 * this.imageWidth
     },
   },
 

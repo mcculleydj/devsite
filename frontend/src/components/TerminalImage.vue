@@ -84,7 +84,12 @@ export default {
       const progress = new Array(this.sourceIndex + 1)
         .fill('#')
         .concat(new Array(methods.length - this.sourceIndex - 1).fill(' '))
-      const progressLine = [` * progress [${progress.join('')}]`.split('')]
+      let progressLine = [` * progress [${progress.join('')}]`.split('')]
+
+      if (this.sourceIndex === 10) {
+        progressLine[0].push(...' - Thanks for your attention!'.split(''))
+      }
+
       const last = [[' ', '*', '/']]
 
       // an array of arrays where each member is either an img URL

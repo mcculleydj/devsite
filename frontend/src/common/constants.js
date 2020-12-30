@@ -147,13 +147,13 @@ export const comments = [
   ],
   [
     'porch swing + coffee + dog + Sunday Washington Post = weekly ritual',
-    "i'm addicted to my kindle and try to alternate between fiction and non-fiction",
+    "i'm addicted to my Kindle and try to alternate between fiction and non-fiction",
     'like most nerds i prefer sci-fi and fantasy',
   ],
   [
-    'most of my former squadron mates are airline pilots',
-    "most people think i'm crazy for choosing to start over as a developer",
-    'i am not afraid to switch it up and frankly, this is more imaginative work',
+    'most of my former squadronmates are airline pilots',
+    "people think i'm crazy for choosing to start over as a developer",
+    'but, i am not afraid to switch it up and this is more imaginative work',
   ],
 ]
 

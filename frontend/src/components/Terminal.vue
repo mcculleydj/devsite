@@ -236,7 +236,7 @@ export default {
       this.timeout = setTimeout(() => {
         this.characterIndex--
         this.deleteMethod()
-      }, Math.random() * 200 + 300)
+      }, Math.random() * 100 + 100)
     },
 
     exit(index) {
