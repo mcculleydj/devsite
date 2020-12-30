@@ -485,7 +485,7 @@ export const skills = [
   },
   {
     group: 'database',
-    display: 'Minio',
+    display: 'MinIO',
     title: 'minio',
     r: 25,
     path: 'skill-icons/minio.png',
