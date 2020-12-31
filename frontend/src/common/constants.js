@@ -732,7 +732,7 @@ export const skills = [
     path: 'skill-icons/gitlab.png',
     years: '>2',
     description:
-      "In my previous job, we used GitLab to manage version control, run Agile, perform code reviews, and perform CI / CD. I have a high opinion of this product and the changes I've seen them make over the 2 years I've been using it. I'm not particularly wedded to GitLab over one of their competitors, but I am wedded to idea that building professional software on a team requires something like GitLab to manage issues, releases, repository access, etc. Getting into the weeds with deploy tokens, dockerized runners for CI / CD, and integrations with external tools like Mattermost has forever changed my expectations of what a proper developer environment looks like.",
+      "In my previous job, we used GitLab to manage version control, run Agile, perform code reviews, and CI / CD. I have a high opinion of this product and the changes I've seen them make over the 2 years I've been using it. I'm not particularly wedded to GitLab over one of their competitors, but I am wedded to the idea that building professional software on a team requires something like GitLab to manage issues, releases, repository access, etc. Getting into the weeds with deploy tokens, dockerized runners for CI / CD, and integrations with external tools like Mattermost has forever changed my expectations of what a proper developer environment looks like.",
   },
   {
     group: 'ui',
