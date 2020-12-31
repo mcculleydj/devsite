@@ -451,7 +451,7 @@ export const skills = [
     path: 'skill-icons/angular-material.png',
     years: '>1',
     description:
-      'As the sole engineer on my startup I was given the freedom to choose the stack and I went with what I knew at the time which was MEAN (Mongo, Express, Angular, and Node). The fact that both Angular and Material were Google products made Angular Material a logical choice for a UI framework. This experience taught me the value of a UI framework when starting from green fields for rapidly prototyping an application.',
+      'As the sole engineer at my startup I was given the freedom to choose the stack. I went with what I knew best at the time which was MEAN (Mongo, Express, Angular, and Node). The fact that both Angular and Material were Google products made Angular Material a logical choice for a UI framework. This experience taught me the value of a UI framework when starting from green fields for rapidly prototyping an application.',
   },
   {
     group: 'web',
@@ -461,7 +461,7 @@ export const skills = [
     path: 'skill-icons/nginx.png',
     years: '>2',
     description:
-      "I learned Nginx at my previous job and it is still what I reach for to serve my Webpack builds. In fact, this website is brought to you in part by Nginx. The integration with Let's Encrypt and Certbot makes setting up TLS trivial. The config file documentation is very good and the power they give you to load balance, add security, and proxy pass all in one location is impressive. I have not had to use load balancing in practice, but I have used their security features to prevent DDoS / scraping and proxy chain.",
+      "I learned Nginx at my previous job and it is still what I reach for to serve my Webpack builds. In fact, this website is brought to you in part by Nginx. The integration with Let's Encrypt and Certbot makes setting up TLS trivial. The config file documentation is very good and the power they give you to load balance, add security, and proxy pass all in one location is impressive. I have not had to use Nginx for load balancing in practice, but I have used their security features to prevent DDoS / scraping and to build proxy chains.",
   },
   {
     group: 'database',
@@ -471,7 +471,7 @@ export const skills = [
     path: 'skill-icons/arango.png',
     years: '<1',
     description:
-      "I was introduced to Arango in the final 6 months of my previous job where we used it to store graph data. Honestly, I wasn't very impressed with the query syntax or the current state of the product, but they are very much in active development. The main benefit of this experience is that I know understand how data best represented by a graph should be stored and queried and the power that a graph DB gives you. My short-term goal is to learn neo4j for handling this use case. Combining a graph DB like neo4j with a visualization library like D3 for displaying networks has the potential to bring data to life in a way that tables and charts never will.",
+      "I was introduced to Arango in the final 6 months of my previous job where we used it to store graph data. Honestly, I wasn't very impressed with the query syntax or the current state of the product, but they are very much in active development. The main benefit of this experience is that I now understand how data best represented by a graph should be stored and queried and the power that a graph DB gives you. My short-term goal is to learn neo4j for handling this use case. Combining a graph DB like neo4j with a visualization library like D3 for displaying networks has the potential to bring data to life in a way that tables and charts never will.",
   },
   {
     group: 'agile',
@@ -491,7 +491,7 @@ export const skills = [
     path: 'skill-icons/minio.png',
     years: '>1',
     description:
-      "I was introduced to MinIO in my previous job when we needed an S3 solution for data storage and transfer. Adopting MinIO taught me the value of distinguishing between data that should be stored in a database for quick access versus an S3-like solution allowing for shorter DB maintenance cycles. The frontend dev in me really appreciates MinIO's slick UI. For the API layer their SDKs for Go and Python make it easy to interface with the store. S3 isn't always necessary, but flat file storage in production should be a thing of the past in the face of solutions like MinIO. The ability to give non-developers instant access to files via the web UI is reason enough to adopt MinIO when you need to share data with a team.",
+      "I was introduced to MinIO in my previous job when we needed an S3 solution for data storage and transfer. Adopting MinIO taught me the value of distinguishing between data that should be stored in a database for quick access versus an S3-like solution allowing for shorter DB maintenance cycles. The frontend dev in me really appreciates MinIO's slick UI. For the API layer their SDKs for Go and Python make it easy to interface with the store. S3 isn't always necessary, but flat file storage in production should be a thing of the past in the face of solutions like MinIO. The ability to give non-developers instant access to files via their web UI is reason enough to adopt MinIO when you need to share data with a team.",
   },
   {
     group: 'ops',
@@ -501,7 +501,7 @@ export const skills = [
     path: 'skill-icons/ansible.png',
     years: '>2',
     description:
-      "In my previous job we used Ansible to pick up where the hypervisor leaves off for managing a cloud of VMs. I've written playbook to set up VMs by creating file system partitions, setting network configuration, and installing software. I've also written playbooks to maintain VMs by upgrading software, load balancing, and monitoring system health.",
+      "In my previous job we used Ansible to pick up where the hypervisor leaves off for managing a cloud of VMs. I've written playbooks to set up VMs by creating file system partitions, specifying network configuration, and installing software. I've also written playbooks to maintain VMs by upgrading software, load balancing, and monitoring system health.",
   },
   {
     group: 'database',
@@ -511,7 +511,7 @@ export const skills = [
     path: 'skill-icons/solr.png',
     years: '>2',
     description:
-      'For open source full-text search your options are Solr or Elastic and both use Lucene to index. In my previous job, they opted for Solr and our use case stretched the limits of what Solr was capable of. I was not the primary engineer on the Solr and ZooKeeper cloud like I was for the Mongo cluster supporting that cloud, but after years of exposure, I have enough experience with Solr to create and manage an instance. At a MongoDB conference one of their engineers asked me why we didn\'t just use their text indexing. I replied, "Because I don\'t use a screwdriver to pound in a nail." More than becoming an expert in Solr or Lucene, what I learned from this experience is an appreciation for the complexity of maintaining fast full-text search on billions of records. The ability to scale depends on using the right tool for the job and not asking the DB to also be your search engine.',
+      'For open source full-text search your options are Solr or Elastic and both use Lucene to index. In my previous job, they opted for Solr and our use case stretched the limits of what Solr was capable of. I was not the primary engineer on the Solr and ZooKeeper cloud like I was for the Mongo cluster underpinning those indices, but after years of exposure, I have enough experience with Solr to create and manage an instance. At a MongoDB conference, one of their engineers asked me why we didn\'t just use their text indexing. I replied, "Because I don\'t use a screwdriver to pound in a nail." More than becoming an expert in Solr or Lucene, what I learned from this experience is an appreciation for the complexity of maintaining fast full-text search on billions of records. The ability to scale depends on using the right tool for the job and not asking the DB to also be your search engine.',
   },
   {
     group: 'web',
@@ -521,7 +521,7 @@ export const skills = [
     path: 'skill-icons/angular.png',
     years: '>2',
     description:
-      "My first software job was as an Angular developer at L3. Prior to that job I had only used vanilla JS and jQuery during my time at Boston University. I had no clue what a JS framework was when I was hired. Once I got the job, I bought a subscription to Plural Sight and completed every Angular course they offered. Along the way, I learned about TypeScript out of necessity since Angular relies on its experimental features like decorators to make the magic happen. This was not long after the release of Angular 2 (now just Angular). The confusion between AngularJS (the original) and this new version, which was an entirely new framework and not backwards compatible, made research on the web very difficult. Through the coursework and the job, I was able to learn my first modern JS framework and since that time I can no longer imagine building a web application without one. I really like Angular's batteries included approach. For example, Angular has it's own HTTP client based on RxJS, whereas most Vue projects add Axios as a dependency for this purpose. The freedom to choose your own external dependency is nice, but also risky since there is no guarantee that they will continue to play nice together as each independently evolves. I continued with and really mastered Angular during my time at the start up. The only reason I've given it a proficiency score of \"familiar\" is because my active use of Angular stopped when I transitioned to Vue and a lot can change in two years.",
+      "My first software job was as an Angular developer at L3. Prior to that job I had only used vanilla JS and jQuery during my time at Boston University. Learning Angular means learning TypeScript out of necessity since Angular relies on its experimental features like decorators to make the magic happen. Since learning my first modern JS framework, I can no longer imagine building a web application without one. I really like Angular's batteries included approach. For example, Angular has it's own HTTP client based on RxJS, whereas most Vue projects add Axios as a dependency for this purpose. The freedom to choose your own external dependency is nice, but also risky since there is no guarantee that they will continue to play nice together as each independently evolves. I continued with and really mastered Angular during my time at the startup. The only reason I've given it a proficiency score of \"familiar\" is because my active use of Angular stopped when I transitioned to Vue and a lot can change in two years.",
   },
   {
     group: 'agile',
@@ -541,7 +541,7 @@ export const skills = [
     path: 'skill-icons/bootstrap.png',
     years: '<1',
     description:
-      "In school and just about every online course I've ever taken the default UI framework has been Bootstrap. I am not an expert in Bootstrap, but I understand enough about UI libraries at this point to read the docs and pick the right component. I understand Bootstrap's grid system, which has been pretty universally adopted across most other frameworks. I was pleased to read that Bootstrap 5 will be dropping the jQuery reliance. Integrations with JS frameworks like React, Angular, and Vue should be a lot easier without jQuery in the mix.",
+      "In school and just about every online course I've ever taken the default UI framework has been Bootstrap. I am not an expert in Bootstrap, but I understand enough about UI libraries at this point to read the docs and pick the right component. I understand Bootstrap's grid system, which has been pretty universally adopted across most other frameworks. I was pleased to read that Bootstrap 5 will be dropping the jQuery reliance. Integrations with frameworks like React, Angular, and Vue should be a lot easier without jQuery in the mix.",
   },
   {
     group: 'env',
@@ -561,7 +561,7 @@ export const skills = [
     path: 'skill-icons/selenium.png',
     years: '>2',
     description:
-      'My experience with Selenium has been to perform JS enabled web scraping tasks. Selenium, Chromedriver, and the Python Selenium package offer a developer a lot of firepower for automating the browser. As more and more of the web relies on client-side JS or XHR to hydrate the page rather than SSR, open source collection will need tools like Selenium that allow for JS injection and waiting for DOM elements before capturing the HTML.',
+      'My experience with Selenium has been to perform JS enabled web scraping tasks. Selenium, Chromedriver, and the Python Selenium package offer a developer a lot of firepower for controlling the browser. As more and more of the web relies on client-side JS or XHR to hydrate the page rather than SSR, open source collection will need tools like Selenium that allow for JS injection and waiting for DOM elements before capturing the HTML.',
   },
   {
     group: 'ops',
@@ -581,7 +581,7 @@ export const skills = [
     path: 'skill-icons/ts.png',
     years: '>2',
     description:
-      "Starting out as an Angular 2+ developer I had to learn TS out of necessity. I had a CS professor that designed his own language called Applied Type System (ATS) that enforces a strict way of writing code to prevent common runtime errors. Working with ATS gave me an appreciation for the value of strict typing and compile-time failures. Aside from avoiding runtime bugs, TS adds tremendous value to modern IDEs like VS Code especially on larger teams when you are working with code you didn't write. Unfortunately, Vue 2 and specifically Vuex (Flux pattern state management for Vue) was is not easily compatible with TS. When I left the startup and converted to Vue, I had to leave TS behind. Vue 3 is written in TS and I am happy to be picking it up again. My prediction is that TS and TSX will continue to rise in popularity as more JS developers experience the joy of having some rules and boundaries.",
+      "Starting out as an Angular developer I had to learn TS out of necessity. I had a CS professor that designed his own language called Applied Type System (ATS) that enforces a strict way of writing code to prevent common runtime errors. Working with ATS gave me an appreciation for the value of strict typing and compile-time failures. Aside from avoiding runtime bugs, TS adds tremendous value to modern IDEs like VS Code especially on larger teams when you are working with code you didn't write. Unfortunately, Vue 2 and specifically Vuex (Flux pattern state management for Vue) is not easily compatible with TS. When I left the startup and converted to Vue, I had to leave TS behind. Vue 3 is written in TS and I am happy to be picking it up again. My prediction is that TS and TSX will continue to rise in popularity as more JS developers experience the joy of having some rules and boundaries.",
   },
   {
     group: 'ui',
@@ -591,7 +591,7 @@ export const skills = [
     path: 'skill-icons/material.png',
     years: '>4',
     description:
-      "I have been working with MD for over 4 years now. I appreciate the value of a standard style from which to deviate and how having the design system in place frees up the developer to focus more on implementation than pushing pixels left and right. Although most of MD has been abstracted through the use of libraries like Angular Material and Vuetify, I often refer to the Material spec when building any custom UI components. In all three of my software engineering jobs, none of which had a dedicated UI designer, I've made the case to adopt MD. One of my strongest arguments for MD is that it is maintained by Google and will continue to evolve under the care of very good designers. Depending on the make up of your team and your budget that can be a very compelling reason to choose it over the alternatives.",
+      "I have been working with MD for over 4 years now. I appreciate the value of a standard set of styles from which to deviate and how having the design system in place frees up a developer to focus more on implementation than pushing pixels left and right. Although most of MD has been abstracted through the use of libraries like Angular Material and Vuetify, I often refer to the Material spec when building any custom UI components. In all three of my software engineering jobs, none of which had a dedicated UI designer, I've made the case to adopt MD. One of my strongest arguments for MD is that it is maintained by Google and will continue to evolve under the care of very good designers. Depending on the make up of your team and your budget that can be a very compelling reason to choose it over the alternatives.",
   },
   {
     group: 'database',
@@ -601,7 +601,7 @@ export const skills = [
     path: 'skill-icons/postgres.png',
     years: '>2',
     description:
-      "I started my last job as a proponent of NoSQL's flexibility and left it with the attitude that it really depends on the data. I was introduced to Postgres in my graduate databases course and other than conducting a migration from MySQL to Mongo it has been the only flavor of SQL I've extensively worked with. I am much more comfortable with SQL now than I was two years ago. I've been able to turn to and implement solutions from the documentation when I need to do something more complex. I am very familiar with PgAdmin and I use Postgres in any project with highly relational data.",
+      "I started my last job as a proponent of NoSQL's flexibility and left it with the attitude that it really depends on the data. I was introduced to Postgres in my graduate databases course and other than conducting a migration from MySQL to Mongo it has been the only flavor of SQL I've extensively worked with. I am much more comfortable with SQL now than I was two years ago. I know my way around PgAdmin and I use Postgres in any project with highly relational data without any reservation.",
   },
   {
     group: 'env',
