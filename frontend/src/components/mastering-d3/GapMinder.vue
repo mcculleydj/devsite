@@ -65,7 +65,15 @@
         />
       </v-col>
     </v-row>
-    <v-row>
+    <v-row v-if="loading" justify="center" align="center">
+      <v-progress-circular
+        indeterminate
+        color="primary"
+        class="mt-12"
+        size="40"
+      />
+    </v-row>
+    <v-row v-show="!loading">
       <div id="gap-minder-svg-container" />
     </v-row>
   </v-container>
@@ -92,10 +100,13 @@ export default {
     selectedCountry: null,
     selectedCountryEl: null,
     selectedContinent: 'all',
+    loading: false,
   }),
 
   async mounted() {
+    this.loading = true
     this.plotData = await readData()
+    this.loading = false
     this.plot = drawCanvas()
     this.playFn()
   },

@@ -42,8 +42,9 @@
           </v-col>
         </v-row>
       </v-col>
+      <v-col lg="1"></v-col>
       <!-- right column -->
-      <v-col cols="12" lg="6">
+      <v-col cols="12" lg="5">
         <v-row>
           <v-col cols="6" lg="12">
             <h4>Company Size</h4>
