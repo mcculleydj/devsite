@@ -50,7 +50,7 @@ export const thoughts = [
   {
     title: 'on learning',
     text:
-      'Remaining a professional in any profession requires some degree of continuing education, but the rate of change in software engineering makes it impossible to rest on your laurels even for a few months. Whenever possible, I take advantage of free or low cost options for learning something new or leveling up something I already know. When trying to assess a candidate for an open position, I am always more interested in how willing they are to learn rather than what they knew.',
+      'Remaining a professional in any profession requires some degree of continuing education, but the rate of change in software engineering makes it impossible to rest on your laurels even for a few months. Whenever possible, I take advantage of free or low cost options for learning something new or leveling up something I already know. When trying to assess a candidate for an open position, I am always more interested in how willing they are to learn rather than what they know today.',
     quote:
       '"One of the great challenges in life is knowing enough to think you\'re right, but not enough to know you\'re wrong"<br /> ― Neil deGrasse Tyson',
   },
