@@ -5,7 +5,7 @@
       <div>I am Daren McCulley, a humble coder seeking a fresh start.</div>
       <div>Welcome to my interactive self-promotion.</div>
     </div>
-    <div class="sub-text">
+    <div class="sub-text" :style="{ width: 1.3 * cardWidth + 'px' }">
       During an interview, I try to get a feel for a candidate's approach to
       building software. My questions tend to be more philosophical than
       technical in nature, but job experience correlates with the quality of the
@@ -133,7 +133,7 @@ export default {
   color: rgba(0, 0, 0, 0.6);
   font-size: 1.1rem;
   margin-bottom: 1.3rem;
-  max-width: 800px;
+  max-width: 750px !important;
   border-left: 5px solid #1976d2;
   padding-left: 16px;
 }
@@ -158,7 +158,7 @@ export default {
   position: fixed;
   top: 0px;
   left: 0px;
-  width: 800px !important;
+  width: 750px !important;
   transform: translate(12px, 244px) rotate(0deg);
 }
 
