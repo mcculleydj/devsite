@@ -6,12 +6,12 @@
       <div>Welcome to my interactive self-promotion.</div>
     </div>
     <div class="sub-text" :style="{ width: 1.3 * cardWidth + 'px' }">
-      During an interview, I try to get a feel for a candidate's approach to
-      building software. My questions tend to be more philosophical than
-      technical in nature, but job experience correlates with the quality of the
-      responses. Here are ten "takes" on writing code based on questions I've
-      been asked as a candidate or questions I like to ask as an interviewer
-      intended to give you a sense of where I stand.
+      As an interviewer, I prefer to rely on take home problems to determine a
+      candidate's technical capabilities. During the in-person portion, my goal
+      is to discover how the candidate approaches building software in the
+      context of their solutions. Here are ten "takes" on writing code derived
+      from questions I've been asked as a candidate or questions I like to ask
+      as an interviewer to give you a sense of where I stand.
     </div>
     <v-card
       v-for="(thought, i) in thoughts"
