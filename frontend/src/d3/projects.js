@@ -207,7 +207,8 @@ export function updateCanvas(imageWidth, imageHeight, onClick) {
         .attr('stroke-width', 3)
         .transition(d3.transition())
         .attr('stroke-width', function() {
-          return selectedHex && this.__data__.project.name === d.project.name
+          return selectedHex &&
+            selectedHex._groups[0][0].__data__.project.name === d.project.name
             ? 3
             : 1
         })
