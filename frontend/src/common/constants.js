@@ -852,7 +852,7 @@ export const projects = [
     title: 'rosetta',
     path: 'rosetta.png',
     description:
-      'A series of HackerRank-like problems solved in the three languages I know best.  I find that these exercises help me to think Go linguistically, Pythonically, or whatever the hell the JS/TS version of that is.',
+      'A series of HackerRank-like problems solved in the three languages I know best.  I find that these exercises help me to think Go linguistically, Pythonically, or in the case of JS, just go with it.',
     link: 'https://rosetta.mcculleydj.dev',
     github: 'https://github.com/mcculleydj/rosetta-code',
     youtube: '',
