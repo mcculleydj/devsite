@@ -66,8 +66,9 @@
 </template>
 
 <script>
+import { mapGetters } from 'vuex'
 import { fromEvent } from 'rxjs'
-import { tap, debounceTime } from 'rxjs/operators'
+import { filter, tap, debounceTime } from 'rxjs/operators'
 import { thoughts } from '@/common/constants'
 
 // TODO: circular overlay to prevent click events in image
@@ -76,12 +77,15 @@ import { thoughts } from '@/common/constants'
 
 export default {
   computed: {
+    ...mapGetters(['tab']),
+
     cardWidth() {
       return 1.2 * this.imageWidth
     },
   },
 
   data: () => ({
+    hasResized: false,
     thoughts,
     selected: -1,
     width: 0,
@@ -95,6 +99,7 @@ export default {
   subscriptions() {
     // listen for and handle resize events
     const resize$ = fromEvent(window, 'resize').pipe(
+      filter(() => this.tab === 0),
       debounceTime(500),
       tap(() => {
         this.setGeometry()
@@ -116,6 +121,14 @@ export default {
       this.imageHeight = document.getElementById('sketch').clientHeight
       this.x = window.innerWidth - this.cardWidth - 100
       this.y = window.innerHeight - 200
+    },
+  },
+
+  watch: {
+    async tab() {
+      if (this.tab === 0) {
+        this.setGeometry()
+      }
     },
   },
 }
