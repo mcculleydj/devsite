@@ -28,11 +28,17 @@ import GapMinder from '@/components/mastering-d3/GapMinder'
 import FruitDonut from '@/components/mastering-d3/FruitDonut'
 import DCDivided from '@/components/mastering-d3/DCDivided'
 import Dashboard from '@/components/mastering-d3/Dashboard'
+import SupremeCourt from '@/components/mastering-d3/SupremeCourt'
 
 export default {
   data: () => ({
-    component: Cryptocurrency,
+    component: SupremeCourt,
     items: [
+      {
+        title: 'Awaiting Justice',
+        component: SupremeCourt,
+        icon: 'mdi-gavel',
+      },
       {
         title: 'Cryptocurrency',
         component: Cryptocurrency,

@@ -80,7 +80,7 @@
 </template>
 
 <script>
-import { readData, drawCanvas, updatePlot, updateInfo } from '@/d3/scatter'
+import { readData, drawCanvas, updatePlot, updateInfo } from '@/d3/gap-minder'
 
 export default {
   data: () => ({
