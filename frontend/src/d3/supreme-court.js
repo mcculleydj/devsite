@@ -1,9 +1,9 @@
 import * as d3 from 'd3'
 
 // size
-const margin = { left: 70, right: 40, top: 110, bottom: 50 }
+const margin = { left: 50, right: 50, top: 30, bottom: 50 }
 const width = 800 - margin.left - margin.right
-const height = 600 - margin.top - margin.bottom
+const height = 450 - margin.top - margin.bottom
 
 // scale
 const x = d3.scaleLinear().range([0, width])
@@ -33,69 +33,47 @@ export async function readData() {
   }))
 }
 
+function responsive(svg) {
+  // get container + svg aspect ratio
+  const container = d3.select(svg.node().parentNode)
+  const width = parseInt(svg.style('width'))
+  const height = parseInt(svg.style('height'))
+  const aspectRatio = width / height
+
+  // add viewBox and preserveAspectRatio properties,
+  // and call resize so that svg resizes on inital page load
+  svg
+    .attr('viewBox', '0 0 ' + width + ' ' + height)
+    .attr('preserveAspectRatio', 'xMinYMid')
+    .call(resize)
+
+  // to register multiple listeners for same event type,
+  // you need to add namespace, i.e., 'click.foo'
+  // necessary if you call invoke this function for multiple svgs
+  // api docs: https://github.com/mbostock/d3/wiki/Selections#on
+  d3.select(window).on('resize.' + container.attr('id'), resize)
+
+  // get width of container and resize svg to fit it
+  function resize() {
+    const targetWidth = parseInt(container.style('width'))
+    svg.attr('width', targetWidth)
+    svg.attr('height', Math.round(targetWidth / aspectRatio))
+  }
+}
+
 export function drawCanvas() {
   const svg = d3
     .select('#supreme-court-svg-container')
     .append('svg')
     .attr('width', width + margin.left + margin.right)
     .attr('height', height + margin.top + margin.bottom)
+    .call(responsive)
 
   const plot = svg
     .append('g')
-    .attr('width', width)
-    .attr('height', height)
+    // .attr('width', width)
+    // .attr('height', height)
     .attr('transform', `translate(${margin.left}, ${margin.top})`)
-
-  // legend
-  const legend = plot.append('g').attr('transform', 'translate(0, -90)')
-
-  legend
-    .append('circle')
-    .attr('cx', 0)
-    .attr('cy', 0)
-    .attr('r', 10)
-    .attr('stroke', color(true))
-    .attr('fill', 'none')
-
-  legend
-    .append('text')
-    .attr('font-size', '15px')
-    .attr('x', 15)
-    .attr('y', 5)
-    .style('text-transform', 'capitalize')
-    .text('WH and Senate - Different Party')
-
-  legend
-    .append('circle')
-    .attr('cx', 0)
-    .attr('cy', 25)
-    .attr('r', 10)
-    .attr('stroke', color(false))
-    .attr('fill', 'none')
-
-  legend
-    .append('text')
-    .attr('font-size', '15px')
-    .attr('x', 15)
-    .attr('y', 30)
-    .style('text-transform', 'capitalize')
-    .text('WH and Senate - Same Party')
-
-  legend
-    .append('circle')
-    .attr('cx', 0)
-    .attr('cy', 50)
-    .attr('r', 10)
-    .attr('fill', 'gray')
-    .attr('stroke', 'gray')
-
-  legend
-    .append('text')
-    .attr('font-size', '15px')
-    .attr('x', 15)
-    .attr('y', 55)
-    .style('text-transform', 'capitalize')
-    .text('Rejected')
 
   // x-axis
   xAxis = plot
@@ -107,9 +85,11 @@ export function drawCanvas() {
   plot
     .append('text')
     .attr('text-anchor', 'middle')
-    .attr('font-size', '20px')
-    .attr('transform', `translate(${width / 2}, ${height + 50})`)
-    .text('Year')
+    .attr('font-size', '16px')
+    .attr('transform', `translate(${width / 2}, ${height + 40})`)
+    .attr('stroke', '#999')
+    .attr('fill', '#999')
+    .text('YEAR')
 
   // y-axis
   plot
@@ -121,9 +101,11 @@ export function drawCanvas() {
   plot
     .append('text')
     .attr('text-anchor', 'middle')
-    .attr('font-size', '20px')
-    .attr('transform', `translate(-40, ${height / 2}) rotate(-90)`)
-    .text('Days Elapsed')
+    .attr('font-size', '16px')
+    .attr('transform', `translate(-35, ${height / 2}) rotate(-90)`)
+    .attr('stroke', '#999')
+    .attr('fill', '#999')
+    .text('DAYS ELAPSED')
 
   return plot
 }
@@ -161,7 +143,7 @@ export function updatePlot(
   callbacks,
   init = false,
 ) {
-  x.domain([minimumYear - 10, 2030])
+  x.domain([minimumYear - 5, 2025])
 
   xAxis.transition(d3.transition()).call(d3.axisBottom(x).ticks(10, 'd'))
 
@@ -170,20 +152,34 @@ export function updatePlot(
   if (init) {
     plot
       .append('line')
-      .attr('x1', x(minimumYear - 10))
+      .attr('x1', x(minimumYear - 5))
       .attr('y1', medianY)
-      .attr('x2', x(2030))
+      .attr('x2', x(2025))
       .attr('y2', medianY)
       .attr('stroke', 'gray')
       .attr('stroke-width', 1)
       .attr('stroke-dasharray', '5, 5')
       .attr('class', 'median')
+
+    plot
+      .append('text')
+      .attr('x', 10)
+      .attr('y', medianY - 7)
+      .attr('font-size', '12px')
+      .attr('class', 'median')
+      .style('color', 'gray')
+      .text('median')
   } else {
     plot
       .select('line.median')
       .transition(d3.transition().duration(500))
       .attr('y1', medianY)
       .attr('y2', medianY)
+
+    plot
+      .select('text.median')
+      .transition(d3.transition().duration(500))
+      .attr('y', medianY - 7)
   }
 
   plot
@@ -194,8 +190,11 @@ export function updatePlot(
         appendDef(enter)
         const circles = enter.append('circle')
         circles
-          .on('click', function(_, d) {
-            callbacks.selectNominee(d)
+          .on('mouseover', function(_, d) {
+            callbacks.displayNominee(d)
+          })
+          .on('mouseleave', function() {
+            callbacks.displayNominee(null)
           })
           .attr('cy', d => y(d.days) - 100)
           .attr('opacity', 0)
