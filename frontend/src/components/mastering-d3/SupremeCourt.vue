@@ -2,10 +2,10 @@
   <v-container class="mt-5">
     <v-row style="max-width: 800px">
       <v-col>
-        <i>WORK IN PROGRESS</i>
         <p>
-          A freelance data visualization project that examines the history of
-          Supreme Court nominations and how long it takes to fill the job.
+          A freelance data visualization examining the history of Supreme Court
+          nominations and how long it takes to confirm or reject a nominee once
+          the Senate begins the process.
         </p>
       </v-col>
     </v-row>
