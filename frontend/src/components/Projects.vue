@@ -69,6 +69,48 @@
         </v-row>
       </div>
     </transition>
+    <v-btn
+      fixed
+      bottom
+      text
+      x-large
+      color="primary"
+      @click="showDialog = true"
+      style="z-index: 13"
+    >
+      <v-icon>mdi-hammer-wrench</v-icon>
+      <span style="text-transform: lowercase">current projects</span>
+    </v-btn>
+    <v-dialog v-model="showDialog" max-width="600">
+      <v-card>
+        <v-card-title style="font-size: 1.3rem">Current Projects</v-card-title>
+        <v-card-text style="font-size: 1.1rem">
+          <p>I am currently working on...</p>
+          <ul>
+            <li>
+              a
+              <a
+                href="https://www.udemy.com/course/advanced-css-and-sass/"
+                target="blank_"
+                >course</a
+              >
+              on Advanced CSS and SASS
+            </li>
+            <li>
+              freelance data visualization projects for an online news startup
+              using D3
+            </li>
+            <li>
+              building a Redis clone from scratch using Go inspired by
+              <a href="https://codecrafters.io/" target="blank_"
+                >this brilliant idea</a
+              >
+              to replace HackerRank with real world coding challenges
+            </li>
+          </ul>
+        </v-card-text>
+      </v-card>
+    </v-dialog>
   </div>
 </template>
 
@@ -90,6 +132,7 @@ export default {
     radius: 0,
     hasViewed: false,
     hasResized: false,
+    showDialog: false,
   }),
 
   subscriptions() {
