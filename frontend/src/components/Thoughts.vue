@@ -2,16 +2,14 @@
   <div>
     <div id="banner">
       <div>Hello, world!</div>
-      <div>I am Daren McCulley, a humble coder seeking a fresh start.</div>
+      <div>I am Daren McCulley, a humble coder.</div>
       <div>Welcome to my interactive self-promotion.</div>
     </div>
     <div class="sub-text" :style="{ width: 1.3 * cardWidth + 'px' }">
       Here are ten takes on writing code to give you a sense of where I stand.
       For a more personal introduction, please click on whoami. To learn about
       my past, please click on work exp. If you want to see what I can do today,
-      check out skills and projects. I've spent the last 15 years drinking from
-      the firehose, so please consider any shortcomings I may have with respect
-      to your stack temporary.
+      check out skills and projects.
     </div>
     <v-card
       v-for="(thought, i) in thoughts"
